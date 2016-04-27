@@ -1,4 +1,5 @@
 function outimage=gaussianfilter(img,sigma)
+outimage=img;
     G = gauss1b(sigma);
     width = (size(img,1));
     height = (size(img,2));

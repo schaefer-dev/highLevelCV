@@ -15,7 +15,7 @@ function [G] = gauss1b(sigma) % we deleted output x because it didn't make sense
     
     for i=1:dim
         x(i) = i-dim2-1;
-        G(i) = 1.0 / (sqrt(2 * pi) * sigma) * exp(-(x(i)) / (2 * sigma * sigma));
+        G(i) = 1.0 / (sqrt(2 * pi) * sigma) * exp(-(x(i)*x(i)) / (2 * sigma * sigma));
     end
     
 end
