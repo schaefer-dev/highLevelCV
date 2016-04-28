@@ -1,4 +1,4 @@
-function [G] = gauss(sigma) % we deleted output x because it didn't make sense in our opinion, and it's also not meantioned on the sheet
+function [G, x] = gauss(sigma) % we deleted output x because it didn't make sense in our opinion, and it's also not meantioned on the sheet
 
     % width and height of the filter
     dim = 6*sigma+1;
@@ -19,5 +19,7 @@ function [G] = gauss(sigma) % we deleted output x because it didn't make sense i
         G(i,j) = 1.0 / (sqrt(2 * pi) * sigma) * exp(-(x(i,j,1)*x(i,j,1) + x(i,j,2)*x(i,j,2)) / (2 * sigma * sigma));
        end 
     end
+    dim2
+    x=linspace(-dim2,dim2,dim)
     
 end
