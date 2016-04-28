@@ -17,5 +17,5 @@ function [D, x] = gaussdx(sigma)
         D(i,j) = -(x1 + x2) / (sqrt(2 * pi) * sigma^3) * exp(-scP / (2 * sigma^2));
        end 
     end
-   img_gray(i,j)/num_bins 
+    x=linspace(-dim2,dim2,dim);
 end
