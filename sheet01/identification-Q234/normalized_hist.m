@@ -6,26 +6,27 @@
 %  num_bins - number of bins in the histogram
 %
 function h = normalized_hist(img_gray, num_bins)
-img_gray=double(img_gray);
+    img_gray=double(img_gray);
 
-  assert(length(size(img_gray)) == 2, 'image dimension mismatch');
-  assert(isfloat(img_gray), 'incorrect image type');
+    % catching wrong inputs
+    assert(length(size(img_gray)) == 2, 'image dimension mismatch');
+    assert(isfloat(img_gray), 'incorrect image type');
   
-  data = zeros(1,num_bins);
-  for i=1:(size(img_gray,1))
-      for j=1:(size(img_gray,2))
-          index = uint8(img_gray(i,j)*num_bins/255);
-          data(index) = data(index)+1;
-      end
-  end
-  s = sum(data);
-  data = data ./ s; 
-  step=255/num_bins;
-  h = bar(1:step:255,data);
-  sum(data)
-end
-  % compute the histogram of pixel intensity values
-  % ...
+    % data is collecting the amout of times a specific range of values occurs
+    % the range is determined by num_bins which specifies the amout of ranges
+    % we split our spectrum to.
+    data = zeros(1,num_bins);
+    for i=1:(size(img_gray,1))
+        for j=1:(size(img_gray,2))
+            index = uint8(img_gray(i,j)*num_bins/255);
+            data(index) = data(index)+1;
+        end
+    end
 
-  %normalize the histogram such that its integral (sum) is equal 1
-  % ...
+    % now we normalize the histogramm such that its integral is equal 1
+    s = sum(data);
+    data = data ./ s; 
+    step = 255 / num_bins;
+    h = bar(1:step:255, data);
+    sum(data)
+end
