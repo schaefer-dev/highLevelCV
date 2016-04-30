@@ -46,4 +46,6 @@ function h=rgb_hist(img_color, num_bins)
     b = sum(data(3));
     data(3) = data(3) ./ b;
 
+    h = data
+
 end
