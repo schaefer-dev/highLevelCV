@@ -25,8 +25,7 @@ function h = normalized_hist(img_gray, num_bins)
 
     % now we normalize the histogramm such that its integral is equal 1
     s = sum(data);
-    data = data ./ s; 
-    step = 255 / num_bins;
-    h = bar(1:step:255, data);
-    sum(data)
+    h = data ./ s; 
+    %step = 255 / num_bins;
+    %h = bar(1:step:255, data);
 end
