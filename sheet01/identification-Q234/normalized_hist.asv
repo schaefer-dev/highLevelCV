@@ -18,9 +18,13 @@ function h = normalized_hist(img_gray, num_bins)
     data = zeros(1,num_bins);
     for i=1:(size(img_gray,1))
         for j=1:(size(img_gray,2))
-            % multiply with num_bin-1 to map in the interval [0,num_bin-1]
-            % and shift then with 1 to map in [1,num_bin] (Matlab indices start with 1)
+            disp(['img_gray(i,j) = ',num2str(img_gray(i,j))]);
             index = uint8(img_gray(i,j)*(num_bins-1)/255) + 1;
+            if (index > num_bins)
+                disp(['img_gray(i,j) = ',num2str(img_gray(i,j))]);
+                disp(['uint8(img_gray(i,j)*(num_bins-1)/255) = ',num2str(uint8(img_gray(i,j)*(num_bins-1)/255))]);
+                disp('error');
+            end
             data(index) = data(index)+1;
         end
     end
