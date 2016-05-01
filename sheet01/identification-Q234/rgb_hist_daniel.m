@@ -6,10 +6,12 @@
 %  num_bins - number of bins used to discretize each channel, total number of bins in the histogram should be num_bins^3
 %
 
-function h=rgb_hist(img_color, num_bins)
+function h=rgb_hist_daniel(img_color, num_bins)
 
     assert(size(img_color, 3) == 3, 'image dimension mismatch');
-    assert(isfloat(img_color), 'incorrect image type');
+    
+    % This does not work for me - Thomas
+    % assert(isfloat(img_color), 'incorrect image type');
 
     %define a 3D histogram  with "num_bins^3" number of entries
     data=zeros(num_bins,num_bins,num_bins);
@@ -17,6 +19,19 @@ function h=rgb_hist(img_color, num_bins)
     %execute the loop for each pixel in the image 
     for i=1:size(img_color,1)
         for j=1:size(img_color,2)
+            % calculate r,g,b coordinate in histogram and increase
+            % corresponding voxel (bin)
+            indexr = uint8(img_color(i,j,1) * (num_bins-1)/255)+1;
+            indexg = uint8(img_color(i,j,2) * (num_bins-1)/255)+1;
+            indexb = uint8(img_color(i,j,3) * (num_bins-1)/255)+1;
+            
+            data(indexr, indexg, indexb) = data(indexr, indexg, indexb) + 1; 
+            
+            % for logging purposes
+            % disp(data)
+            
+            % old version by daniel
+            %{
             for h=1:size(img_color,3)
 
                 % adding r value
@@ -32,11 +47,13 @@ function h=rgb_hist(img_color, num_bins)
                 data(3,index) = data(3,index)+1;
 
             end
+            %}
         end
     end
 
     % normalize everything
-
+    
+    % TODO: Rework this! return for me NaN sometimes - Thomas
     r = sum(data(1));
     data(1) = data(1) ./ r;
     
@@ -48,4 +65,5 @@ function h=rgb_hist(img_color, num_bins)
 
     h = data
 
+    disp(data)
 end
