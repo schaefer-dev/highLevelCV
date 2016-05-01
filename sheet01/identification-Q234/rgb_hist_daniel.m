@@ -53,7 +53,8 @@ function h=rgb_hist_daniel(img_color, num_bins)
 
     % normalize everything
     
-    % TODO: Rework this! return for me NaN sometimes - Thomas
+    % There should be no normalization in this histogram - Thomas
+    
     r = sum(data(1));
     data(1) = data(1) ./ r;
     

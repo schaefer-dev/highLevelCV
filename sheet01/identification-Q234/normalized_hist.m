@@ -30,10 +30,9 @@ function h = normalized_hist(img_gray, num_bins)
         end
     end
     
-    % There should be no normalization in this histogram - Thomas
     % now we normalize the histogramm such that its integral is equal 1
-    % s = height * width;
-    % h = data ./ s; 
+    s = height * width;
+    h = data ./ s; 
     
     
     %step = 255 / num_bins;
