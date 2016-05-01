@@ -16,18 +16,26 @@ function h = normalized_hist(img_gray, num_bins)
     % the range is determined by num_bins which specifies the amout of ranges
     % we split our spectrum to.
     data = zeros(1,num_bins);
-    for i=1:(size(img_gray,1))
-        for j=1:(size(img_gray,2))
+    
+    height = size(img_gray,1);
+    width = size(img_gray,2);
+    
+    
+    for i=1:height
+        for j=1:width
             % multiply with num_bin-1 to map in the interval [0,num_bin-1]
             % and shift then with 1 to map in [1,num_bin] (Matlab indices start with 1)
             index = uint8(img_gray(i,j)*(num_bins-1)/255) + 1;
             data(index) = data(index)+1;
         end
     end
-
+    
+    % There should be no normalization in this histogram - Thomas
     % now we normalize the histogramm such that its integral is equal 1
-    s = sum(data);
-    h = data ./ s; 
+    % s = height * width;
+    % h = data ./ s; 
+    
+    
     %step = 255 / num_bins;
     %h = bar(1:step:255, data);
 end
