@@ -24,7 +24,7 @@ function h = rg_hist(img_color, num_bins)
             sum = red + green + blue;
             
             red_n = double(red) / double(sum);
-            green_n = double(green) /  double(sum);
+            green_n = green / sum;
             
             indexr = uint8(red_n * (num_bins-1))+1;
             indexg = uint8(green_n * (num_bins-1))+1;
