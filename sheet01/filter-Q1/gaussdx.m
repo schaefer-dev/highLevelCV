@@ -1,21 +1,21 @@
 function [D, x] = gaussdx(sigma)
+
+    % width and height of the filter
     dim = 6*sigma+1;
+
+    % Distance of pixel to filteredge
     dim2= 3 * sigma;
-    x = zeros(dim,dim,2);
-    D = zeros(dim,dim);
+
+    % local coordinates with respect to the center of gauss kernel
+    x = zeros(dim,1);
+    
+    % Result
+    D = zeros(dim,1);
     
     for i=1:dim
        for j=1:dim
-        x(i,j,1) = i-dim2-1;
-        x(i,j,2) = j-dim2-1;
-        x1 = x(i,j,1);
-        x2 = x(i,j,2);
-        % scalar product
-        scP = x1^2 + x2^2;
-        % Assumption: Total derivative is used => sum of all partial
-        % derivatives
-        D(i,j) = -(x1 + x2) / (sqrt(2 * pi) * sigma^3) * exp(-scP / (2 * sigma^2));
+        x(i) = i-dim2-1;
+        D(i) = -x(i) / (sqrt(2 * pi) * sigma^3) * exp(-x(i)^2 / (2 * sigma^2));
        end 
     end
-    x=linspace(-dim2,dim2,dim);
 end

@@ -1,6 +1,6 @@
 function outimage=gaussianfilter(img,sigma)
 outimage=img;
-    G = gauss1b(sigma);
+    G = gauss(sigma);
     width = (size(img,1));
     height = (size(img,2));
     channelnum = (size(img,3));
