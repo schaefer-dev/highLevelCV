@@ -15,17 +15,43 @@ function [best_match, D] = find_best_match(model_images, query_images, dist_type
   dist_func = get_dist_by_name(dist_type);
   hist_func = get_hist_by_name(hist_type);
   hist_isgray = is_grayvalue_hist(hist_type);
-
-  D = zeros(length(model_images), length(query_images));
+  
+  
+  lm = length(model_images);
+  lq = length(query_images);
+  
+  D = zeros(lm, lq);
 
   % compute distance matrix
-  % ...
+  for i=1:lm
+     img1 = imread(char(model_images(i)));
+     if (hist_isgray == 1) 
+            img1 = rgb2gray(img1);
+     end 
+     for j=1:lq
+        img2 = imread(char(query_images(j)));
+        if (hist_isgray == 1) 
+            img2 = rgb2gray(img2);
+        end
+        h1 = hist_func(img1, num_bins);
+        h2 = hist_func(img2, num_bins);
+        D(i,j) = dist_func(h1,h2);
+     end
+  end
   
   % find the best match for each query image
-  % ...
-  
-  
-  
+  best_match = zeros(1,lq);
+  for i=1:lq
+     old_dist = D(1,i);
+     best_index = 1;
+     for j=1:lm
+        new_dist = D(j,i);
+        if (new_dist < old_dist)
+            best_index = j;
+        end
+     end
+     best_match(i) = best_index;
+  end
 end
   
 
