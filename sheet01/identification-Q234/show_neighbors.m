@@ -21,12 +21,14 @@ function show_neighbors(model_images, query_images, dist_type, hist_type, num_bi
         image(imread(char(query_images(i))));
   end
   
+  [best_match,D] = find_best_match(model_images, query_images, dist_type, hist_type, num_bins);
+  
   for i=1:num_nearest
-    [best_match,D] = find_best_match(model_images, query_images, dist_type, hist_type, num_bins);
-    [A,I] = min(D);
-    for j=1:size(I)
-        subplot(number_of_images,num_nearest+1,j*(i+1));
-        image(imread(char(model_images(i,1))));
+    [M,I] = min(D);
+    for j=1:size(I,2)
+        subplot(number_of_images,num_nearest+1,j*(num_nearest + 1)-5+i);
+        D(I(j),j) = 1
+        image(imread(char(model_images(I(i)))));
     end
   end
     
