@@ -32,11 +32,11 @@ function [imgDx,imgDy]=gaussderiv(img,sigma)
     end
     
     % displaying the results
-    %{
+    
     impixelregion(imagesc(imgDx))
     waitforbuttonpress
     
     impixelregion(imagesc(imgDy))
     waitforbuttonpress
-    %}
+    
 end

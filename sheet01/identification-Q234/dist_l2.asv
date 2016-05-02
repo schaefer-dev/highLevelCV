@@ -38,12 +38,9 @@ function d = dist_l2(x,y)
     elseif (dim_x == 3)
        for i=1:bins_x(1)
           for j=1:bins_x(2)
-              for k=1:bins_x(2)
-                 error = error + (x(i,j,k) - y(i,j,k))^2; 
-              end
+              for 
+              error = error + (x(i,j) - y(i,j))^2;
           end
        end  
     end
-    
-    d = error;
 end

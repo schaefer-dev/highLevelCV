@@ -4,5 +4,5 @@
 % 
 
 function d = dist_intersect(x, y)
-
-  % ...
+    
+end
