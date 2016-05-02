@@ -38,7 +38,7 @@ function d = dist_chi2(x,y)
        for i=1:bins_x(1)
           for j=1:bins_x(2)
               for k=1:bins_x(2)
-                 error = error + (x(i,j,k) - y(i,j,k))^2 / (x(i,j,k) + y(i,j,k));
+                 error = error + (x(i,j,k) - y(i,j,k))^2 / (x(i) + y(i,j,k));
               end
           end
        end  

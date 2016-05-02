@@ -19,6 +19,7 @@ function h=dxdy_hist(img_gray, num_bins)
   
   cd ../filter-Q1/;
   
+  % do not change this value. Otherwise the shift below will now work!
   sigma = 6;
   
   [imgDx,imgDy]=gaussderiv(img_gray,sigma);
