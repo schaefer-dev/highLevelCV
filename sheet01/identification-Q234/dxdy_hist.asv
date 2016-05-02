@@ -29,22 +29,17 @@ function h=dxdy_hist(img_gray, num_bins)
   
   
   
-    for i=1:size(img_gray,1)
-        for j=1:size(img_gray,2)
+    for i=1:size(img_color,1)
+        for j=1:size(img_color,2)
             dx = imgDx(i,j);
-            dy = imgDy(i,j);
+            dy = img_Dy(i,j);
             
             % normalize dx and dy to the interval [0,1]
-            % with sigma = 6 they are in the interval [-34, 34] so we shift
-            % with +34 and divide by 68
-            
-            dx_n = double(dx + 34) / double(68);
-            dy_n = double(dy + 34) / double(68);
+            % with 
             
             indexdx = uint8(dx_n * (num_bins-1))+1;
-            indexdy = uint8(dy_n * (num_bins-1))+1;
 
-            h(indexdx, indexdy) = h(indexdx, indexdy) + 1; 
+            %h(indexr, indexg) = h(indexr, indexg) + 1; 
         end
     end  
   

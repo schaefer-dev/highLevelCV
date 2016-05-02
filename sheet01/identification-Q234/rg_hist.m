@@ -32,8 +32,6 @@ function h = rg_hist(img_color, num_bins)
             h(indexr, indexg) = h(indexr, indexg) + 1; 
         end
     end  
-    
-    disp(h)
 end
 
 
