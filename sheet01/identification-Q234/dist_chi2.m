@@ -26,19 +26,31 @@ function d = dist_chi2(x,y)
 
     if (dim_x == 1) 
        for i=1:bins_x(1)
-            error = error + (x(i) - y(i))^2 / (x(i) + y(i));
+            error = error + (x(i) - y(i))^2;
+            sum = (x(i) + y(i));
+            if (sum ~= 0)
+                error = error / sum; 
+            end
        end 
     elseif (dim_x == 2)
        for i=1:bins_x(1)
           for j=1:bins_x(2)
-              error = error + (x(i,j) - y(i,j))^2 / (x(i,j) + y(i,j));
+              error = error + (x(i,j) - y(i,j))^2;
+              sum = (x(i,j) + y(i,j));
+              if (sum ~= 0)
+                 error = error / sum; 
+              end
           end
        end
     elseif (dim_x == 3)
        for i=1:bins_x(1)
           for j=1:bins_x(2)
               for k=1:bins_x(2)
-                 error = error + (x(i,j,k) - y(i,j,k))^2 / (x(i,j,k) + y(i,j,k));
+                 error = error + (x(i,j,k) - y(i,j,k))^2;
+                 sum = (x(i,j,k) + y(i,j,k));
+                 if (sum ~= 0)
+                    error = error / sum; 
+                 end
               end
           end
        end  

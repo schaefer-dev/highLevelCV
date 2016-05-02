@@ -19,7 +19,13 @@ function [best_match, D] = find_best_match(model_images, query_images, dist_type
   D = zeros(length(model_images), length(query_images));
 
   % compute distance matrix
-  % ...
+  for i=1:length(model_images)
+     for j=1:length(query_images)
+        h1 = hist_func(model_images(i), num_bins);
+        h2 = hist_func(model_images(j), num_bins);
+        D(i,j) = dist_func(h1,h2);
+     end
+  end
   
   % find the best match for each query image
   % ...
