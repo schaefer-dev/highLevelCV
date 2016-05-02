@@ -11,5 +11,23 @@ function show_neighbors(model_images, query_images, dist_type, hist_type, num_bi
   clf;
 
   num_nearest = 5;
-
+  number_of_images = size(query_images,1);
+   
+  
+  
+  
+  for i=1:size(query_images,1)
+        subplot(number_of_images,num_nearest+1,i*6-5);
+        image(imread(char(query_images(i))));
+  end
+  
+  for i=1:num_nearest
+    [best_match,D] = find_best_match(model_images, query_images, dist_type, hist_type, num_bins);
+    [A,I] = min(D);
+    for j=1:size(I)
+        subplot(number_of_images,num_nearest+1,j*(i+1));
+        image(imread(char(model_images(i,1))));
+    end
+  end
+    
   % ...
