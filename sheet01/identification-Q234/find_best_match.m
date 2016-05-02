@@ -24,12 +24,12 @@ function [best_match, D] = find_best_match(model_images, query_images, dist_type
 
   % compute distance matrix
   for i=1:lm
-     img1 = model_images(i);
+     img1 = imread(char(model_images(i)));
      if (hist_isgray == 1) 
             img1 = rgb2gray(img1);
      end 
      for j=1:lq
-        img2 = model_images(j);
+        img2 = imread(char(query_images(j)));
         if (hist_isgray == 1) 
             img2 = rgb2gray(img2);
         end
