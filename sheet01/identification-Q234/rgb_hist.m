@@ -28,6 +28,16 @@ function h=rgb_hist(img_color, num_bins)
             data(indexr, indexg, indexb) = data(indexr, indexg, indexb) + 1; 
         end
     end
-    
     h = data;
+    
+    s=0;
+    for i=1:size(h,1)
+        for j=1:size(h,2)
+            for k=1:size(h,3)
+                s = s+h(i,j,k);
+            end
+        end
+    end
+    h = h./ s;
+    h = h(:);
 end
