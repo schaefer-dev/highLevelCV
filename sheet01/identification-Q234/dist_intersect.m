@@ -10,6 +10,7 @@ function d = dist_intersect(x, y)
     dim_y = length(size(y));
     
     assert(dim_x == dim_y, 'Dimensions of histograms x and y should match');
+    assert(dim_x <= 3, 'Dimension of histograms are not allowed to be >3');
     
     % the number of bins for each dimension
     bins_x = size(x);
@@ -32,9 +33,7 @@ function d = dist_intersect(x, y)
             sumX = sumX + x(i);
             sumY = sumY + y(i);
         end
-    end
-
-    if (dim_x == 2)
+    elseif (dim_x == 2)
         for i=1:bins_x(1)
             for j=1:bins_x(2)
                 sumXY = sumXY + min(x(i,j),y(i,j));
@@ -42,9 +41,7 @@ function d = dist_intersect(x, y)
                 sumY = sumY + y(i,j);
             end
         end
-    end
-
-    if (dim_x == 3)
+    elseif (dim_x == 3)
         for i=1:bins_x(1)
             for j=1:bins_x(2)
                 for k=1:bins_x(3)
@@ -55,10 +52,6 @@ function d = dist_intersect(x, y)
             end
         end
     end
-
-
-    d = 0.5 * ( sumXY / sumX + sumXY / sumY );
-
-
     
+    d = 0.5 * ( sumXY / sumX + sumXY / sumY );
 end
