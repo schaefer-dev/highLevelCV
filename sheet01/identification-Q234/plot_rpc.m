@@ -16,19 +16,29 @@ function plot_rpc(D, plot_color)
 
   labels = eye(num_images);
   
+  % this linearizes the matrices
   d = D(:);
   l = labels(:);
  
+  % this sorts d in ascending order and saves the sorting indices in
+  % sortidx. These indices are used to permute l
   [d, sortidx] = sort(d, 'ascend');
   l = l(sortidx);
 
+  % we test all possible values for our threshold => compute value pairs 
+  % (recall, precision) for every point 
   tp = 0;
   for idx = 1:length(d)
     tp = tp + l(idx);
 
     % compute precision and recall values and append them to "recall" and "precision" vectors
-    % ...
-
+    fp = idx - tp;
+    pre = tp / (tp + fp);
+    precision(size(precision,2)+1) = pre;
+    
+    fn = total_imgs - idx;
+    rec = tp / (tp + fn);
+    recall(size(recall,2)+1) = rec;
   end
 
   plot(1-precision, recall, [plot_color '-'], 'LineWidth', 2);
