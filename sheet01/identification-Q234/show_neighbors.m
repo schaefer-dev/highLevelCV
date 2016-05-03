@@ -17,7 +17,7 @@ function show_neighbors(model_images, query_images, dist_type, hist_type, num_bi
   
   
   for i=1:size(query_images,1)
-        subplot(number_of_images,num_nearest+1,i*6-5);
+        subplot(number_of_images,num_nearest+1,i*(num_nearest+1)-num_nearest);
         image(imread(char(query_images(i))));
   end
   
@@ -26,9 +26,9 @@ function show_neighbors(model_images, query_images, dist_type, hist_type, num_bi
   for i=1:num_nearest
     [M,I] = min(D);
     for j=1:size(I,2)
-        subplot(number_of_images,num_nearest+1,j*(num_nearest + 1)-5+i);
-        D(I(j),j) = 1
-        image(imread(char(model_images(I(i)))));
+        subplot(number_of_images,num_nearest+1,j*(num_nearest + 1)-num_nearest+i);
+        D(I(j),j) = max(max(D)) + 1;
+        image(imread(char(model_images(I(j)))));
     end
   end
     

@@ -23,19 +23,19 @@ function [best_match, D] = find_best_match(model_images, query_images, dist_type
   D = zeros(lm, lq);
 
   % compute distance matrix
-  for i=1:lm
-     img1 = imread(char(model_images(i)));
+  for i=1:lq
+     img1 = imread(char(query_images(i)));
      if (hist_isgray == 1) 
             img1 = rgb2gray(img1);
      end 
-     for j=1:lq
-        img2 = imread(char(query_images(j)));
+     for j=1:lm
+        img2 = imread(char(model_images(j)));
         if (hist_isgray == 1) 
             img2 = rgb2gray(img2);
         end
         h1 = hist_func(img1, num_bins);
         h2 = hist_func(img2, num_bins);
-        D(i,j) = dist_func(h1,h2);
+        D(j,i) = dist_func(h1,h2);
      end
   end
   
