@@ -30,14 +30,8 @@ function h=rgb_hist(img_color, num_bins)
     end
     h = data;
     
-    s=0;
-    for i=1:size(h,1)
-        for j=1:size(h,2)
-            for k=1:size(h,3)
-                s = s+h(i,j,k);
-            end
-        end
-    end
+    s= sum(sum(sum(h)))
+    
     h = h./ s;
     h = h(:);
 end
