@@ -25,19 +25,22 @@ function [best_match, D] = find_best_match(model_images, query_images, dist_type
   % compute distance matrix
   for i=1:lq
      img1 = imread(char(query_images(i)));
+     
+     % if hist is expecting a gray picture we convert it
      if (hist_isgray == 1) 
             img1 = rgb2gray(img1);
      end 
+     h1 = hist_func(img1, num_bins);
      for j=1:lm
         img2 = imread(char(model_images(j)));
         if (hist_isgray == 1) 
             img2 = rgb2gray(img2);
         end
-        h1 = hist_func(img1, num_bins);
         h2 = hist_func(img2, num_bins);
         D(j,i) = dist_func(h1,h2);
      end
   end
+  
   
   % find the best match for each query image
   best_match = zeros(1,lq);
