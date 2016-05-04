@@ -53,5 +53,5 @@ function d = dist_intersect(x, y)
         end
     end
     
-    d = 0.5 * ( sumXY / sumX + sumXY / sumY );
+    d = 1 - 0.5 * ( sumXY / sumX + sumXY / sumY );
 end
