@@ -2,3 +2,4 @@ model/obj100__0.png
 model/obj10__0.png
 model/obj1__0.png
 model/obj11__0.png
+model/obj12__0.png
