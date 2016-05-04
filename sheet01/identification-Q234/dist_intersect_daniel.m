@@ -3,7 +3,7 @@
 % return 1 - intersection, so that smaller values also correspond to more similart histograms
 % 
 
-function d = dist_intersect(x, y)
+function d = dist_intersect_daniel(x, y)
 
     % dimensions for histograms x and y
     dim_x = length(size(x));
@@ -22,30 +22,35 @@ function d = dist_intersect(x, y)
 
 
     % normalization of both histograms
-    sumX = 0
+    sumX = 0;
     if (dim_x == 1)
-        for i=1:bins_x
-           sumX = sumX + x(i)
+        for i=1:bins_x(1)
+           sumX = sumX + x(i);
        end 
-       x ./ sumX
-    elseif (dim_x = 2)
-        for i=1:bins_x
-            for j=1:bins_x
-                sumX = sumX + x(i,j)
+       x = x ./ sumX;
+    elseif (dim_x == 2)
+        for i=1:bins_x(1)
+            for j=1:bins_x(2)
+                sumX = sumX + x(i,j);
             end
         end
-        x ./ sumX
-    elseif (dim_x = 3)
-        for i=1:bins_x
-            for j=1:bins_x
-                for k=1:bins_x
-                    sumX = sumX + x(i,j,k)
+        x = x ./ sumX
+    elseif (dim_x == 3)
+        for i=1:bins_x(1)
+            for j=1:bins_x(2)
+                for k=1:bins_x(3)
+                    sumX = sumX + x(i,j,k);
                 end
             end
         end
-        x ./ sumX
+        x = x ./ sumX;
     end
 
+    sumX
+    % debug
+    x
+    % end debug
+    
     d = 0.0;
 
     if (dim_x == 1)

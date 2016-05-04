@@ -4,6 +4,8 @@ function fh = get_dist_by_name(dist_name)
     fh = @dist_chi2;
   elseif strcmp(dist_name, 'intersect') == 1
     fh = @dist_intersect;
+  elseif strcmp(dist_name, 'intersect_daniel') == 1
+    fh = @dist_intersect_daniel;
   elseif strcmp(dist_name, 'l2') == 1
     fh = @dist_l2;
   else
