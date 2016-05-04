@@ -34,7 +34,7 @@ function d = dist_intersect_daniel(x, y)
                 sumX = sumX + x(i,j);
             end
         end
-        x = x ./ sumX
+        x = x ./ sumX;
     elseif (dim_x == 3)
         for i=1:bins_x(1)
             for j=1:bins_x(2)
@@ -45,11 +45,6 @@ function d = dist_intersect_daniel(x, y)
         end
         x = x ./ sumX;
     end
-
-    sumX
-    % debug
-    x
-    % end debug
     
     d = 0.0;
 
