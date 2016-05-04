@@ -29,6 +29,7 @@ function show_neighbors(model_images, query_images, dist_type, hist_type, num_bi
         subplot(number_of_images,num_nearest+1,j*(num_nearest + 1)-num_nearest+i);
         D(I(j),j) = max(max(D)) + 1;
         image(imread(char(model_images(I(j)))));
+        title(M(j));
     end
   end
     
