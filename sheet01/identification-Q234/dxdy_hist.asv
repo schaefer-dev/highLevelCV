@@ -17,18 +17,16 @@ function h=dxdy_hist(img_gray, num_bins)
 
   % compute the first derivatives
   
-  % Supress namespace warning
-  warnid = 'MATLAB:dispatcher:nameConflict';
-  warning('off',warnid)
-  
   cd ../filter-Q1/;
   
   % do not change this value. Otherwise the shift below will now work!
   sigma = 6;
   
+  warnid = 'MATLAB:dispatcher:nameConflict';
+  warning('off',warnid)
+  
   [imgDx,imgDy]=gaussderiv(img_gray,sigma);
   
-  % turn warning back on
   warning('on',warnid)
   
   cd ../identification-Q234/;

@@ -15,9 +15,9 @@ function [imgDx,imgDy]=gaussderiv(img,sigma)
     % horizontally and D vertically
     for i=1:height
         for h = 1:channelnum
-            Dhor_img = conv(img(:,i,h),D,'same');
+            Dhor_img = conv(double(img(:,i,h)),D,'same');
             imgDx(:,i,h) = Dhor_img;
-            Ghor_img = conv(img(:,i,h),G,'same');
+            Ghor_img = conv(double(img(:,i,h)),G,'same');
             imgDy(:,i,h) = Ghor_img;
         end 
     end

@@ -98,8 +98,8 @@ query_images = textread('query.txt', '%s');
 fprintf('loaded %d model images\n', length(model_images));
 fprintf('loaded %d query images\n', length(query_images));
 
-eval_dist_type = 'intersect';
-eval_hist_type = 'rg';
+eval_dist_type = 'chi2';
+eval_hist_type = 'dxdy';
 eval_num_bins = 30;
 
 
