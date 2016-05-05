@@ -1,3 +1,6 @@
+FORMAT: Distance-Function, Histogram_Function, num_bins, amount of hits
+
+
 chi2 rg 20		80
 chi2 rg 30 		81
 chi2 rg 60		78

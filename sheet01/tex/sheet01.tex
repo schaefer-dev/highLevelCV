@@ -115,8 +115,8 @@
 \begin{enumerate}[a)]
     \setcounter{enumi}{2}
     \item 
-        % TODO 
-        submit the summary of your experiments as part of your solution
+        Our testsresults can be found in the '/Tests3c.txt' file. It basically explains all our testing in addition to what you can read in 4b below.\\
+        The best combinations have been intersect distance with num\_bins=30 on the rg-histogram with 81 hits. The same amount of hits also occured for chi2 on the rg-histogram using num\_bins=30.
 \end{enumerate}
 
 
@@ -124,7 +124,7 @@
 \section*{Question 4: Performance Evaluation}
 
 \begin{enumerate}[a)]
-    \setcounter{enumi}{2}
+    \setcounter{enumi}{1}
     \item 
         % TODO 
         We plotted the behaviour of precision and recall for many 'num\_bin' values with all combinations of histogram and distance function. You can find these results in the folder '/RPC-Curves'. The name describes the type of histogram and the number is the value which was used for 'num\_bins'. Honestly the best way to compare these histograms and distance functions is to look at the pictues. Regardles a short description of what is happening:
@@ -141,6 +141,8 @@
 
             \item
                 \textbf{Summary:}\\
+                overall I think its pretty safe to say that chi2 is the distance algorithm of choice here regarding precision and recall. The l2 distance algorithm is basically always the worst by a large margin. Histogram choice is really close between rg and rgb but escpecially with higher 'num\_bins' rg is superior to rgb histogram. Dxdy is worse in basically every case.\\
+                Regarding 'num\_bins' there is apparently a sweet spot between 15-60 for rgb (assuming you use chi2). For rg its 10-100 and for dxdy its 20-100 (its still really really bad compared to rg or rgb).
 
 
                 
