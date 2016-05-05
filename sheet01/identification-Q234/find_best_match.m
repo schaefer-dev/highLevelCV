@@ -29,7 +29,7 @@ function [best_match, D] = find_best_match(model_images, query_images, dist_type
      % if hist is expecting a gray picture we convert it
      if (hist_isgray == 1)
         if (size(img1,3) == 3)
-            img1 = rgb2gray(img1);
+            img1 = double(rgb2gray(img1));
         end
      end 
      h1 = hist_func(img1, num_bins);
@@ -37,7 +37,7 @@ function [best_match, D] = find_best_match(model_images, query_images, dist_type
         img2 = double(imread(char(model_images(j))));
         if (hist_isgray == 1) 
             if (size(img2,3) == 3)
-                img2 = rgb2gray(img2);
+                img2 = double(rgb2gray(img2));
             end
         end
         h2 = hist_func(img2, num_bins);
