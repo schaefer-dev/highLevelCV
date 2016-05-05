@@ -105,7 +105,7 @@
 
     \item
         We can see two effects:\\
-        First of all there is a nice directional behaviour of the partial derivatives which isn't really surprising but can be observed in the fine structures of the face or the wooden mushroom. dy capture here vertical information while dx capture horizontal information.\\
+        First of all there is a nice directional behaviour of the partial derivatives which isn't really surprising but can be observed in the fine structures of the face or the wooden mushroom. dy captures here vertical information while dx captures horizontal information.\\
         The second effect are the different values for sigma which determine our Gaussian presmoothing: Lower values preserve almost every structure but also consist of noise while higher values tend to lose fine information but can eliminate noise.
 \end{enumerate}
 
@@ -131,7 +131,7 @@
         \begin{itemize}
             \item 
                 \textbf{dxdy-histogram:}\\
-                the dxdy-histogram is absolutely useless for 'num\_bins' values like 5. Afterwards it increases in precision and recall until around 'num\_bins' 20 with chi2 being the best distance function followed by intersect and l2. Compared to the other RPC-curves all distance functions stay fairly close in precision and recall. From 'num\_bins' 20 to 100 the l2 distance function decreases a little bit regarding both precision and recall but the results of chi2 and intersect stay really close.
+                The dxdy-histogram is absolutely useless for 'num\_bins' values like 5. Afterwards it increases in precision and recall until around 'num\_bins' 20 with chi2 being the best distance function followed by intersect and l2. Compared to the other RPC-curves all distance functions stay fairly close in precision and recall. From 'num\_bins' 20 to 100 the l2 distance function decreases a little bit regarding both precision and recall but the results of chi2 and intersect stay really close.
             \item 
                 \textbf{rg-histogram:}\\
                 The rg-histogram already has really good results for 'num\_bins'=5 and has its peak in precision and recall at around 10-20. Its consistently chi2, intersect l2 from best to worst. The difference between chi2 and intersect is fairly significant this time and l2 is decreasing for growing 'num\_bins' values just like in the dxdy histogram. The results of chi2 and intersect also decrease with growing 'num\_bins' but very very slowly compared to l2.
@@ -140,8 +140,8 @@
                 the behaviour is really similar to the rg-histogram. For values like 'num\_bins'=5 the rg-histogram is significantly superior to the rgb histogram but at around 10 rgb and rg are fairly even in all distance functions. Just like in the other histograms chi2 is consitently the best, closely followed by intersect and then quite a big gap to l2. The behaviour stays basically exactly the same as in the rg-histogram.
             \item
                 \textbf{Summary:}\\
-                overall I think its pretty safe to say that chi2 is the distance algorithm of choice here regarding precision and recall. The l2 distance algorithm is basically always the worst by a large margin. Histogram choice is really close between rg and rgb but escpecially with higher 'num\_bins' rg is superior to rgb histogram. Dxdy is worse in basically every case.\\
-                Regarding 'num\_bins' there is apparently a sweet spot between 15-60 for rgb (assuming you use chi2). For rg its 10-100 and for dxdy its 20-100 (its still really really bad compared to rg or rgb).
+                Overall we think it's pretty safe to say that chi2 is the distance algorithm of choice here regarding precision and recall for these instances. The l2 distance algorithm is basically always the worst by a large margin. Histogram choice is really close between rg and rgb but especially with higher 'num\_bins' rg is superior to rgb histogram. Dxdy is worse in basically every case.\\
+                Regarding 'num\_bins' there is apparently a sweet spot between 15-60 for rgb (assuming you use chi2). For rg its 10-100 and for dxdy its 20-100 (it's still really really bad compared to rg or rgb).
         \end{itemize}
 \end{enumerate}
 
