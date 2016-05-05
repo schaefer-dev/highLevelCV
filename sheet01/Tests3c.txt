@@ -6,10 +6,10 @@ chi2 rg 120		79
 chi2 rg 150		79
 chi2 rg 180		79
 
-chi2 rgb 10		35
-chi2 rgb 30 	15
-chi2 rgb 60		20
-chi2 rgb 90		18
+chi2 rgb 10		80
+chi2 rgb 30 	79
+chi2 rgb 60		76
+chi2 rgb 90		69
 
 chi2 dxdy 10	36
 chi2 dxdy 30	56
@@ -22,12 +22,31 @@ l2 rg 60		42
 l2 rg 90		38
 l2 rg 120		36
 
-l2 rgb 10		31
-l2 rgb 30 		13
-l2 rgb 60		16
-l2 rgb 90		14
+l2 rgb 10		55
+l2 rgb 30 		43
+l2 rgb 60		33
+l2 rgb 90		25
 
 l2 dxdy 10		23
 l2 dxdy 30		39
 l2 dxdy 60		42
 l2 dxdy 90		47
+
+intersect rg 10			73
+intersect rg 30 		81
+intersect rg 60			75
+intersect rg 90			74
+intersect rg 120		74
+intersect rg 150		73
+intersect rg 180		73
+
+intersect dxdy 10		29
+intersect dxdy 30		49
+intersect dxdy 60		55
+intersect dxdy 90		59
+intersect dxdy 120		58
+
+intersect rgb 10		79
+intersect rgb 30 		80
+intersect rgb 60		77
+intersect rgb 90		69
