@@ -67,7 +67,7 @@
 % alternativer Titel
 \noindent
 {\Large \textbf{High-level Computer Vision}} \hfill \textbf{05.05.2016}\\
-{\Large \textbf{Exercise 1}} \hfill Thomas Pohl (????)\\
+{\Large \textbf{Exercise 1}} \hfill Thomas Pohl (2537675)\\
 \raggedleft \hfill Guillermo Reyes (2556018)\\
 \hfill Daniel Schaefer (2549458)\\
 \hfill Dominik Weber (2548553)\\
@@ -120,13 +120,34 @@
 \end{enumerate}
 
 
+\newpage
 \section*{Question 4: Performance Evaluation}
 
 \begin{enumerate}[a)]
     \setcounter{enumi}{2}
     \item 
         % TODO 
-        Summary of your observations
+        We plotted the behaviour of precision and recall for many 'num\_bin' values with all combinations of histogram and distance function. You can find these results in the folder '/RPC-Curves'. The name describes the type of histogram and the number is the value which was used for 'num\_bins'. Honestly the best way to compare these histograms and distance functions is to look at the pictues. Regardles a short description of what is happening:
+        \begin{itemize}
+            \item 
+                \textbf{dxdy-histogram:}\\
+                the dxdy-histogram is absolutely useless for 'num\_bins' values like 5. Afterwards it increases in precision and recall until around 'num\_bins' 20 with chi2 being the best distance function followed by intersect and l2. Compared to the other RPC-curves all distance functions stay fairly close in precision and recall. From 'num\_bins' 20 to 100 the l2 distance function decreases a little bit regarding both precision and recall but the results of chi2 and intersect stay really close.
+            \item 
+                \textbf{rg-histogram:}\\
+                The rg-histogram already has really good results for 'num\_bins'=5 and has its peak in precision and recall at around 10-20. Its consistently chi2, intersect l2 from best to worst. The difference between chi2 and intersect is fairly significant this time and l2 is decreasing for growing 'num\_bins' values just like in the dxdy histogram. The results of chi2 and intersect also decrease with growing 'num\_bins' but very very slowly compared to l2.
+            \item 
+                \textbf{rgb-histogram:}\\
+                the behaviour is really similar to the rg-histogram. For values like 'num\_bins'=5 the rg-histogram is significantly superior to the rgb histogram but at around 10 rgb and rg are fairly even in all distance functions. Just like in the other histograms chi2 is consitently the best, closely followed by intersect and then quite a big gap to l2. The behaviour stays basically exactly the same as in the rg-histogram.
+
+            \item
+                \textbf{Summary:}\\
+
+
+                
+
+        \end{itemize}<++>
+
+
 \end{enumerate}
 
 
