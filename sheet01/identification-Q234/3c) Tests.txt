@@ -1,0 +1,33 @@
+chi2 rg 20		80
+chi2 rg 30 		81
+chi2 rg 60		78
+chi2 rg 90		79
+chi2 rg 120		79
+chi2 rg 150		79
+chi2 rg 180		79
+
+chi2 rgb 10		35
+chi2 rgb 30 	15
+chi2 rgb 60		20
+chi2 rgb 90		18
+
+chi2 dxdy 10	36
+chi2 dxdy 30	56
+chi2 dxdy 60	60
+chi2 dxdy 90	60
+
+l2 rg 10		60
+l2 rg 30		53
+l2 rg 60		42
+l2 rg 90		38
+l2 rg 120		36
+
+l2 rgb 10		31
+l2 rgb 30 		13
+l2 rgb 60		16
+l2 rgb 90		14
+
+l2 dxdy 10		23
+l2 dxdy 30		39
+l2 dxdy 60		42
+l2 dxdy 90		47
