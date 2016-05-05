@@ -10,6 +10,10 @@
 function h = rg_hist(img_color, num_bins)
     assert(size(img_color, 3) == 3, 'image dimension mismatch');
     %assert(isfloat(img_color), 'incorrect image type');
+    
+    assert(num_bins <= 255, 'num_bins is not allowed to be bigger than 255');
+    assert(num_bins > 0, 'num_bins has to be > 0');
+    num_bins = uint8(num_bins);
 
     %define a 2D histogram  with "num_bins^2" number of entries
     h=zeros(num_bins, num_bins);

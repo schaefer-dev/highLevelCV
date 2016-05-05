@@ -25,35 +25,29 @@ function d = dist_chi2(x,y)
     % dimension 4 or bigger
 
     if (dim_x == 1) 
-       for i=1:bins_x(1)
-            to_add = (x(i) - y(i))^2;
+       for i=1:bins_x(1)            
             sum = (x(i) + y(i));
             if (sum ~= 0)
-                to_add = to_add / sum; 
+                error = error + ((x(i) - y(i))^2)/sum;
             end
-            error = error + to_add;
        end 
     elseif (dim_x == 2)
        for i=1:bins_x(1)
-          for j=1:bins_x(2)
-            to_add = (x(i,j) - y(i,j))^2;
-            sum = (x(i,j) + y(i,j));
-            if (sum ~= 0)
-                to_add = to_add / sum; 
-            end
-            error = error + to_add;
+          for j=1:bins_x(2)              
+              sum = (x(i,j) + y(i,j));
+              if (sum ~= 0)
+                  error = error + ((x(i,j) - y(i,j))^2)/sum;
+              end
           end
        end
     elseif (dim_x == 3)
        for i=1:bins_x(1)
           for j=1:bins_x(2)
-              for k=1:bins_x(2)
-                 to_add = (x(i,j,k) - y(i,j,k))^2;
+              for k=1:bins_x(2)                 
                  sum = (x(i,j,k) + y(i,j,k));
                  if (sum ~= 0)
-                      to_add = to_add / sum; 
+                     error = error + ((x(i,j,k) - y(i,j,k))^2)/sum;
                  end
-                 error = error + to_add;
               end
           end
        end  

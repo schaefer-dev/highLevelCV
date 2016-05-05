@@ -14,6 +14,10 @@ function h=dxdy_hist(img_gray, num_bins)
   assert(length(size(img_gray)) == 2, 'image dimension mismatch');
   % This does not work for me - Thomas
   % assert(isfloat(img_gray), 'incorrect image type');
+  
+  assert(num_bins <= 255, 'num_bins is not allowed to be bigger than 255');
+  assert(num_bins > 0, 'num_bins has to be > 0');
+  num_bins = uint8(num_bins);
 
   % compute the first derivatives
   
