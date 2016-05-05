@@ -37,7 +37,7 @@ function d = dist_chi2(x,y)
        for i=1:bins_x(1)
           for j=1:bins_x(2)
             to_add = (x(i,j) - y(i,j))^2;
-            sum = (x(i,j) + y(i,j));
+            sum = (x(i) + y(i));
             if (sum ~= 0)
                 to_add = to_add / sum; 
             end
@@ -48,12 +48,11 @@ function d = dist_chi2(x,y)
        for i=1:bins_x(1)
           for j=1:bins_x(2)
               for k=1:bins_x(2)
-                 to_add = (x(i,j,k) - y(i,j,k))^2;
+                 error = error + (x(i,j,k) - y(i,j,k))^2;
                  sum = (x(i,j,k) + y(i,j,k));
                  if (sum ~= 0)
-                      to_add = to_add / sum; 
+                    error = error / sum; 
                  end
-                 error = error + to_add;
               end
           end
        end  
