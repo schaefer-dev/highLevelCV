@@ -29,7 +29,6 @@ function d = dist_chi2(x,y)
             sum = (x(i) + y(i));
             if (sum ~= 0)
                 error = error + ((x(i) - y(i))^2)/sum;
-                
             end
        end 
     elseif (dim_x == 2)
@@ -38,7 +37,6 @@ function d = dist_chi2(x,y)
               sum = (x(i,j) + y(i,j));
               if (sum ~= 0)
                   error = error + ((x(i,j) - y(i,j))^2)/sum;
-                 
               end
           end
        end
@@ -49,7 +47,6 @@ function d = dist_chi2(x,y)
                  sum = (x(i,j,k) + y(i,j,k));
                  if (sum ~= 0)
                      error = error + ((x(i,j,k) - y(i,j,k))^2)/sum;
-                    
                  end
               end
           end

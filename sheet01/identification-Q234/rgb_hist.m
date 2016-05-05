@@ -10,11 +10,16 @@ function h=rgb_hist(img_color, num_bins)
 
     assert(size(img_color, 3) == 3, 'image dimension mismatch');
     
+    
+    assert(num_bins <= 255, 'num_bins is not allowed to be bigger than 255');
+    assert(num_bins > 0, 'num_bins has to be > 0');
+    num_bins = uint8(num_bins);
+    
     % This does not work for me - Thomas
     % assert(isfloat(img_color), 'incorrect image type');
 
     %define a 3D histogram  with "num_bins^3" number of entries
-    data=zeros(num_bins,num_bins,num_bins);
+    data=zeros(uint8(num_bins),uint8(num_bins),uint8(num_bins));
   
     %execute the loop for each pixel in the image 
     for i=1:size(img_color,1)

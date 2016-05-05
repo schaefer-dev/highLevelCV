@@ -1,9 +1,0 @@
-Test 1: Gaussian blur
-
-Test 2: filter for the partial y-derivaive
-
-Test 3: filter for the partial x-derivative 
-
-Test 4: same result as in 3 (commutativity)
-
-Test 5: same result as in 2 (commutativity)
