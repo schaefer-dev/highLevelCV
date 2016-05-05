@@ -18,8 +18,9 @@ function h=rgb_hist(img_color, num_bins)
     % This does not work for me - Thomas
     % assert(isfloat(img_color), 'incorrect image type');
 
-    %define a 3D histogram  with "num_bins^3" number of entries
-    data=zeros(num_bins,num_bins,num_bins);
+    %define a 3D histogram  with "num_bins^3" number of entries, not sure
+    %why but we have to cast here again to make plotting work
+    data=zeros(uint8(num_bins),uint8(num_bins),uint8(num_bins));
   
     %execute the loop for each pixel in the image 
     for i=1:size(img_color,1)
