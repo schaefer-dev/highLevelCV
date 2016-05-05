@@ -138,19 +138,11 @@
             \item 
                 \textbf{rgb-histogram:}\\
                 the behaviour is really similar to the rg-histogram. For values like 'num\_bins'=5 the rg-histogram is significantly superior to the rgb histogram but at around 10 rgb and rg are fairly even in all distance functions. Just like in the other histograms chi2 is consitently the best, closely followed by intersect and then quite a big gap to l2. The behaviour stays basically exactly the same as in the rg-histogram.
-
             \item
                 \textbf{Summary:}\\
                 overall I think its pretty safe to say that chi2 is the distance algorithm of choice here regarding precision and recall. The l2 distance algorithm is basically always the worst by a large margin. Histogram choice is really close between rg and rgb but escpecially with higher 'num\_bins' rg is superior to rgb histogram. Dxdy is worse in basically every case.\\
                 Regarding 'num\_bins' there is apparently a sweet spot between 15-60 for rgb (assuming you use chi2). For rg its 10-100 and for dxdy its 20-100 (its still really really bad compared to rg or rgb).
-
-
-                
-
-        \end{itemize}<++>
-
-
+        \end{itemize}
 \end{enumerate}
-
 
 \end{document}
