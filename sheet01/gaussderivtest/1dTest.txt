@@ -1,0 +1,3 @@
+We see wo effects:
+First of all there is a nice directional behaviour of the partial derivatives which isn't really surprising but can be observed in the fine structures of the face or the wooden mushroom. dy capture here verticl information while dx capture horizontal information.
+The second effect are the different values for sigma which determine our Gaussian presmoothing: Lower values preserve almost every structure but also consist of noise while higher values tend to lose fine information but can eliminate noise.
