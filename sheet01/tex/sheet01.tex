@@ -31,20 +31,100 @@
 \newcommand{\Bcal}{\mathcal{B}}
 \newcommand{\Acal}{\mathcal{A}}
 
-% formating
-\topmargin -1.5cm 
+
+% Formatierung
+\topmargin -2cm 
 \textheight 24cm
 \textwidth 16.0 cm 
 \oddsidemargin -0.1cm
 
-% Fancy Header on every Page
-\pagestyle{fancy}
-\lhead{\textbf{Highlevel Computer Vision - Exercise 1}}
-\rhead{Thomas Pohl, Daniel Schaefer, Dominik Weber}
-\renewcommand{\headrulewidth}{1.2pt}
+\setlength{\parindent}{0pt}  % !!!!!!! Hier werden leerzeilen erlaubt ohne dass Latex automatisch einrueckt! !!!!!!! %
+
+
+%Python code Highlighting
+\lstset{language=Python, tabsize=3,
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green}}
+
+% Code-Highlighting Java
+%\lstset{language=Java, breaklines=true, showstringspaces=false}
+%\begin{lstlisting}
+%    	Hier würde der Java-Code hinkommen und entsprechend die Syntax markiert. Selbst einrücken.
+%\end{lstlisting}
+%ODER:
+% \lstinputlisting[language=Java]{name.py}
 
 \begin{document}
+
+% Titel
+%\title{\textsc{Hacking}\\ \textsc{Abgabe 0}\\{ \normalsize Gruppe X \hfill Daniel Schäfer (2549458)\\ \hfill Anderer}}
+%\maketitle  
+
+% alternativer Titel
+\noindent
+{\Large \textbf{High-level Computer Vision}} \hfill \textbf{05.05.2016}\\
+{\Large \textbf{Exercise 1}} \hfill Thomas Pohl (????)\\
+\raggedleft \hfill Guillermo Reyes (2556018)\\
+\hfill Daniel Schaefer (2549458)\\
+\hfill Dominik Weber (2548553)\\
+
 \pagenumbering{gobble}
+\raggedright
+
+
+\section*{Code Annotations}
+
+\begin{itemize}
+    \item 
+        Throughout our distance functions we allowed 1D, 2D \textbf{and 3D} histograms. We also implemented support for 3D histograms because we expect this to be a likely case although it didn't happen in our exercises.
+\end{itemize}
+
+
+\section*{Question 1: Image Filtering}
+
+\begin{enumerate}[a)]
+    \setcounter{enumi}{2}
+    \item 
+        % TODO 
+        \textbf{What happens when you apply the following filter combinations?}\\
+        \begin{enumerate}
+            \item 
+                erstens
+            \item
+                zweitens
+            \item
+                drittens
+            \item viertens
+        \end{enumerate}
+
+    \item
+        % TODO 
+        Comment on the output
+\end{enumerate}
+
+
+\section*{Question 3: Object Identification}
+
+\begin{enumerate}[a)]
+    \setcounter{enumi}{2}
+    \item 
+        % TODO 
+        submit the summary of your experiments as part of your solution
+\end{enumerate}
+
+
+\section*{Question 4: Performance Evaluation}
+
+\begin{enumerate}[a)]
+    \setcounter{enumi}{2}
+    \item 
+        % TODO 
+        Summary of your observations
+\end{enumerate}
 
 
 \end{document}
