@@ -27,9 +27,9 @@ function show_neighbors(model_images, query_images, dist_type, hist_type, num_bi
     [M,I] = min(D);
     for j=1:size(I,2)
         subplot(number_of_images,num_nearest+1,j*(num_nearest + 1)-num_nearest+i);
-        title(D(I(j),j));
         D(I(j),j) = NaN;
         image(imread(char(model_images(I(j)))));
+        title(M(j));
     end
   end
     

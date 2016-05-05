@@ -48,17 +48,7 @@ function [best_match, D] = find_best_match(model_images, query_images, dist_type
   
   % find the best match for each query image
   best_match = zeros(1,lq);
-  for i=1:lq
-     old_dist = D(1,i);
-     best_index = 1;
-     for j=1:lm
-        new_dist = D(j,i);
-        if (new_dist < old_dist)
-            best_index = j;
-        end
-     end
-     best_match(i) = best_index;
-  end
+  [M,best_match] = min(D);
 end
   
 
