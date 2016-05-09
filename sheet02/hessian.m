@@ -11,6 +11,7 @@ H = sigma .^ 4 .* (imgDxx .* imgDyy - imgDxy .^ 2);
 
 imgMax = nonmaxsup2d(H);
 [py, px] = find(imgMax > thresh);
+end
             
 
 
