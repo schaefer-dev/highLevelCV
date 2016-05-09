@@ -4,6 +4,14 @@
 %
 % note: use the functions gaussderiv2.m and nonmaxsup2d.m 
 
-function [px py, H] = hessian(img, sigma, thresh)
+function [px ,py, H] = hessian(img, sigma, thresh)
+
+[imgDxx, imgDxy, imgDyy] = gaussderiv2(img,sigma);
+H = sigma .^ 4 .* (imgDxx .* imgDyy - imgDxy .^ 2);
+
+imgMax = nonmaxsup2d(H);
+[py, px] = find(imgMax > thresh);
+            
+
 
    % ...
