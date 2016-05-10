@@ -38,8 +38,8 @@ function h = maglap_hist(img_gray, num_bins)
 
   % normalize the histogram such that its integral (sum) is equal 1
   % ...
-  h=h ./ sum(sum(h));
-  h=reshape(h,num_bins^2,1);
+  h=h ./ sum(h(:));
+  h=reshape(h,num_bins^2,1);    
 end
 
 
