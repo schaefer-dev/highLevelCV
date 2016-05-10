@@ -7,6 +7,13 @@
 function [imgDxx, imgDxy, imgDyy] = gaussderiv2(img,sigma)
   
   assert(length(size(img)) == 2, 'expecting 2d grayscale image');
+  
+    
+  [imgDx,  imgDy ] = gaussderiv(img,   sigma);
+  [imgDxx, imgDxy] = gaussderiv(imgDx, sigma);
+  [~,      imgDyy] = gaussderiv(imgDy, sigma);
+  
+  %{ 
   G = gauss(sigma);
   Dx = gaussdx(sigma);
   Dxx = gaussdxx(sigma);
@@ -19,6 +26,7 @@ function [imgDxx, imgDxy, imgDyy] = gaussderiv2(img,sigma)
 
   imgDyy = conv2(double(img), G, 'same');
   imgDyy = conv2(imgDyy, Dxx', 'same');
+  %}
   % ... 
 end
 
