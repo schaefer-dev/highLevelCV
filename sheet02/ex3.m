@@ -1,8 +1,8 @@
 
 show_q1 = false;
 show_q2 = false;
-show_q3 = false;
-show_q4 = true;
+show_q3 = true;
+show_q4 = false;
 
 %
 % Question 1: Hessian Detector
@@ -23,6 +23,8 @@ if show_q1
         cur_hessian_sigma = hessian_sigma^idx;
         
         [px1, py1, H] = hessian(I1_grayscale, cur_hessian_sigma, hessian_threshold);
+        
+        size(px1,1)
         
         imagesc(H);
         colormap gray;
@@ -64,6 +66,7 @@ if show_q2
         title(['harris, sigma: ' num2str(cur_harris_sigma)]);
         
         subplot(2, 3, 3+idx);
+        figure(16)
         imagesc(I1);
         hold on;
         plot(px1, py1, 'xy');

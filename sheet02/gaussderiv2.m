@@ -13,19 +13,24 @@ function [imgDxx, imgDxy, imgDyy] = gaussderiv2(img,sigma)
   [imgDxx, imgDxy] = gaussderiv(imgDx, sigma);
   [~,      imgDyy] = gaussderiv(imgDy, sigma);
   
-  %{ 
+  %{
   G = gauss(sigma);
   Dx = gaussdx(sigma);
   Dxx = gaussdxx(sigma);
   
-  imgDxx = conv2(double(img), Dxx, 'same');
+  imgDxx = conv2(img, Dxx, 'same');
+  imgDxx = conv2(imgDxx, G', 'same');
   imgDxx = conv2(imgDxx, G', 'same');
 
-  imgDxy = conv2(double(img), Dx, 'same');
+  imgDxy = conv2(img, Dx, 'same');
   imgDxy = conv2(imgDxy, Dx', 'same');
+  imgDxy = conv2(imgDxy, G, 'same');
+  imgDxy = conv2(imgDxy, G', 'same');
 
-  imgDyy = conv2(double(img), G, 'same');
+  imgDyy = conv2(img, G, 'same');
   imgDyy = conv2(imgDyy, Dxx', 'same');
+  imgDyy = conv2(imgDyy, G, 'same');
+  imgDyy = conv2(imgDyy, G', 'same');
   %}
   % ... 
 end

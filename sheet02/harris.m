@@ -10,16 +10,16 @@ alpha = 0.05;
 sig2 = 1.5 * sigma;
 G = gauss(sig2);
 
-[imgDx,imgDy]=gaussderiv(img,sigma);
+[Dx,Dy]=gaussderiv(img,sigma);
 
-GDxx = sigma^2 .* gaussianfilter(imgDx .^ 2,sig2);
-GDyy = sigma^2 .* gaussianfilter(imgDy .^ 2,sig2);
-GDxy = sigma^2 .* gaussianfilter(imgDx .* imgDy,sig2);
+GDx2 = sigma^2 .* gaussianfilter(Dx .^ 2,sig2);
+GDy2 = sigma^2 .* gaussianfilter(Dy .^ 2,sig2);
+GDxDy = sigma^2 .* gaussianfilter(Dx .* Dy,sig2);
 
-Cdet = (GDxx .* GDyy - GDxy .^ 2);
-Ctrace = (GDxx + GDyy);
+Cdet = (GDx2 .* GDy2 - GDxDy .^ 2);
+Ctrace = (GDx2 + GDy2);
 
-M = Cdet - alpha .* Ctrace .^ 2;
+M = Cdet - alpha .* (Ctrace .^ 2);
 imgMax = nonmaxsup2d(M);
 [py,px] = find(imgMax > thresh);
 end
