@@ -20,21 +20,63 @@ function img = pan_sample(img1,img2,H,sz,st)
 
   % append a sufficient number of black columns to the left image  
   % ...
+  black_height = size(img1, 1);
+  black_width = size(img2, 2) + round(H(1,3));
+  black = zeros(black_height, black_width);
+  img = [img1, black];
+  %{
+  figure(42);
+  clf;
+  imagesc(img);
+  colormap gray;
+  %}
     
   % loop over all newly appended pixels plus some overlap    
     % ...
+    overlap = 20;
+    start = size(img1, 2) + 1 - overlap;
+    ende = size(img, 2);
+    for x = [start:ende]
+        for y = [1:size(img,1)]
+            if x == size(img,2) && y == 50
+                test = 1
+            end
+            % transform the current pixel coordinates to a point in the right image    
+            % ...
+            c = H * [x y 1]';
+            cx = c(1) / c(3);
+            cy = c(2) / c(3);
+
+            %cx = min(max(cx,1), size(img2,1))
+            %cy = min(max(cy,1), size(img2,1))
+
+            % look up gray-values of the four pixels nearest to the transformed
+            % coordinates    
+            % ...
+
+            % bilinearly interpolate the gray-value at transformed coordinates and 
+            % assign them to the source pixel in the left image. 
+            % (Tip: use interpolate_2d.m for bilinear interpolation).
+            % ...
+
+            g = interpolate_2d(img2, cy, cx);
+            img(y,x) = round(g);
+            %{
+            figure(43);
+              clf;
+              imagesc(img);
+              colormap gray;
+            %}
+        end
+    end
     
-    % transform the current pixel coordinates to a point in the right image    
-    % ...
+    test = 1;
     
-    % look up gray-values of the four pixels nearest to the transformed
-    % coordinates    
-    % ...
-    
-    % bilinearly interpolate the gray-value at transformed coordinates and 
-    % assign them to the source pixel in the left image. 
-    % (Tip: use interpolate_2d.m for bilinear interpolation).
-    % ...
+    figure(43);
+    clf;
+    imagesc(img);
+    colormap gray;
+            
     
     
     %% Intensity Adjustment (Question 4c)
@@ -44,3 +86,4 @@ function img = pan_sample(img1,img2,H,sz,st)
   
     
   % end loop
+end

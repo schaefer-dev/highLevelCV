@@ -1,8 +1,8 @@
 
 show_q1 = false;
 show_q2 = false;
-show_q3 = true;
-show_q4 = false;
+show_q3 = false;
+show_q4 = true;
 
 %
 % Question 1: Hessian Detector
