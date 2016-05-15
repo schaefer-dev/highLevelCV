@@ -33,7 +33,7 @@ function img = pan_sample(img1,img2,H,sz,st)
     
   % loop over all newly appended pixels plus some overlap    
     % ...
-    overlap = 20;
+    overlap = 150;
     start = size(img1, 2) + 1 - overlap;
     ende = size(img, 2);
     for x = [start:ende]
@@ -60,13 +60,19 @@ function img = pan_sample(img1,img2,H,sz,st)
             % ...
 
             g = interpolate_2d(img2, cy, cx);
-            img(y,x) = round(g);
-            %{
-            figure(43);
-              clf;
-              imagesc(img);
-              colormap gray;
-            %}
+            
+            
+            %% Intensity Adjustment (Question 4c)
+    
+            % linear weighting according to distance in horizontal direction
+            % ...
+            p = 1;
+            if x <= size(img1,2)
+                p = (x - start) / overlap;
+            end
+            
+            img(y,x) = round(p * round(g) + (1 - p) * img(y,x));
+            
         end
     end
     
@@ -77,13 +83,4 @@ function img = pan_sample(img1,img2,H,sz,st)
     imagesc(img);
     colormap gray;
             
-    
-    
-    %% Intensity Adjustment (Question 4c)
-    
-    % linear weighting according to distance in horizontal direction
-    % ...
-  
-    
-  % end loop
 end
