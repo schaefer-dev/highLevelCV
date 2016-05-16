@@ -106,7 +106,7 @@
 	
 	If examined carefully, one can notice from the images in figures 1 and 2 that for both, Harris and Hessian detectors, the dxdy-histogram descriptor seems to outperform the rg-histogram descriptor in this example, based on the amount of mismatched points between the images. This may be due to wo reasons: first, the images present very hard edges which virtually don't change if the angle of the image is changed.This makes it ideal for dxdy as it can more easily distinguish two different sections of the image. Another factor could be that the image itself presents very similar colors in different parts. One such example is on the baby's faces in figure 2 left, where, even though the matched points are close to each other, they do not correspond to the right match. There are of course other more extreme examples where points near some of the letters get matched to points in completely different locations.
 	It is important to note, never the less, that this does not mean that using dxdy-histograms is better than using rg-histograms, but is instead domain dependent, and even if dxdy beats rg-histograms in this image, there will be others where it will not be so.
-	\item
+	
 	
 	\begin{figure}[h]
 		\includegraphics[width=0.5\textwidth]{ny_hes_dxdy}
@@ -114,10 +114,9 @@
 		\caption{\textit{Left}: Hessian detector with dxdy histogram descriptor. \textit{Right}: also Hessian, but using the maglap histogram descriptor }
 	\end{figure}
 	
-	In the case of the New York images, one can see a few more inconsistencies in the case of the dxdy-histogram compared to the graffiti images. This might be because it is an image from a city (3D) no of a graffiti (2D) which means changing the angle of view has a bigger impact on the image and therefore the first derivative, which is what the dxdy-histogram uses. As for the maglap-histogram, one can see less inconsistencies than the dxdy-histogram. It is no surprise that it performs better as it also uses the first derivative, in part, but also the second derivative. So in a way, it is more informed than just the dxdy histogram and can, thus, make better matches. As opposed to the comparison of rg-histograms vs dxdy-histograms one would expect that in general maglap-histograms outperform dxdy-histograms.
+	In the case of the New York images, one can see a few more inconsistencies in the case of the dxdy-histogram compared to the graffiti images. The main cause for this could be the quality of the image, by being not very high the image becomes a little blurry and pixeled, which in effect, makes the the corners and edges less distinguishable. Another contributing reason could be because it is an image from a city (3D) no of a graffiti (2D) which means changing the angle of view has a bigger impact on the image and therefore the first derivative, which is what the dxdy-histogram uses. As for the maglap-histogram, one can see less inconsistencies than the dxdy-histogram. It is no surprise that it performs better as it also uses the first derivative, in part, but also the second derivative. So in a way, it is more informed than just the dxdy histogram and can, thus, make better matches. As opposed to the comparison of rg-histograms vs dxdy-histograms one would expect that in general maglap-histograms outperform dxdy-histograms.
 	
-	\textbf{Summary of observations}\\
-    %TODO
+	
 
 \end{enumerate}
 
