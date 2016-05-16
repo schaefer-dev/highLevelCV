@@ -86,10 +86,10 @@
 
 \begin{enumerate}[1.]
 	\item 	
-	\textbf{Which descriptor performs better and why?}
+	\textbf{Which descriptor performs better and why?}\\
 	
 	\item
-	\textbf{Summary of observations}
+	\textbf{Summary of observations}\\
 \end{enumerate}
 
 \section*{Question 4: Panorama Stitching}
@@ -97,12 +97,16 @@
 %	\setcounter{enumi}{2}
 	\item 
 	\textbf{Homography estimation with RANSAC.}
-     \begin{enumerate}[1.]
+     \begin{itemize}
      	\item
-     	\textbf{What does homography estimation do?}
+     	\textbf{What does homography estimation do?}\\
+        According to the lecture Homography is basically a mapping between two perspective projections with the same center of projection. The Homography Estimation is the estimation of occuring 'movement' for example when tracking specific vehicles in the traffic. We have to estimate both camera movement and movement of the vehicles in this case to estimate the most likely scenario. This is done by interpreting the data collected and finding the most likely camera and car movement which explains this data. It's important to identify and 'ignore' outlier data (possible errors in data collection, \dots) to preserve a realistic and precise estimation. In the case of \verb!get_ransac_hom.m!, it tries to compute the transformation matrix that transforms one given set of points to another
+
      	\item
-     	\textbf{What are the steps of RANSAC algorithm and why it is useful?}
-     \end{enumerate}
+     	\textbf{What are the steps of RANSAC algorithm and why it is useful?}\\
+        %TODO
+
+     \end{itemize}
 \end{enumerate}
 
 
