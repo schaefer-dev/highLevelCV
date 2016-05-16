@@ -95,6 +95,7 @@
 
 \end{enumerate}
 
+\newpage
 \section*{Question 4: Panorama Stitching}
 \begin{enumerate}[a)]
 %	\setcounter{enumi}{2}
@@ -103,11 +104,29 @@
      \begin{itemize}
      	\item
      	\textbf{What does homography estimation do?}\\
-        According to the lecture Homography is a mapping between two perspective projections with the same center of projection. In the case of \verb!get_ransac_hom.m!, it tries to compute the homography as a transformation matrix that transforms one given set of points to another.  In practise a homography can usually not be computed exactly due to noise in the data. Therefore it has to be estimated, for which it is important to 'ignore' outlier data (possible errors in data collection, \dots) to preserve a realistic and precise estimation.
+        Homography is the projective transformation between two images of the same planar surface, i.e. it maps the points of one image to the points of another image taken by a camera which was projectively transformed from the first one. To estimate the homography of two images a set of of pairs of points is required, which represent projections of the same world point in each image.\\
+        In the case of \verb!get_ransac_hom.m!, it tries to compute the homography as a transformation matrix that transforms one given set of points to another.  In practise a homography can usually not be computed exactly due to noise in the data. Therefore it has to be estimated, for which it is important to 'ignore' outlier data (possible errors in data collection, \dots) to preserve a realistic and precise estimation.
 
      	\item
      	\textbf{What are the steps of RANSAC algorithm and why it is useful?}\\
-        %TODO
+        \begin{enumerate}[1)]
+            \item 
+                We compute a random sample of Data-values
+            \item
+                We compute the Homography of these randomly selected values
+            \item
+                We check if this random sample contains more inliers compared to the best random-sample we computed earlier, if that is the case we save our new random sample as the new best random-sample.
+            \item
+                There is a statistic method which estimates the number of neccessary ransac iterations using the ratio of inliers and outliers. With every iteration we can improve our estimation of neccesary iterations, thats why we update this number every time
+            \item 
+                Once all iterations are finished, we are going to improve the best sample we found:
+                \begin{itemize}
+                    \item 
+                        Every point inside the threshold around the computed Homography of the best sample found, is used as input set of which the homography is computed again, to enlarge the subset on which our homography is based on. This is done exactly once in our implementation.
+                \end{itemize}
+            \item
+                Now we have succesfully computed the resulting Homography.
+        \end{enumerate}
 
      \end{itemize}
 \end{enumerate}
