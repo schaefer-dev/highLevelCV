@@ -27,6 +27,10 @@ function h = comp_cell_hist(PARAMS, img_cell_mag, img_cell_ori)
   assert(all(img_cell_ori >= PARAMS.hist_min));
   assert(all(img_cell_ori < PARAMS.hist_max));
 
-  % ...
+  h = zeros(size(img_cell_ori),size(img_cell_mag));
+  for i=1:size(img_cell_mag)
+      h(img_cell_ori,img_cell_mag) = h(img_cell_ori,img_cell_mag) + 1;
+  end
+end
 
   % note: do not normalize the histogram at this point yet

@@ -12,6 +12,8 @@
 
 function vis_svm(X, y, model)
 
+  thresh = 1;
+
   min_x1 = min(X(:, 1));
   max_x1 = max(X(:, 1));
   min_x2 = min(X(:, 2));
@@ -23,7 +25,11 @@ function vis_svm(X, y, model)
   scatter(X(y>0,1),X(y>0,2),[],'red','filled');
   
   % visualize support vectors
-  % ...
+  for i=1:size(X,1)
+      if abs(model.w'.*X(i,:) + model.w0) < thresh;
+          scatter(X(i,1),X(i,2),100,'magenta');
+      end
+  end
 
   % visualze decision boundary
 
