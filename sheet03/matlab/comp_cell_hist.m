@@ -23,14 +23,16 @@ function h = comp_cell_hist(PARAMS, img_cell_mag, img_cell_ori)
 
   img_cell_ori(img_cell_ori < PARAMS.hist_min) = img_cell_ori(img_cell_ori < PARAMS.hist_min) + 1e-6;
   img_cell_ori(img_cell_ori >= PARAMS.hist_max) = img_cell_ori(img_cell_ori >= PARAMS.hist_max) - 1e-6;
+  
+  img_cell_ori = img_cell_ori + PARAMS.hist_min;
+  img_cell_ori = img_cell_ori ./ (PARAMS.hist_min + PARAMS.hist_max) .* PARAMS.hist_binsize;
 
   assert(all(img_cell_ori >= PARAMS.hist_min));
   assert(all(img_cell_ori < PARAMS.hist_max));
+  
 
-  h = zeros(size(img_cell_ori),size(img_cell_mag));
-  for i=1:size(img_cell_mag)
-      h(img_cell_ori,img_cell_mag) = h(img_cell_ori,img_cell_mag) + 1;
-  end
+  h = zeros(size(img_cell_ori,1),1);
+  h = h(:);
 end
 
   % note: do not normalize the histogram at this point yet
