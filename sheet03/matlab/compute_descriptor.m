@@ -4,6 +4,8 @@
 
 function [DESC, CELLS] = compute_descriptor(PARAMS, img)
 
+  e = PARAMS.eps;
+
   [img_mag, img_ori] = image_grad(PARAMS, img);
 
   CELLS = cell(PARAMS.num_cells_height, PARAMS.num_cells_width);
@@ -39,7 +41,9 @@ function [DESC, CELLS] = compute_descriptor(PARAMS, img)
           %
           % add the L2 block-normalization step here
           %
-
+          v = [CELLS{by, bx}; CELLS{by, bx+1}; CELLS{by+1, bx}; CELLS{by+1, bx+1}];
+          v = v(:);
+          v = v ./ (sum(v .^ 2) + e);
           DESC = [DESC; v];
       end
   end

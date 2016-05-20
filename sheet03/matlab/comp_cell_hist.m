@@ -36,7 +36,7 @@ function h = comp_cell_hist(PARAMS, img_cell_mag, img_cell_ori)
     h(bin_id) = h(bin_id) + img_cell_mag(i);
   end
   
-  h = h(:)
+  h = h(:);
 end
 
   % note: do not normalize the histogram at this point yet
