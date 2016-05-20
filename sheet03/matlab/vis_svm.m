@@ -12,19 +12,26 @@
 
 function vis_svm(X, y, model)
 
-  % visualize positive and negative points 
-  % ...
-  
-  % visualize support vectors
-  % ...
-
-  % visualze decision boundary 
-  % ...
-
   min_x1 = min(X(:, 1));
   max_x1 = max(X(:, 1));
   min_x2 = min(X(:, 2));
   max_x2 = max(X(:, 2));
+  
+  % visualize positive and negative points  
+  scatter(X(y<0,1),X(y<0,2),[],'blue','filled');
+  hold;
+  scatter(X(y>0,1),X(y>0,2),[],'red','filled');
+  
+  % visualize support vectors
+  % ...
+
+  % visualze decision boundary
+
+  x = [min_x1,max_x1];
+  y = - (model.w(1)*x+model.w0)/model.w(2);
+  p = plot(x,y,'red');
+
+
 
   axis equal;
   axis([1.5*min_x1, 1.5*max_x1, 1.5*min_x2, 1.5*max_x2]);
