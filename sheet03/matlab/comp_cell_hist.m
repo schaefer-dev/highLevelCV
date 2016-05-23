@@ -27,14 +27,16 @@ function h = comp_cell_hist(PARAMS, img_cell_mag, img_cell_ori)
   assert(all(img_cell_ori >= PARAMS.hist_min));
   assert(all(img_cell_ori < PARAMS.hist_max));
   
+  % ...
   img_cell_ori = img_cell_ori - PARAMS.hist_min;
   img_cell_ori = uint8(img_cell_ori ./ PARAMS.hist_binsize + 1);
   
   h = zeros(max(img_cell_ori),1);
-    for i = 1:length(img_cell_mag)
+  for i = 1:length(img_cell_mag)
     bin_id = img_cell_ori(i);
     h(bin_id) = h(bin_id) + img_cell_mag(i);
   end
+  % ...
   
   h = h(:);
 end

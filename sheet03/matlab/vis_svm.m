@@ -11,8 +11,9 @@
 % model.alpha is a vector of Lagrange multipliers
 
 function vis_svm(X, y, model)
-
+  % ...
   thresh = 1;
+  % ...
 
   min_x1 = min(X(:, 1));
   max_x1 = max(X(:, 1));
@@ -20,23 +21,27 @@ function vis_svm(X, y, model)
   max_x2 = max(X(:, 2));
   
   % visualize positive and negative points  
+  % ...
   scatter(X(y<0,1),X(y<0,2),[],'blue','filled');
   hold;
   scatter(X(y>0,1),X(y>0,2),[],'red','filled');
+  % ...
   
   % visualize support vectors
+  % ...
   for i=1:size(X,1)
       if abs(model.w'.*X(i,:) + model.w0) < thresh;
           scatter(X(i,1),X(i,2),100,'magenta');
       end
   end
+  % ...
 
   % visualze decision boundary
-
+  % ...
   x = [min_x1,max_x1];
   y = - (model.w(1)*x+model.w0)/model.w(2);
   p = plot(x,y,'red');
-
+  % ...
 
 
   axis equal;
