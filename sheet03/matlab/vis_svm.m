@@ -30,7 +30,8 @@ function vis_svm(X, y, model)
   % visualize support vectors
   % ...
   for i=1:size(X,1)
-      if abs(model.w'.*X(i,:) + model.w0) < thresh;
+      %if abs(model.w'.*X(i,:) + model.w0) < thresh;
+      if model.alpha(i) > 0.0001;
           scatter(X(i,1),X(i,2),100,'magenta');
       end
   end
