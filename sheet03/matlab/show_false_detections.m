@@ -21,7 +21,7 @@ function show_false_detections(figidx, pos_test_list, pos_class_score, neg_test_
     % show false negatives (missclassified positive examples) with largest
     % score)
     for i=1:num_show
-        worst = 0;
+        worst = 0.0;
         worstindex = 0;
         for i=1:length(pos_class_score)
             if pos_class_score(i) < worst
@@ -29,14 +29,14 @@ function show_false_detections(figidx, pos_test_list, pos_class_score, neg_test_
                 worstindex = i;
             end
         end
-        if worst == 0
+        if worst == 0.0
             % there are no more errors to be found, because everything
             % is already positive!
             break;
         else
             % set the worst value found to zero to avoid finding it
             % twice
-            pos_class_score(worstindex) = 0;
+            pos_class_score(worstindex) = 0.0;
             % TODO we have to some stuff now with the picture we identified
             % as the worst (at index worstindex) in the current state, this 
             % is being reached num_show times
@@ -47,7 +47,7 @@ function show_false_detections(figidx, pos_test_list, pos_class_score, neg_test_
     % show false positives (misclassified negative examples) with largest 
     % score
     for i=1:num_show
-        worst = 0;
+        worst = 0.0;
         worstindex = 0;
         for i=1:length(pos_class_score)
             if pos_class_score(i) > worst
@@ -55,14 +55,14 @@ function show_false_detections(figidx, pos_test_list, pos_class_score, neg_test_
                 worstindex = i;
             end
         end
-        if worst == 0
+        if worst == 0.0
             % there are no more errors to be found, because everything
             % is already negative!
             break;
         else
             % set the worst value found to zero to avoid finding it
             % twice
-            pos_class_score(worstindex) = 0;
+            pos_class_score(worstindex) = 0.0;
             % TODO we have to some stuff now with the picture we identified
             % as the worst (at index worstindex) in the current state, this 
             % is being reached num_show times
