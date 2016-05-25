@@ -37,7 +37,6 @@ function show_false_detections(figidx, pos_test_list, pos_class_score, neg_test_
             % set the worst value found to zero to avoid finding it
             % twice
             pos_class_score(worstindex) = 0;
-            found = 0
             % TODO we have to some stuff now with the picture we identified
             % as the worst (at index worstindex) in the current state, this 
             % is being reached num_show times
@@ -64,7 +63,6 @@ function show_false_detections(figidx, pos_test_list, pos_class_score, neg_test_
             % set the worst value found to zero to avoid finding it
             % twice
             pos_class_score(worstindex) = 0;
-            found = 0
             % TODO we have to some stuff now with the picture we identified
             % as the worst (at index worstindex) in the current state, this 
             % is being reached num_show times
