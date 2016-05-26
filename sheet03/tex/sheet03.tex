@@ -61,6 +61,27 @@
 
 
 \section*{Code Annotations}
+we ''disable L2 normalization by changing the part to''
+\begin{verbatim}
+  % disabled L2 normalization for overlapping blocks 
+  % Four cells are combined into one block
+  % One cell maximumly contributes to 4 blocks
+  %
+  for by = 1:(PARAMS.num_cells_height-1)
+      for bx = 1:(PARAMS.num_cells_width-1)
+          %
+          % add the L2 block-normalization step here
+          %
+          % ...
+          v = [CELLS{by, bx}; CELLS{by, bx+1}; CELLS{by+1, bx}; CELLS{by+1, bx+1}];
+          v = v(:);
+          % v = v ./ (sum(v .^ 2) + e);
+          % ...
+          DESC = [DESC; v];
+      end
+  end
+
+\end{verbatim}
 
 
 
