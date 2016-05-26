@@ -93,7 +93,8 @@
 
 	\item 
         \textbf{How could you use the system to solve the detection problem in which you are given an image of arbitrary size and the task is to find the position of the people in it?}\\
-        %TODO
+        We could train the system a few times to work on images of different scale (i.e. train a separate system per scale). Then we could run those systems on the input image of arbitrary size in a sliding window fashion: For each scale pick uniformly spread patches of that size from the image and run the classifier on them. If the content of a patch is classified as an object of interest, we can return the bounding box of that patch as a detection result for that kind of object. One should be careful not to report the same object multiple times because it was recognized in multiple patches. Comparing the spacial relation of the bounding boxes can help to find the tightest bounding box out of all candidates. \\
+        This way we can recognize and localize objects in the input image with only our classification system. However the accuracy of the localization is limited by the smallest scale for which we have a classifier (i.e. the smallest possible bounding box corresponds to the size of the smallest scale) and objects in the image that are bigger then the size of the largest scale might not be found.
 
 \end{enumerate}
 
