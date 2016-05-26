@@ -8,7 +8,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{enumerate}
-\usepackage{MnSymbol}
 \usepackage{listings}
 \usepackage{graphicx}
 
@@ -72,20 +71,21 @@
 	\setcounter{enumi}{1}
 	\item 	
         \textbf{Modify the last two parameters of} \verb!get\_train\_dataset\_2d.m! \textbf{in order to make the classification problem linearly non-separable. Run your visualization for different values of parameter C and comment on its role in the SVM classification algorithm.}\\
+        
+        	\begin{figure}[h]			
+        		\includegraphics[width=0.5\textwidth]{1b_separable}
+        		\includegraphics[width=0.5\textwidth]{1b_non-separable}
+        		\caption{\textit{Left}: SVM for linearly separable data with default parameters. $ \sigma_1=1.5, \sigma_2=5 $. \textit{Right}: SVM for linearly non-separable data. The same parameters are used to generate the data except that $ \sigma_1=10 $ and $\sigma_2=10 $ }
+        	\end{figure}
+        
 		The parameter C is used in the minimized loss function to tune the importance of the sum of $\xi$'s. A high value for C would put a lot of importance on them and would therefore force them to take very small values. Therefore, the higher the value of C is, the closer the performance comes to that of a hard-margin SVM. If C has a small value this would soften the margin and would also allow support vectors that are further further away from the margin. In conclusion C influences how soft the margin of the SVM is.
 \end{enumerate}
 
 \newpage
 \section*{Question 3: Performance Evaluation}
 \begin{enumerate}[a)]
-	\setcounter{enumi}{1}
-	\item 
-        \textbf{Compare the performance of the system with and without block normalization step}\\
-        %TODO
-
-	\item 
-        \textbf{Compare the performance of the system for cell sizes of 8 and 16 pixels.}\\
-        %TODO
+	\setcounter{enumi}{3}
+	
 
 	\item
         \textbf{Write a summary of your observations and submit it along with the corresponding RPC curves}\\
