@@ -100,21 +100,22 @@
         
         \begin{figure}[h]			
         	\includegraphics[width=0.5\textwidth]{rpc_norm8}
-        	\includegraphics[width=0.5\textwidth]{rpc_not_norm82}
+        	\includegraphics[width=0.5\textwidth]{rpc_not_norm8}
         	\caption{Comparison of RPC curves with and without normalization. \textit{Left}: RPC curve with normalization step and cell size of 8 pixels. \textit{Right}: Same kind of curve without normalization step.}
         \end{figure}
         
-        The overall recognition rate corresponding the the RPC curve on Figure 3 to the right is of 93.4\%. Compared against its neighbor on the right which is of 88.4\%, it is slightly superior. It is interesting to note that the number of false positives detected (31) is clearly larger than the overall false negatives detected (2) , and both increase even more when not performing the normalization step (53 and 5 respectively).
+        The overall recognition rate corresponding the the RPC curve on Figure 3 to the right is of 93.4\%. Compared against its neighbor on the right which is of 89.2\%, it is slightly superior. It is interesting to note that the number of false positives detected (31) is clearly larger in both cases than the overall false negatives detected (2) , and both increase even more when not performing the normalization step (49 and 5 respectively).
         
         \begin{figure}[h]			
         	\includegraphics[width=0.5\textwidth]{rpc_norm16}
-        	\includegraphics[width=0.5\textwidth]{rpc_not_norm162}
+        	\includegraphics[width=0.5\textwidth]{rpc_not_norm16}
         	\caption{Comparison of RPC curves with different cell sizes. \textit{Left}: RPC curve with normalization step and cell size of 16 pixels. \textit{Right}: RPC curve without normalization step and cell size 16. }
         \end{figure}
         
-        When looking at the RPC curves for cell sizes of 16 pixels (Figure 4) one surprising thing to see is not the same kind of behavior as for cells of 8 pixels (Figure 3): When not doing the normalization step, the overall recognition rate actually remains the same (86\%). One might argue that this merely a coincidence, but it is not to be ignored. Here we also note that, regardless, both with and without the normalization step, the recognition rate is still inferior to the SVMs that use a a cell size of 8. Another important observation is that here, again, the amount of false positives is clearly larger than the number of false negatives (68 vs 2  when doing the normalization step and 63 vs 7 when not doing it). Here the number of false positives decreases a little but it is still much larger.
+        When looking at the RPC curves for cell sizes of 16 pixels (Figure 4) one surprising this to see is not the same kind of behavior as for cells of 8 pixels (Figure 3): When not doing the normalization step, the overall recognition rate actually increases slightly (from 86\% to 87.4\%). One might argue that this improvement is minor and merely a coincidence, but it is not to be ignored. Here we also note that, regardless, both with and without the normalization step, the recognition rate is still inferior to the SVMs that use a a cell size of 8. Another important observation is that here, again, the amount of false positives is clearly larger than the number of false negatives (68 vs 2  when doing the normalization step and 59 vs 4 when not doing it). In fact, increasing the cell size seems to only harm false positives, while actually benefiting false negatives in the case of not doing the normalization step.
         
     %TODO Explain why these observations happen
+    
     
     %TODO Conclusions
          
