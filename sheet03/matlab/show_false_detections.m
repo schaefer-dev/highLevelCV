@@ -19,11 +19,15 @@ function show_false_detections(figidx, pos_test_list, pos_class_score, neg_test_
   
     
     [false_neg_score, false_neg_idx]=sort(pos_class_score);
+    falsenegsum = false_neg_idx(false_neg_score < 0);
+    fprintf('overall number of false negatives is: %d\n', length(falsenegsum));
     most_neg =  false_neg_idx(false_neg_score(1:num_show) < 0);
     %pos_class_score(most_neg)
     %false_neg_score(1:num_show)
     
     [false_pos_score, false_pos_idx]=sort(neg_class_score,'descend');
+    falsepossum = false_pos_idx(false_pos_score > 0);
+    fprintf('overall number of false positives is: %d\n', length(falsepossum));
     most_pos =  false_pos_idx(false_pos_score(1:num_show) > 0); 
     %neg_class_score(most_pos)
     %false_pos_score(1:num_show)
