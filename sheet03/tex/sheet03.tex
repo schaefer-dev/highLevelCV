@@ -115,7 +115,11 @@
         When looking at the RPC curves for cell sizes of 16 pixels (Figure 4) one surprising this to see is not the same kind of behavior as for cells of 8 pixels (Figure 3): When not doing the normalization step, the overall recognition rate actually increases slightly (from 86\% to 87.4\%). One might argue that this improvement is minor and merely a coincidence, but it is not to be ignored. Here we also note that, regardless, both with and without the normalization step, the recognition rate is still inferior to the SVMs that use a a cell size of 8. Another important observation is that here, again, the amount of false positives is clearly larger than the number of false negatives (68 vs 2  when doing the normalization step and 59 vs 4 when not doing it). In fact, increasing the cell size seems to only harm false positives, while actually benefiting false negatives in the case of not doing the normalization step.
         
     %TODO Explain why these observations happen
-    
+
+		\textbf{Our Explanations:}\\    
+		 The fact that Cell size 16 has a little bit better result using no L2 normalization can only be coincidence depending on the training and test samples, especially because the difference is so minor. Cell size 8 performs overall superior to Cell size 16 because the normalization on Cell Size 8 makes local contrasts much more visible and stronger compared to Cell size 16.
+	    
+	    We also noticed that the amount of false positives was much larger than the amount of false negatives. We must first consider that the number of negative images is 4 times larger than the positive one, so we would expect about 4 times less false positives if we took also 4 times less negative images. Even then we would still have more false positives, but we think the difference is only random and is by no means generalizable and lies only in the data taken for this exercise. 
     
     %TODO Conclusions
          
