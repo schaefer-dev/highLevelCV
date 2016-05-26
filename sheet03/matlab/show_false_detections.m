@@ -16,7 +16,7 @@
 %
 
 function show_false_detections(figidx, pos_test_list, pos_class_score, neg_test_list, neg_class_score, num_show)
-    
+  
     [false_neg_score, false_neg_idx]=sort(pos_class_score);
     most_neg =  false_neg_idx(false_neg_score(1:num_show) < 0);
     %pos_class_score(most_neg)
@@ -45,6 +45,4 @@ function show_false_detections(figidx, pos_test_list, pos_class_score, neg_test_
         hold off;
     end
     
-
-% ...
-
+end
