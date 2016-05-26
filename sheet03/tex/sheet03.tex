@@ -75,7 +75,7 @@
         	\begin{figure}[h]			
         		\includegraphics[width=0.5\textwidth]{1b_separable}
         		\includegraphics[width=0.5\textwidth]{1b_non-separable}
-        		\caption{\textit{Left}: SVM for linearly separable data with default parameters. $ \sigma_1=1.5, \sigma_2=5 $  . \textit{Right}: SVM for linearly non-separable data. The same parameters are used to generate the data except that $ \sigma_1=10 $ and $\sigma_2=10 $ }
+        		\caption{\textit{Left}: SVM for linearly separable data with default parameters. $ \sigma_1=1.5, \sigma_2=5 $. \textit{Right}: SVM for linearly non-separable data. The same parameters are used to generate the data except that $ \sigma_1=10 $ and $\sigma_2=10 $ }
         	\end{figure}
         
 		The parameter C is used in the minimized loss function to tune the importance of the sum of $\xi$'s. A high value for C would put a lot of importance on them and would therefore force them to take very small values. Therefore, the higher the value of C is, the closer the performance comes to that of a hard-margin SVM. If C has a small value this would soften the margin and would also allow support vectors that are further further away from the margin. In conclusion C influences how soft the margin of the SVM is.
