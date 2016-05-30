@@ -1,0 +1,21 @@
+Guillermo Reyes (2556018)
+Daniel Schaefer (2549458)
+Marc Tonsen (2537359)
+Dominik Weber (2548553)
+
+
+
+1a) 4/4  
+1b) 2/2 --the question is to investigate the importance of C parameter in only linearly non-separable data case. you only used C=100 and C=0.005 case. do you think only two values are enough to make a conclusion? I was hoping that you would try at least 4 different values of C e.g. 0.01 0.1 1 10 100. no point was deducted, but please keep this in mind for the next time.
+
+2a)4/4
+2b)4/4
+
+3a) 2/2
+3d) 1/2 -- you meant by this sentence: "The overall recognition rate corresponding the the RPC curve on Figure 3 to the right is of 93.4%." the left one. didn't you?
+	-- this sentence seems to be wrong! "When not doing the normalization step, the overall recognition rate actually increases slightly (from 86% to 87.4%)." I am not sure that you used the same configuration as you did in cell size 8, but when using cell size 16, the recognition rate with normalization is still over 90% but less than the value for cell size 8. you have mentioned this is a coincidence, but I don't think so. definitely not using L2 normalization, the performance of system with cell size 18 decreases. not increase!
+3e) 2/2 -- you mentioned only one way to address the problem mentioned in this sentence:"report the same object multiple times because it was recognized in multiple patches. Comparing the spacial relation of the bounding boxes can help to find the tightest bounding box out of all candidates.". the method which should be also used is non-maximum supression to ignore multiple patches of the same object in the same scale.
+ 
+
+
+Total Point: 19/20
