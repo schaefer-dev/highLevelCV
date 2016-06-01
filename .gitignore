@@ -1,3 +1,6 @@
+# ignoring files for sheet04
+sheet04/cars-test/.svn
+
 # ignore training files of sheet03
 sheet??/matlab/test_data.mat
 sheet??/matlab/train_data.mat

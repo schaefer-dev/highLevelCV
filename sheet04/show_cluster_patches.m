@@ -1,3 +1,0 @@
-function show_cluster_patches(feature_patches, assignments, cluster_idx)
-
-% ...
