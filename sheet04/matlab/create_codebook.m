@@ -33,7 +33,6 @@ function [cluster_centers,feature_patches,assignments] = create_codebook(sDir, n
   % matched cluster
   [cluster_centers, assignments] = vl_kmeans(double(sift_desc_sum), num_clusters);
   %...
-  
 end
 
  
