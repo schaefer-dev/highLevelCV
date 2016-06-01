@@ -14,7 +14,7 @@ addpath(['./vlfeat-0.9.9/toolbox/mex/' mexext]);
 if show_q1
   num_clusters = 200;
 
-  cluster_centers = create_codebook('./cars-training', num_clusters);
+  [cluster_centers,feature_patches,assignments] = create_codebook('./cars-training', num_clusters);
  
   cluster_idx = 1;
   show_cluster_patches(feature_patches, assignments, cluster_idx);
