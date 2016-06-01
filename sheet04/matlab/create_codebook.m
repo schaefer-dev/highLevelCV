@@ -15,8 +15,8 @@ function [cluster_centers,feature_patches,assignments] = create_codebook(sDir, n
     img_gray = double((rgb2gray(img)));
     [px, py, H] = hessian(img_gray,PARAMS.hessian_sigma,PARAMS.hessian_thresh);
     %TODO hier Erzeugung des patches fuer die Interest points des Bildes
-    thisPatch = ....
-    feature_patches{i} = thisPatch;
+    %thisPatch = ....
+    %feature_patches{i} = thisPatch;
     
     sift_frames = [px'; py'; PARAMS.feature_scale*ones(1, size(px,1)); ...
         PARAMS.feature_ori*ones(1, size(px,1))];
