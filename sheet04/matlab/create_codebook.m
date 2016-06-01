@@ -1,7 +1,7 @@
 function [cluster_centers,feature_patches,assignments] = create_codebook(sDir, num_clusters)
   
   PARAMS = get_ism_params();
-  PATCHSIZE_PARAM = 30;
+  PATCHSIZE_RAD_PARAM = 15;
 
   vImgNames = dir(fullfile(sDir, '*.png'));
   sift_desc_sum = zeros(128,0);
@@ -13,10 +13,16 @@ function [cluster_centers,feature_patches,assignments] = create_codebook(sDir, n
   for i=1:size(vImgNames,1)
     img = (imread(strcat(sDir,'/',vImgNames(i).name)));
     img_gray = double((rgb2gray(img)));
+    img_height = size(img,1);
+    img_width = size(img,2);
     [px, py, H] = hessian(img_gray,PARAMS.hessian_sigma,PARAMS.hessian_thresh);
     %TODO hier Erzeugung des patches fuer die Interest points des Bildes
-    thisPatch = ....
-    feature_patches{i} = thisPatch;
+    for j=1:size(px,1)
+       % thisPatch = zeros(2*PATCHSIZE_RAD_PARAM + 1, 2*PATCHSIZE_RAD_PARAM + 1)
+        thisPatch = img(max(1,py(j)-PATCHSIZE_RAD_PARAM):min(img_height,py(j)+PATCHSIZE_RAD_PARAM), ...
+            max(1,px(j)-PATCHSIZE_RAD_PARAM):min(img_width,px(j)+PATCHSIZE_RAD_PARAM));
+        feature_patches{i}{j} = thisPatch;
+    end
     
     sift_frames = [px'; py'; PARAMS.feature_scale*ones(1, size(px,1)); ...
         PARAMS.feature_ori*ones(1, size(px,1))];
