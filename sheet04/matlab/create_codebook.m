@@ -1,5 +1,6 @@
 function cluster_centers = create_codebook(sDir, num_clusters)
   
+  %...
   PARAMS = get_ism_params();
 
   vImgNames = dir(fullfile(sDir, '*.png'));
@@ -15,6 +16,8 @@ function cluster_centers = create_codebook(sDir, num_clusters)
     
   end
   [cluster_centers, assignments] = vl_kmeans(sift_desc, num_clusters);
+  %...
+  
 end
 
  
