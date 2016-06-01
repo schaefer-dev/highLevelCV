@@ -242,3 +242,8 @@ sympy-plots-for-*.tex/
 # xindy
 *.xdy
 
+#### joe made this: https://goel.io/joe
+
+#####=== SVN ===#####
+.svn/
+
