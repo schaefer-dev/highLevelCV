@@ -5,17 +5,19 @@ function cluster_centers = create_codebook(sDir, num_clusters)
 
   vImgNames = dir(fullfile(sDir, '*.png'));
   
+  sift_desc=0;
+  
   for i=1:size(vImgNames,1)
-    img = (imread(strcat(sDir,'/',vImgNames(i).name)));
+    img = im2double((imread(strcat(sDir,'/',vImgNames(i).name))));
     img_gray = (rgb2gray(img));
     [px, py, H] = hessian(img_gray,PARAMS.hessian_sigma,PARAMS.hessian_thresh);
     sift_frames = [px'; py'; ...
     PARAMS.feature_scale*ones(1, size(px,1)); ...
     PARAMS.feature_ori*ones(1, size(px,1))];
-    [sift_frames, sift_desc] = vl_sift(im2single(img), 'Frames', sift_frames);
+    [sift_frames, sift_desc] = vl_sift(single(img_gray), 'Frames', sift_frames);
     
   end
-  [cluster_centers, assignments] = vl_kmeans(sift_desc, num_clusters);
+  [cluster_centers, assignments] = vl_kmeans(single(sift_desc), num_clusters);
   %...
   
 end
