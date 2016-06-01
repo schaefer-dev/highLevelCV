@@ -9,7 +9,7 @@ for i=1:size(feature_patches,2)
         if assignments(counter)==cluster_idx
             %plotting of feature_patches{i}{f}, TODO: subplot
             figure(figurecount);
-            imshow(feature_patches{i}{f});
+            subimage(feature_patches{i}{f});
             figurecount = figurecount + 1;
         end
         counter = counter + 1;
