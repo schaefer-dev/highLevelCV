@@ -11,7 +11,7 @@ function cluster_centers = create_codebook(sDir, num_clusters)
     sift_frames = [px'; py'; ...
     PARAMS.feature_scale*ones(1, size(px,1)); ...
     PARAMS.feature_ori*ones(1, size(px,1))];
-    [sift_frames, sift_desc] = vl_sift(single(img), 'Frames', sift_frames);
+    [sift_frames, sift_desc] = vl_sift(img, 'Frames', sift_frames);
     
   end
   [cluster_centers, assignments] = vl_kmeans(sift_desc, num_clusters);
