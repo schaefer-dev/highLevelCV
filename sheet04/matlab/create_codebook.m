@@ -16,9 +16,8 @@ function [cluster_centers,feature_patches,assignments] = create_codebook(sDir, n
     img_height = size(img,1);
     img_width = size(img,2);
     [px, py, H] = hessian(img_gray,PARAMS.hessian_sigma,PARAMS.hessian_thresh);
-    %TODO hier Erzeugung des patches fuer die Interest points des Bildes
+    % patch creation of size 2xParam+1 for the interest points of this picture
     for j=1:size(px,1)
-       % thisPatch = zeros(2*PATCHSIZE_RAD_PARAM + 1, 2*PATCHSIZE_RAD_PARAM + 1)
         thisPatch = img(max(1,py(j)-PATCHSIZE_RAD_PARAM):min(img_height,py(j)+PATCHSIZE_RAD_PARAM), ...
             max(1,px(j)-PATCHSIZE_RAD_PARAM):min(img_width,px(j)+PATCHSIZE_RAD_PARAM));
         feature_patches{i}{j} = thisPatch;

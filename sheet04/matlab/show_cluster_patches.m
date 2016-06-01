@@ -8,7 +8,7 @@ for i=1:size(feature_patches,2)
     % start iteration over the features of picture i
     for f=1:size(feature_patches{i},2)
         if assignments(counter)==cluster_idx
-            %plotting of feature_patches{i}{f}, TODO: subplot
+            % put all pictures to be displayed later in toBeDisplayed
             toBeDisplayed{figurecount} = feature_patches{i}{f};
             figurecount = figurecount + 1;
         end
@@ -16,6 +16,7 @@ for i=1:size(feature_patches,2)
     end   
 end
 
+% plot all the collected patches in a rasterSize^2 grid
 rasterSize = ceil(sqrt(size(toBeDisplayed,2)));
 for i=1:size(toBeDisplayed,2)
     figure(1);
