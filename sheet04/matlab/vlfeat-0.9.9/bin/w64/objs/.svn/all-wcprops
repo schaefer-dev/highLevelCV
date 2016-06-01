@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs
+END
+pgm.obj
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/pgm.obj
+END
+homkermap.obj
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/homkermap.obj
+END
+mathop_sse2.obj
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/mathop_sse2.obj
+END
+imopv_sse2.obj
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/imopv_sse2.obj
+END
+ikmeans.obj
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/ikmeans.obj
+END
+mathop.obj
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/mathop.obj
+END
+imopv.obj
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/imopv.obj
+END
+aib.obj
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/aib.obj
+END
+hikmeans.obj
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/hikmeans.obj
+END
+pegasos.obj
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/pegasos.obj
+END
+rodrigues.obj
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/rodrigues.obj
+END
+sift.obj
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/sift.obj
+END
+stringop.obj
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/stringop.obj
+END
+mser.obj
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/mser.obj
+END
+dsift.obj
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/dsift.obj
+END
+quickshift.obj
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/quickshift.obj
+END
+generic.obj
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/generic.obj
+END
+host.obj
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/host.obj
+END
+kdtree.obj
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/kdtree.obj
+END
+kmeans.obj
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/kmeans.obj
+END
+random.obj
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/random.obj
+END
+getopt_long.obj
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/bin/w64/objs/getopt_long.obj
+END
