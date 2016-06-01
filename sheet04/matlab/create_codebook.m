@@ -8,6 +8,7 @@ function [cluster_centers,feature_patches,assignments] = create_codebook(sDir, n
   
   feature_patches = {};
   
+
   %...
   for i=1:size(vImgNames,1)
     img = (imread(strcat(sDir,'/',vImgNames(i).name)));
