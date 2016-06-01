@@ -1,0 +1,263 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64
+END
+vl_sift.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_sift.mexw64
+END
+vl_rodr.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_rodr.mexw64
+END
+vl_mser.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_mser.mexw64
+END
+vl_dsift.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_dsift.mexw64
+END
+vl_getpid.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_getpid.mexw64
+END
+vl_erfill.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_erfill.mexw64
+END
+vl_kmeans.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_kmeans.mexw64
+END
+vl_inthist.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_inthist.mexw64
+END
+vl_imdisttf.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_imdisttf.mexw64
+END
+vl_ubcmatch.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_ubcmatch.mexw64
+END
+Microsoft.VC90.CRT.manifest
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/Microsoft.VC90.CRT.manifest
+END
+vl_ikmeanspush.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_ikmeanspush.mexw64
+END
+vl_imintegral.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_imintegral.mexw64
+END
+vl_aib.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_aib.mexw64
+END
+vl_binsum.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_binsum.mexw64
+END
+vl_ihashfind.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_ihashfind.mexw64
+END
+vl_binsearch.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_binsearch.mexw64
+END
+vl_hikmeanspush.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_hikmeanspush.mexw64
+END
+vl_localmax.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_localmax.mexw64
+END
+vl_imwbackwardmx.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_imwbackwardmx.mexw64
+END
+vl_pegasos.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_pegasos.mexw64
+END
+vl.dll
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl.dll
+END
+vl_kdtreequery.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_kdtreequery.mexw64
+END
+vl_siftdescriptor.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_siftdescriptor.mexw64
+END
+vl_quickshift.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_quickshift.mexw64
+END
+msvcm90.dll
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/msvcm90.dll
+END
+vl_alldist2.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_alldist2.mexw64
+END
+vl_irodr.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_irodr.mexw64
+END
+vl_samplinthist.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_samplinthist.mexw64
+END
+vl_ihashsum.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_ihashsum.mexw64
+END
+vl_simdctrl.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_simdctrl.mexw64
+END
+msvcp90.dll
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/msvcp90.dll
+END
+vl_homkermap.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_homkermap.mexw64
+END
+msvcr90.dll
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/msvcr90.dll
+END
+vl_aibhist.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_aibhist.mexw64
+END
+vl_version.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_version.mexw64
+END
+vl_ikmeans.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_ikmeans.mexw64
+END
+vl_alldist.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_alldist.mexw64
+END
+vl_kdtreebuild.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_kdtreebuild.mexw64
+END
+vl_hikmeans.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_hikmeans.mexw64
+END
+vl_imsmooth.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_imsmooth.mexw64
+END
+vl_tpsumx.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_tpsumx.mexw64
+END
+vl_twister.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexw64/vl_twister.mexw64
+END

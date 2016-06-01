@@ -1,0 +1,239 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/D2/hlcv14/!svn/ver/12/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx
+END
+vl_getpid.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_getpid.mexglx
+END
+vl_erfill.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_erfill.mexglx
+END
+vl_kmeans.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_kmeans.mexglx
+END
+vl_irodr.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_irodr.mexglx
+END
+vl_aibhist.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_aibhist.mexglx
+END
+vl_homkermap.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_homkermap.mexglx
+END
+vl_imdisttf.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_imdisttf.mexglx
+END
+vl_version.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_version.mexglx
+END
+vl_ubcmatch.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_ubcmatch.mexglx
+END
+vl_ikmeans.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_ikmeans.mexglx
+END
+vl_imintegral.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_imintegral.mexglx
+END
+vl_alldist.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_alldist.mexglx
+END
+vl_binsum.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_binsum.mexglx
+END
+vl_kdtreebuild.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_kdtreebuild.mexglx
+END
+vl_hikmeanspush.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_hikmeanspush.mexglx
+END
+vl_localmax.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_localmax.mexglx
+END
+vl_twister.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_twister.mexglx
+END
+vl_siftdescriptor.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_siftdescriptor.mexglx
+END
+vl_dsift.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_dsift.mexglx
+END
+vl_quickshift.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_quickshift.mexglx
+END
+vl_alldist2.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_alldist2.mexglx
+END
+vl_samplinthist.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_samplinthist.mexglx
+END
+vl_simdctrl.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_simdctrl.mexglx
+END
+vl_ihashsum.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_ihashsum.mexglx
+END
+vl_inthist.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_inthist.mexglx
+END
+libvl.so
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/D2/hlcv14/!svn/ver/12/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/libvl.so
+END
+vl_ikmeanspush.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_ikmeanspush.mexglx
+END
+vl_aib.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_aib.mexglx
+END
+vl_ihashfind.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_ihashfind.mexglx
+END
+vl_binsearch.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_binsearch.mexglx
+END
+vl_hikmeans.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_hikmeans.mexglx
+END
+vl_imsmooth.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_imsmooth.mexglx
+END
+vl_tpsumx.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_tpsumx.mexglx
+END
+vl_imwbackwardmx.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_imwbackwardmx.mexglx
+END
+vl_pegasos.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_pegasos.mexglx
+END
+vl_kdtreequery.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_kdtreequery.mexglx
+END
+vl_sift.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_sift.mexglx
+END
+vl_rodr.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_rodr.mexglx
+END
+vl_mser.mexglx
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/D2/hlcv14/!svn/ver/2/Exercise/Extra/Ex_ism/exercise6/vlfeat-0.9.9/toolbox/mex/mexglx/vl_mser.mexglx
+END
