@@ -18,6 +18,9 @@ function cluster_occurrences = create_occurrences(sDir, cluster_centers)
         for j=1:size(cluster_centers,2)
             euc_dist= sqrt(sum((cluster_centers(:,j)-double(sift_desc(:,k))) .^ 2));
             if euc_dist < PARAMS.match_tresh
+                %cluter_occurences(x,1) contains the activated cluster and
+                %cluter_occurences(x,2) contains the euc_dist of this
+                %activated cluster.
                 cluster_occurrences= [cluster_occurrences;[j,euc_dist]];
             end
         end
