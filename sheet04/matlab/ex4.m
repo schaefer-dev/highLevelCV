@@ -35,5 +35,7 @@ end
 %
 
 if show_q3
-  apply_ism('./cars-test/test-24.png', cluster_centers, cluster_occurrences);
+    img_name = './cars-test/test-24.png';
+  [detections, acc] = apply_ism(img_name, cluster_centers, cluster_occurrences);
+  draw_detections(img_name, detections(1:5,:));
 end
