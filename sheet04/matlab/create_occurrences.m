@@ -28,7 +28,6 @@ function cluster_occurrences = create_occurrences(sDir, cluster_centers)
                 %coordinate of the activating feature relative to the
                 %picture center! (to make show_occurence possible)
                 cluster_occurrences= [cluster_occurrences;[j,px(k)-img_center(1),py(k)-img_center(2)]];
-                [px(k)-img_center(1),py(k)-img_center(2)]
             end
         end
     end
