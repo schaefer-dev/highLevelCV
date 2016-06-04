@@ -23,11 +23,10 @@ function cluster_occurrences = create_occurrences(sDir, cluster_centers)
             if euc_dist < PARAMS.match_tresh
                 %cluter_occurences(x,1) contains the activated cluster
                 
-                %TODO: cluster_occurences(x,2) contains the euc_dist of this
-                %activated cluster but it SHOULD contain the relative
-                %coordinate of the activating feature relative to the
-                %picture center! (to make show_occurence possible)
-                cluster_occurrences= [cluster_occurrences;[j,px(k)-img_center(1),py(k)-img_center(2)]];
+                %cluster_occurences(x,2) contains the relative x coordinate
+                %to the image center, cluster_occurences(x,3) contains the
+                %relative y coordinate
+                cluster_occurrences= [cluster_occurrences;[j,px(k)-img_center(1),img_center(2) - py(k)]];
             end
         end
     end
