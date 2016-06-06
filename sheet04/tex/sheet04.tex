@@ -10,6 +10,8 @@
 \usepackage{enumerate}
 \usepackage{listings}
 \usepackage{graphicx}
+\usepackage{float}
+
 
 % Shortcuts for bb, frak and cal letters
 \newcommand{\E}{\mathbb{E}}
@@ -65,20 +67,48 @@
 
 
 \section*{Question 1: Codebook Generation}
-\begin{figure}[h]
+\begin{figure}[H]
 	\includegraphics[width=0.5\textwidth]{features1}
 	\includegraphics[width=0.5\textwidth]{features2}
 	\includegraphics[width=0.5\textwidth]{features3}
 	\includegraphics[width=0.5\textwidth]{features4}
 		
-	\caption{Visualization of several codebook entries. \textit{Upper left}: visualizes the wheels. \textit{Upper right}: the side mirror. \textit{Lower left} curvature in the back part of the roof. \textit{Lower right} appears to be the curvature, mainly in the passenger door window.  }
+	\caption{Visualization of several codebook entries. \textit{Upper left}: visualizes the wheels. \textit{Upper right}: the side mirror. \textit{Lower left} curvature in the back part of the roof. \textit{Lower right} appears to be the curvature, mainly in the passenger door window but it is not entirely clear.  }
 \end{figure}
 As we can see in Figure 1 the learned codebooks make sense from a visual point of view. They seem to capture shapes that are representative for a car. For instance on the upper left we can see the wheels of the car or on the upper right the side mirror. Other images are perhaps not so easily distinguishable, however they represent parts that one would mainly find in a car as opposed to, say, the environment such as the slope in the back part of the roof on the Lower left of Figure 1, or the edge of the passenger window.
 \newpage
-\section*{Question 3: Occurrence Generation}
+\section*{Question 2: Occurrence Generation}
+\begin{figure}[H]
+	\includegraphics[width=0.5\textwidth]{features1}
+	\includegraphics[width=0.5\textwidth]{clusters1}
+	\includegraphics[width=0.5\textwidth]{features2}
+	\includegraphics[width=0.5\textwidth]{clusters2}
+	
+	
+	\caption{Visualization of occurrences together with their codebook entries discussed in Figure 1. \textit{Upper row}: visualizes the wheels. \textit{Lower row}: the side mirror. }
+\end{figure}
+
+From Figure 2 it is clear that the wheel occurrences are located where expected, we can see that by two small groups of points at approximately the same horizontal distance from the image center and in the lower part of the image, which matches our expectations of where to find the wheels of a car, unless there was an accident and the car is flipped around. There is one occurrence in the upper right part of the image, which is most likely, an outlier. 
+
+As for the side mirror, it also matches one's expectations, about the middle in vertical position and what looks like two groups of occurrences close to the center in horizontal position representing cars facing both directions. There are a few more outliers (4) compared to the wheels, but it's still nothing to be surprised about.\\
+\begin{figure}[H]
+	\includegraphics[width=0.5\textwidth]{features3}
+	\includegraphics[width=0.5\textwidth]{clusters3}
+	\includegraphics[width=0.5\textwidth]{features4}
+	\includegraphics[width=0.5\textwidth]{clusters4}
+	
+	
+	\caption{Visualization of occurrences together with their codebook entries. \textit{Upper row}: visualizes the roof. \textit{Lower row}: the passenger window. }
+\end{figure}
+
+	
+	In the case of the car's roof the data is a little more spread. The core group is located approximately where one would expect it (towards the right and a little up) which matches the codebook images. The reason why, we're not seeing a mirrored group on the  right, as with the examples on Figure 2, is probably because the slope of the car is the opposite as if the car would be facing the right side of the image. Thus there probably exists another cluster that contains this mirrored group.
+	
+	Finally on the lower row of Figure 3, one can see a much smaller number of occurrences than in the previous clusters. The Codebook appears to focus mainly on the passenger window, but there are several exceptions including front windows, back and front parts of the car. The Codebook then probably captures some sharp edge which is more loosely defined than the aforementioned Codebooks and while being a little common in passenger seat windows, the car is not necessarily designed in that way, nor is this edge exclusive to the passenger seat window. It is then to be expected that the cluster is not as cohesive as the other ones.
+
 
 \newpage
-\section*{Question 4: Recognition}
+\section*{Question 3: Recognition}
 
 
 \end{document}
