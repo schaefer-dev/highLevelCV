@@ -109,6 +109,39 @@ As for the side mirror, it also matches one's expectations, about the middle in 
 
 \newpage
 \section*{Question 3: Recognition}
+For this exercise we draw the 3 most likely detections with highest score with a constant sized bounding box. 
+
+
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=0.5\textwidth]{eva2}
+	
+	\caption{Example of a correctly detected car }
+\end{center}
+\end{figure}
+In this first example we see a car that is detected by one of the three most likely detections. A second detection is just above the previous one but also relatively close to the car. The third one is completely far off, but it is actually detecting some bushes as if it were a car.
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=0.5\textwidth]{eva1}
+	\caption{Example of two correctly detected cars }
+\end{center}
+\end{figure}
+
+In Figure2 one can see two cars, both of them are correctly detected by two of the three highest scoring detections. A third detection is found in between the cars. This might be a third hypothesis which gets confused because of the back wheels on the left car and the front wheels of the right car.
+
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=0.5\textwidth]{eva3}
+	\caption{Example of an incorrectly detected car }
+\end{center}
+\end{figure}
+
+In Figure 3 we see a car that is partly occluded. All three of the highest detections are far off. Even though the car is in part hidden, one would expect that with the amount of visibility which still remains, an accurate detection should be possible, which leads us to think there is still an error in the code.
+
+Regarding the first two examples, one can see from the Figure 2 for instance, that one possible improvement could be, as seen in the lecture, to reject based on bounding box overlap, this may however be a little problematic so instead using segmentations to resolve this ambiguities might be better.
 
 
 \end{document}

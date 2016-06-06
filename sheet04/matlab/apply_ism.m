@@ -41,7 +41,8 @@ function [detections, acc] = apply_ism(imgname, cluster_centers, cluster_occurre
         occ = cluster_occurrences(temp, :);
         
         w = (1/num_occ) * (1/num_Cact);
-        for o = 1:num_occ
+        %{
+           for o = 1:num_occ
             xvote = img_center(1) - cluster_occurrences(o,2);
             yvote = img_center(2) - cluster_occurrences(o,3);
             
@@ -49,7 +50,16 @@ function [detections, acc] = apply_ism(imgname, cluster_centers, cluster_occurre
             yvote = round(yvote/10);
             
             votes(yvote,xvote) = votes(yvote,xvote) + w;
-        end
+        end  
+        %}
+            xvote = img_center(1) - cluster_occurrences(temp,2);
+            yvote = img_center(2) - cluster_occurrences(temp,3);
+            
+            xvote = round(xvote/10);
+            yvote = round(yvote/10);
+        for v = 1:length(xvote)
+            votes(yvote(v),xvote(v)) = votes(yvote(v),xvote(v)) + w;
+        %}
     end
     
     % Find maxima
