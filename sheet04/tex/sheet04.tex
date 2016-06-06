@@ -61,33 +61,19 @@
 
 
 \section*{Code Annotations}
-we ''disable'' L2 normalization by changing the part to
-\begin{verbatim}
-  % disabled L2 normalization for overlapping blocks 
-  % Four cells are combined into one block
-  % One cell maximumly contributes to 4 blocks
-  %
-  for by = 1:(PARAMS.num_cells_height-1)
-      for bx = 1:(PARAMS.num_cells_width-1)
-          %
-          % add the L2 block-normalization step here
-          %
-          % ...
-          v = [CELLS{by, bx}; CELLS{by, bx+1}; CELLS{by+1, bx}; CELLS{by+1, bx+1}];
-          v = v(:);
-          % v = v ./ (sum(v .^ 2) + e);
-          % ...
-          DESC = [DESC; v];
-      end
-  end
-
-\end{verbatim}
-
 
 
 
 \section*{Question 1: Codebook Generation}
-
+\begin{figure}[h]
+	\includegraphics[width=0.5\textwidth]{features1}
+	\includegraphics[width=0.5\textwidth]{features2}
+	\includegraphics[width=0.5\textwidth]{features3}
+	\includegraphics[width=0.5\textwidth]{features4}
+		
+	\caption{Visualization of several codebook entries. \textit{Upper left}: visualizes the wheels. \textit{Upper right}: the side mirror. \textit{Lower left} curvature in the back part of the roof. \textit{Lower right} appears to be the curvature, mainly in the passenger door window.  }
+\end{figure}
+As we can see in Figure 1 the learned codebooks make sense from a visual point of view. They seem to capture shapes that are representative for a car. For instance on the upper left we can see the wheels of the car or on the upper right the side mirror. Other images are perhaps not so easily distinguishable, however they represent parts that one would mainly find in a car as opposed to, say, the environment such as the slope in the back part of the roof on the Lower left of Figure 1, or the edge of the passenger window.
 \newpage
 \section*{Question 3: Occurrence Generation}
 

@@ -1,6 +1,7 @@
 function draw_detections(imgname, detections)
     
   % ... 
+  figure();
   width = 120;
   height = 30;
   yellow = uint8([255 255 0]);
