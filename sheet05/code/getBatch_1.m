@@ -16,6 +16,24 @@ function [im, labels] = getBatch_1(imdb, batch)
 im = imdb.images.data(:,:,:,batch) ;
 labels = imdb.images.labels(1,batch) ;
 
+%...
+%im2 = zeros(size(im));
+%{
+for x = 1:size(batch,2)
+    for w= 1:size(im,2)
+        im2(:,w,:,x) = im(:,size(im,2)+1-w,:,x);        
+    end 
+end
+%}
+
+im2= flip(im,2)
+
+
+im = cat(4,im,im2);
+labels = [labels,labels];
+
+%...
+
 %%% Supplement Code
 % Supplement code here! 
 % --------------------------------------------------------------------
