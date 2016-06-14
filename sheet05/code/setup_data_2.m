@@ -82,6 +82,18 @@ for set = 1:length(sets)
         end
          %%%%%%% Supplement Code.
          %%%% Supplement code here to do mean subtraction.
+         %...
+         
+         cat_indices = imdb.images.labels == category;
+         cat_avg = mean(imdb.images.data(:,:,1,cat_indices),4);
+         
+         %For some odd reasom temp does not contain the right subtraction
+         temp =  imdb.images.data( :, :, : ,cat_indices)-repmat(cat_avg,[1,1,1,sum(cat_indices)]);
+         
+         %and imdb.images.data are not overwritten
+         imdb.images.data(:,:,:,cat_indices) = temp;
+         
+         %...         
          %%%%%%%
 
     end
