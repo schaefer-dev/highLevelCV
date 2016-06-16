@@ -5,6 +5,8 @@ sheet??/matlab/train_data.mat
 # do not add the tex pdf!
 sheet??/tex/sheet??.pdf
 
+/Project/Proposal/proposal.pdf
+
 *.adsv
 *.asv
 
