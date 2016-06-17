@@ -27,12 +27,34 @@
 	\section{Task and Motivation}	
 	\begin{frame}
 		\frametitle{Task}
-		Todo
+		We will enter a Computer Vision Competition: State Farm Distracted Driver Detection. We are given pictures of several drivers doing different activities, the  goal is to predict the likelihood of what the driver is doing in each picture.
+		\begin{itemize}
+			\item c0 safe driving
+			\item c1: texting - right
+			\item c2: talking on the phone - right
+			\item c3: texting - left
+			\item c4: talking on the phone - left
+			\item c5: operating the radio
+			\item c6: drinking
+			\item c7: reaching behind
+			\item c8: hair and makeup
+			\item c9: talking to passenger			
+		\end{itemize}
 	\end{frame}
 	
 	\begin{frame}
 		\frametitle{Motivation}
-		Todo
+		According to the national Highway Traffic Safety Administration, about ten percent of fatal crashes, 18 percent of injury crashes, and
+		16 percent of all police-reported motor vehicle traffic crashes
+		every year are reported as distraction-affected crashes. This translates to over 3000 people killed and over 400,000 injured in motor vehicle crashes involving driver distraction in the US alone.
+		
+		It is thus, imperative to take measures regarding distracted drivers, starting by being able to detect them. Unfortunately using specialized sensors and trackers would be really expensive, but simple cameras are more affordable and could be installed in a non-intrusive way in the vehicles, then with the help of computer vision techniques distracted drivers could be identified and appropriate measures could then be taken
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Related Work}
+		Different approaches have been taken to deal with this problem. In cite{Ragab2014} driving sessions of 6 different drivers were recorded with infrared and kinect cameras in front of the drivers, and used different classifiers such as SVMs Random Forests and HMMs to determine the activity performed by the subject and achieved up to 82\% accuracy on these 6 subjects. 
+		TODO Finish Related work
 	\end{frame}
 	
 	\section{Modls Tools, Novelty}	
@@ -49,8 +71,26 @@
 	\section{Analysis}	
 	\begin{frame}
 		\frametitle{Benchmark}
-		Todo
+		Over 22000 images are provided as training set by the competition as well as a list with the labels. The train and test data are split on the drivers, such that one driver can only appear on either train or test set. 		
+
+
 	\end{frame}
+
+		
+		
+
+
+		
+		\begin{frame}
+			\frametitle{References} 
+			\nocite{*} 
+			\bibliographystyle{amsalpha} 
+			\bibliography{references} 
+		\end{frame}
+		
+		\medskip	
+		
+
 	
 		
 
