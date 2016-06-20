@@ -1,6 +1,7 @@
 \documentclass{beamer}
 
 
+\graphicspath{ {images/} }
 
 \usetheme{Boadilla}
 
@@ -12,6 +13,7 @@
 	 Dominik Weber\\}
 \institute{Saarland University}
 \date{20.06.2016}
+
 
 
 \begin{document}
@@ -27,7 +29,7 @@
 	\section{Task and Motivation}	
 	\begin{frame}
 		\frametitle{Task}
-		We will enter a Computer Vision Competition: State Farm Distracted Driver Detection. We are given pictures of several drivers doing different activities, the  goal is to predict the likelihood of what the driver is doing in each picture.
+		\only<1>{We will enter a Computer Vision Competition: State Farm Distracted Driver Detection. We are given pictures of several drivers doing different activities, the  goal is to predict the likelihood of what the driver is doing in each picture.
 		\begin{itemize}
 			\item c0 safe driving
 			\item c1: texting - right
@@ -39,7 +41,22 @@
 			\item c7: reaching behind
 			\item c8: hair and makeup
 			\item c9: talking to passenger			
-		\end{itemize}
+		\end{itemize}}
+		\begin{onlyenv}<2-10>
+			\begin{center}
+				\includegraphics<2>[scale = .4]{img_0}
+				\includegraphics<3>[scale = .4]{img_5}
+				\includegraphics<4>[scale = .4]{img_6}
+				\includegraphics<5>[scale = .4]{img_14}
+				\includegraphics<6>[scale = .4]{img_19}
+				\includegraphics<7>[scale = .4]{img_26}
+				\includegraphics<8>[scale = .4]{img_34}
+				\includegraphics<9>[scale = .4]{img_56}
+				\includegraphics<10>[scale = .4]{img_94}
+				
+			\end{center}
+			content...
+		\end{onlyenv}
 	\end{frame}
 	
 	\begin{frame}
@@ -54,7 +71,34 @@
 	\begin{frame}
 		\frametitle{Related Work}
 		Different approaches have been taken to deal with this problem. In \cite{Ragab2014} driving sessions of 6 different drivers were recorded with infrared and kinect cameras in front of the drivers, and used different classifiers such as SVMs Random Forests and HMMs to determine the activity performed by the subject and achieved up to 82\% accuracy on these 6 subjects. 
-		TODO Finish Related work
+		
+		
+		\begin{figure}
+			\includegraphics{RanFor}
+			\includegraphics[scale = .365]{RanForSim}
+		\end{figure}
+		\begin{figure}
+			
+			
+			
+		\end{figure}
+	\end{frame}
+	
+	
+	\begin{frame}
+		\frametitle{Related Work}
+		further approaches have been taken using computer vision to determine where the user is looking at 
+		
+		
+		\begin{figure}
+			\includegraphics{RanFor}
+			\includegraphics[scale = .365]{RanForSim}
+		\end{figure}
+		\begin{figure}
+			
+			
+			
+		\end{figure}
 	\end{frame}
 	
 	\section{Modls Tools, Novelty}	
