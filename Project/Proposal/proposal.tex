@@ -21,16 +21,13 @@
 		\titlepage
 	\end{frame}
 	
-	\begin{frame}
-		\frametitle{Outline}
-		\tableofcontents
-	\end{frame}
 	
 	\section{Task and Motivation}	
 	\begin{frame}
 		\frametitle{Task}
 		Kaggle CV Competition: State Farm Distracted Driver Detection \\
 		Given a picture of the driver predict the probability of the following classes:
+
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
 				\begin{itemize}
@@ -128,9 +125,7 @@
 	\begin{frame}
 		\frametitle{Related Work}
 		
-		\begin{columns}
-			\begin{column}{0.75\textwidth}
-				\begin{itemize}
+		\begin{itemize}
 				\item Activity Recognition
 					\begin{itemize}
 						\item Often use different sensors (wearable sensors, smartphones) \cite{6258525} \cite{6365160}
@@ -141,15 +136,6 @@
 					\item Person-object interactions 	\cite{NIPS2011_0858}
 					\item Human-Attribute recognition 	\cite{6957817}
 				\end{itemize}
-
-			\end{column}
-			\begin{column}{0.25\textwidth}  %%<--- here
-				\begin{center}
-					\includegraphics[width=0.9\textwidth]{frontal-view-dataset} \\
-					\includegraphics[width=0.9\textwidth]{RanForSim}
-				\end{center}
-			\end{column}
-		\end{columns}
 		
 	\end{frame}
 	
@@ -208,7 +194,7 @@
 	\begin{frame}
 		\frametitle{Benchmark}
 		\begin{itemize}
-			\item 2,200 labeled images in training set provided by competition
+			\item around 2,200 labeled images in each training set provided by competition
 			\item 80,000 unlabeled images in test set
 			\item Test set consists of drivers not included in the training set
 			\item Multi-class logarithmic loss: $$logloss = - \frac{1}{N} \sum_{i=1}^N \sum_{j=1}^M y_{ij} \log (p_{ij})$$
