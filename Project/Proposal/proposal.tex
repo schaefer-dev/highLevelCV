@@ -29,12 +29,12 @@
 	\section{Task and Motivation}	
 	\begin{frame}
 		\frametitle{Task}
-		Kaggle Computer Vision Competition: State Farm Distracted Driver Detection \\
-		Given a picture of the driver predict one of the following classes:
+		Kaggle CV Competition: State Farm Distracted Driver Detection \\
+		Given a picture of the driver predict the probability of the following classes:
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
 				\begin{itemize}
-					\item c0 safe driving
+					\item c0: safe driving
 					\item c1: texting - right
 					\item c2: talking on the phone - right
 					\item c3: texting - left
@@ -46,9 +46,9 @@
 					\item c9: talking to passenger			
 				\end{itemize}
 			\end{column}
-			\begin{column}{0.35\textwidth}  %%<--- here
+			\begin{column}{0.5\textwidth}  %%<--- here
 				\begin{center}
-					\includegraphics[width=0.35\textwidth]{img_6}
+					\includegraphics[width=0.9\textwidth]{img_6}
 				\end{center}
 			\end{column}
 		\end{columns}
@@ -85,55 +85,81 @@
 	
 	\begin{frame}
 		\frametitle{Motivation}
-		According to the national Highway Traffic Safety Administration, about ten percent of fatal crashes, 18 percent of injury crashes, and
-		16 percent of all police-reported motor vehicle traffic crashes
-		every year are reported as distraction-affected crashes. This translates to over 3000 people killed and over 400,000 injured in motor vehicle crashes involving driver distraction in the US alone.
-		
-		It is thus, imperative to take measures regarding distracted drivers, starting by being able to detect them. Unfortunately using specialized sensors and trackers would be really expensive, but simple cameras are more affordable and could be installed in a non-intrusive way in the vehicles, then with the help of computer vision techniques distracted drivers could be identified and appropriate measures could then be taken
+		Distraction-affected crashes:
+		\begin{itemize}
+			\item 18\% of injury crashes
+			\item 16\% of police-reported motor vehicle crashes
+			\item 3000 people killed in the US per year
+			\item 400,000 injured in the US per year
+		\end{itemize}\\
+		\vspace{0.2cm}
+		Thus distraction-detection is important! \\
+		\vspace{0.2cm}
+		Using specialized sensors and trackers is too expensive! \\
+		\vspace{0.2cm}
+		Simple cameras combined with CV algorithms are non-intrusive and cheap!
+	
 	\end{frame}
 	
 	\begin{frame}
 		\frametitle{Related Work}
-		Different approaches have been taken to deal with this problem. In \cite{Ragab2014} driving sessions of 6 different drivers were recorded with infrared and kinect cameras in front of the drivers, and used different classifiers such as SVMs Random Forests and HMMs to determine the activity performed by the subject and achieved up to 82\% accuracy on these 6 subjects. 
 		
+		\begin{columns}
+			\begin{column}{0.75\textwidth}
+				Driver-Distraction Detection:
+				\begin{itemize}
+					\item Datasets mostly from cameras with frontal-views \cite{itsc:bergasa2008}
+					\item Some approaches with specialized sensors (RGBD cameras etc.) \cite{Ragab2014}
+					\item Often recorded in artificial environments
+					\item Mostly rely on gaze-tracking or head-pose estimation
+				\end{itemize}		
+				Current methods are not applicable in our case!
+			\end{column}
+			\begin{column}{0.25\textwidth}  %%<--- here
+				\begin{center}
+					\includegraphics[width=0.9\textwidth]{frontal-view-dataset} \\
+					\includegraphics[width=0.9\textwidth]{RanForSim}
+				\end{center}
+			\end{column}
+		\end{columns}
 		
-		\begin{figure}
-			\includegraphics{RanFor}
-			\includegraphics[scale = .365]{RanForSim}
-		\end{figure}
-		\begin{figure}
-			
-			
-			
-		\end{figure}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Related Work}
+		
+		\begin{columns}
+			\begin{column}{0.75\textwidth}
+				Activity Recognition:
+				\begin{itemize}
+					\item Often use different sensors (wearable sensors, smartphones)
+					\item Camera based ones rely on continues video
+
+				\end{itemize}		
+				Current methods are not applicable in our case!
+			\end{column}
+			\begin{column}{0.25\textwidth}  %%<--- here
+				\begin{center}
+					\includegraphics[width=0.9\textwidth]{frontal-view-dataset} \\
+					\includegraphics[width=0.9\textwidth]{RanForSim}
+				\end{center}
+			\end{column}
+		\end{columns}
+		
 	\end{frame}
 	
 	
-	%{\begin{frame}
-%		\frametitle{Related Work}
-%		Some approaches have been taken using computer vision to determine the inattention level of driver by looking at the face 
-%		
-		
-%		\begin{figure}
-%			\includegraphics{RanFor}
-%			\includegraphics[scale = .365]{RanForSim}
-%		\end{figure}
-%		\begin{figure}
-			
-			
-			
-%		\end{figure}
-%	\end{frame}
-	
-	\section{Modls Tools, Novelty}	
+	\section{Models, Tools, Novelty}	
 
     \begin{frame}
         \frametitle{Tentative Material and Methods}
+        Technologies we consider using:
         \begin{itemize}
             \item Support Vector Machines (based on SIFT and HOG features)
             \item Random Forests
             \item using Matlab
             \item AlexNet in Caffe
+            \item Off-the-shelf head-pose estimator (for example FACE)
         \end{itemize}
 
     \end{frame}
@@ -141,8 +167,12 @@
     \begin{frame}
 		\frametitle{Investigation}
         \begin{center}
-        \includegraphics[width=10cm]{images/FacePose.jpg}\\
-        Face pose detection using existing algorithms\end{center}
+	        \includegraphics[width=0.4\textwidth]{head-pose} \\ \vspace{0.1cm}
+	        \includegraphics[width=0.35\textwidth]{img_5} \hspace{0.1cm}
+	        \includegraphics[width=0.35\textwidth]{img_81}
+			\newline
+			Head-pose could distinguish several of the classes clearly
+        \end{center}
     \end{frame}
 
     \begin{frame}
@@ -172,7 +202,14 @@
 	\section{Analysis}	
 	\begin{frame}
 		\frametitle{Benchmark}
-		Over 22000 images are provided as training set by the competition as well as a list with the labels. The train and test data are split on the drivers, such that one driver can only appear on either train or test set. 		
+		\begin{itemize}
+			\item 2,200 labeled images in training set provided by competition
+			\item 80,000 unlabeled images in test set
+			\item Test set consists of drivers not included in the training set
+			\item Multi-class logarithmic loss: $$logloss = - \frac{1}{N} \sum_{i=1}^N \sum_{j=1}^M y_{ij} \log (p_{ij})$$
+			
+		\end{itemize}
+		
 
 
 	\end{frame}
