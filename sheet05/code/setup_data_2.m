@@ -82,6 +82,21 @@ for set = 1:length(sets)
         end
          %%%%%%% Supplement Code.
          %%%% Supplement code here to do mean subtraction.
+         %% New attempt
+         %...
+         cat_indices = imdb.images.labels == category;
+         
+         for i =1:size(cat_indices)
+             mean_img = mean2(imdb.images.data( :, :, : ,i));
+             imdb.images.data( :, :, : ,i) = imdb.images.data(:,:,:,i) - mean_img;
+         end
+         
+         
+         
+         
+         %...         
+         %% Failed attempt
+         %{
          %...
          
          cat_indices = imdb.images.labels == category;
@@ -93,9 +108,12 @@ for set = 1:length(sets)
          %and imdb.images.data are not overwritten
          imdb.images.data(:,:,:,cat_indices) = temp;
          
-         %...         
+         %...
+         %}
+         %%
+         
+         
          %%%%%%%
-
     end
 end
 
