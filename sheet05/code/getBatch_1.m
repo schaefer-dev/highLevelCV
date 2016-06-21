@@ -25,13 +25,22 @@ for x = 1:size(batch,2)
     end 
 end
 %}
-b = size(im,4);
-a=0;
-quant = (b-a).*rand(1000,1) + a;
-rndIDX = randperm(b);
-im2 = zeros(size(im));
-im2(:,:,:,rndIDX(1:quant)) = flip(im(:,:,:,rndIDX(1:quant)),2);
-im(:,:,:,rndIDX(1:quant)) = im2(:,:,:,rndIDX(1:quant));
+
+% gure begin
+% b = size(im,4);
+% a=0;
+% quant = (b-a).*rand(1000,1) + a;
+% rndIDX = randperm(b);
+% im2 = zeros(size(im));
+% im2(:,:,:,rndIDX(1:quant)) = flip(im(:,:,:,rndIDX(1:quant)),2);
+% im(:,:,:,rndIDX(1:quant)) = im2(:,:,:,rndIDX(1:quant));
+% gure end
+
+for i=1:size(im,4)
+    if (rand(2) >= 1)
+        im(:,:,1,i)=fliplr(im(:,:,1,i));
+    end
+end
 
 
 
