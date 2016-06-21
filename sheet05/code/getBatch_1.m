@@ -37,7 +37,7 @@ end
 % gure end
 
 for i=1:size(im,4)
-    if (rand(2) >= 1)
+    if (rand(1) >= 0.5)
         im(:,:,1,i)=fliplr(im(:,:,1,i));
     end
 end
