@@ -25,12 +25,21 @@ for x = 1:size(batch,2)
     end 
 end
 %}
+b = size(im,4);
+a=0;
+quant = (b-a).*rand(1000,1) + a;
+rndIDX = randperm(b);
+im2 = zeros(size(im));
+im2(:,:,:,rndIDX(1:quant)) = flip(im(:,:,:,rndIDX(1:quant)),2);
+im(:,:,:,rndIDX(1:quant)) = im2(:,:,:,rndIDX(1:quant));
 
-im2= flip(im,2)
 
 
-im = cat(4,im,im2);
-labels = [labels,labels];
+%im2= flip(im,2);
+
+
+%im = cat(4,im,im2);
+%labels = [labels,labels];
 
 %...
 
