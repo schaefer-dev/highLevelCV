@@ -74,9 +74,23 @@
     \item 
         %TODO
         % flip occurs in batch and thus the flipped pictures are different after every get_batch, results in overall 'more' training data
+        We are achieving a small error decrease.
+        \begin{figure}[H]
+            \centering
+                \includegraphics[width=0.9\textwidth]{Plots/init_plot_epo_200.png}
+                \caption{without using left-right mirroring}
+        \end{figure}
+        \begin{figure}[H]
+            \centering
+                \includegraphics[width=0.9\textwidth]{Plots/q1_plot_epo_200.png}
+                \caption{with using left-right mirroring}
+        \end{figure}
+        Our plots show that, just as expected, the left-right mirroring increases the error-rate on the training data quite a lot (traintop1 from basically 0\% to 30\% error) because the data we are using in every epoch to train the network is not equal to the training set itself and is changing every time (because 50\% of the pictures randomly chosen are flipped). This also has the effect to reduce overfitting significantly, which results in an overall smaller error on the test-set (65\% using the left-right mirroring and 70\% without).
+
 \end{enumerate}
 
 
+\newpage
 \section{Mean Image Substraction}
 
 \begin{enumerate}[a)]
@@ -100,6 +114,7 @@
 \end{enumerate}
 
 
+\newpage
 \section{Dropout}
 
 \begin{enumerate}[a)]
@@ -138,13 +153,11 @@
                 \includegraphics[width=0.9\textwidth]{Plots/q4_plot_epo_200.png}
                 \caption{our Result using all the optimizations meantioned}
         \end{figure}
-        We are achieving an Error rate of only 48\%, which is significant improvement to the 0.72\% without our optimizations!
+        We are achieving an Error rate of only 48\%, which is significant improvement to the 0.72\% without any of our optimizations!
         \begin{figure}[H]
             \centering
                 \includegraphics[width=0.9\textwidth]{Plots/init_plot_epo_200.png}
                 \caption{our Result using no optimizations}
         \end{figure}
-
-
 
 \end{document}
