@@ -84,7 +84,17 @@
     \item 
         We should not use both sets at once to compute the mean, because in that case the test data would have an impact on our training which would compromise the evaluation. Instead only the image-mean of the training data should be substracted from both the training data and the test data. The test-data should not be transformed differently than the training-data because the distribution of the test data must not be altered differently than the training data to ensure the equality of both the testing and training data distribution. 
     \item
-        The best validation error decreased from 0.72 to 0.64 in our Plot. %TODO plots einfuegen
+        The best validation error decreased from 0.72 to 0.64 in our Plot.
+        \begin{figure}[H]
+            \centering
+                \includegraphics[width=0.9\textwidth]{Plots/0.png}
+                \caption{without using mean-image substraction}
+        \end{figure}
+        \begin{figure}[H]
+            \centering
+                \includegraphics[width=0.9\textwidth]{Plots/2.png}
+                \caption{with using mean-image substraction}
+        \end{figure}
         Also the validation error seems to decrease faster.\\
         Similar to the previous cases the training error quickly decreases further while the validation error remains rougly on the same level which indicates overfitting
 \end{enumerate}
