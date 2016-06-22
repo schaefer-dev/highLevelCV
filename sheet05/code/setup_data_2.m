@@ -79,42 +79,20 @@ for set = 1:length(sets)
             imdb.images.set(     1,image_counter) = set; %1 for train, 2 for test (val?)
             
             image_counter = image_counter + 1;
-        end
-         %%%%%%% Supplement Code.
-         %%%% Supplement code here to do mean subtraction.
-         %% New attempt
-         %...
-         cat_indices = imdb.images.labels == category;
-         
-         for i =1:size(cat_indices)
-             mean_img = mean2(imdb.images.data( :, :, : ,i));
-             imdb.images.data( :, :, : ,i) = imdb.images.data(:,:,:,i) - mean_img;
+        end  
+    end
+    
+     %%%%%%% Supplement Code.
+     %%%% Supplement code here to do mean subtraction.
+     train = imdb.images.set == 1;
+     mean = sum(imdb.images.data(:,:,1, train), 4) / size(train, 2);
+     
+     for i = 1:size(imdb.images.data ,4)
+         if imdb.images.set(i) == set
+             imdb.images.data(:,:,1,i) = imdb.images.data(:,:,1,i) - mean;
          end
          
-         
-         
-         
-         %...         
-         %% Failed attempt
-         %{
-         %...
-         
-         cat_indices = imdb.images.labels == category;
-         cat_avg = mean(imdb.images.data(:,:,1,cat_indices),4);
-         
-         %For some odd reasom temp does not contain the right subtraction
-         temp =  imdb.images.data( :, :, : ,cat_indices)-repmat(cat_avg,[1,1,1,sum(cat_indices)]);
-         
-         %and imdb.images.data are not overwritten
-         imdb.images.data(:,:,:,cat_indices) = temp;
-         
-         %...
-         %}
-         %%
-         
-         
-         %%%%%%%
-    end
+     end
 end
 
 
