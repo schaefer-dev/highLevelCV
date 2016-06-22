@@ -1,4 +1,4 @@
-
+function opts=options()
 %code for Computer Vision, Georgia Tech by James Hays
 %based off the MNIST example from MatConvNet
 
@@ -17,7 +17,7 @@ opts.learningRate = 0.0001 ;
 % opts.numEpochs is the number of epochs. If you experiment with more
 % complex networks you might need to increase this. Likewise if you add
 % regularization that slows training.
-opts.numEpochs = 90 ;
+opts.numEpochs = 2 ;
 
 % An example of learning rate decay as an alternative to the fixed learning
 % rate used by default. This isn't necessary but can lead to better
@@ -39,3 +39,4 @@ opts.continue = false ;
 % opts.backPropDepth = 2; %just retrain the last real layer (1 is softmax)
 % opts.backPropDepth = 9; %just retrain the fully connected layers
 % opts.backPropDepth = +inf; %retrain all layers [default]
+end
