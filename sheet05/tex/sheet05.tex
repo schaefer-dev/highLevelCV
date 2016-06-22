@@ -135,7 +135,7 @@
         and 75\% Dropout resulting in around 0.80 error.
         \begin{figure}[H]
             \centering
-                \includegraphics[width=0.9\textwidth]{Plots/3_75_100.png}
+                \includegraphics[width=0.9\textwidth]{Plots/3_75_200.png}
                 \caption{using a Dropout of 75\%}
         \end{figure}
         Intuitively a dropout rate that is to high should result in a high test-error since the remaining network (after the dropout) is likely to weak to make meaningful predictions, which makes it difficult to learn from them. A dropout rate that is to low would allow more overfitting, which again leads to a higher test-error. Thus it makes sense that a dropout rate of 50\%, which lies in the middle of the other more extreme values, yields the best results.
