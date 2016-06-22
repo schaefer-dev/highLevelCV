@@ -80,7 +80,7 @@
                 \includegraphics[width=0.9\textwidth]{Plots/q1_plot_epo_200.png}
                 \caption{with using left-right mirroring}
         \end{figure}
-        Using jittering as we do effectively doubles the amount of images the network gets to see. As long ad left-right mirroring the data does not create images that are highly unrealistic (which is not the case for us), this is reasonable to do. This results in less overfitting (the gap between train and test error remains smaller) and the best test error is smaller: 0.65 vs 0.70 without jittering.
+        Using jittering as we do effectively doubles the amount of images the network gets to see. As long as left-right mirroring the data does not create images that are highly unrealistic (which is not the case for us), this is reasonable to do. This results in less overfitting (the gap between train and test error remains smaller) and the best test error is smaller: 0.65 vs 0.70 without jittering.
 		Also the training-error decreases more slowly, which is understandable, since the data presented to the network in each epoch changes a lot due to the jittering, which makes it more difficult for the network to adept to it correctly.
 
 \end{enumerate}
