@@ -66,4 +66,40 @@
 
 
 
+
+\section{Data Augmentation}
+
+\begin{enumerate}
+        \setcounter{enumi}{1}
+    \item 
+        %TODO
+        % flip occurs in batch and thus the flipped pictures are different after every get_batch, results in overall 'more' training data
+\end{enumerate}
+
+
+\section{Mean Image Substraction}
+
+\begin{enumerate}
+        \setcounter{enumi}{1}
+    \item 
+        We should not use both sets at once to compute the mean, because in that case the test data would have an impact on our training which would compromise the evaluation. Instead only the image-mean of the training data should be substracted from both the training data and the test data. The test-data should not be transformed differently than the training-data because the distribution of the test data must not be altered differently than the training data to ensure the equality of both the testing and training data distribution. 
+    \item
+        The best validation error decreased from 0.72 to 0.64 in our Plot. %TODO plots einfuegen
+        Also the validation error seems to decrease faster.\\
+        Similar to the previous cases the training error quickly decreases further while the validation error remains rougly on the same level which indicates overfitting
+\end{enumerate}
+
+
+\section{Dropout}
+
+\begin{enumerate}
+    \item 
+        Dropout works very close in spirit to Random Forsts. Random Forests consist of a set of decision trees. Each single decision tree is very prone to overfitting to the training-data. However the random forst simply picks the average result out of all decision trees which effectifely cancels out the overfitting to a high amount. Dropout intuitively does the same: it trains several subsets of the network on the training-data and ''takes the average'' of them. 
+    \item
+        Of cause not! At test-time we want to utilize the full power of the network. Discarding parts of it doesn't make sense.
+    \item
+        %TODO nicht eindeutig eins besser, haengt von daten ab. Dann noch spezifisch schreiben wie es bei uns aussieht und was wie gut wird/ist
+\end{enumerate}
+
+
 \end{document}
