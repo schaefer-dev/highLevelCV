@@ -69,7 +69,7 @@
 
 \section{Data Augmentation}
 
-\begin{enumerate}
+\begin{enumerate}[a)]
         \setcounter{enumi}{1}
     \item 
         %TODO
@@ -79,7 +79,7 @@
 
 \section{Mean Image Substraction}
 
-\begin{enumerate}
+\begin{enumerate}[a)]
         \setcounter{enumi}{1}
     \item 
         We should not use both sets at once to compute the mean, because in that case the test data would have an impact on our training which would compromise the evaluation. Instead only the image-mean of the training data should be substracted from both the training data and the test data. The test-data should not be transformed differently than the training-data because the distribution of the test data must not be altered differently than the training data to ensure the equality of both the testing and training data distribution. 
@@ -92,13 +92,31 @@
 
 \section{Dropout}
 
-\begin{enumerate}
+\begin{enumerate}[a)]
     \item 
         Dropout works very close in spirit to Random Forsts. Random Forests consist of a set of decision trees. Each single decision tree is very prone to overfitting to the training-data. However the random forst simply picks the average result out of all decision trees which effectifely cancels out the overfitting to a high amount. Dropout intuitively does the same: it trains several subsets of the network on the training-data and ''takes the average'' of them. 
     \item
         Of cause not! At test-time we want to utilize the full power of the network. Discarding parts of it doesn't make sense.
     \item
         %TODO nicht eindeutig eins besser, haengt von daten ab. Dann noch spezifisch schreiben wie es bei uns aussieht und was wie gut wird/ist
+        Using our Implementation a dropout of 50\% resulted in the lowest error (testing 100epochs) with around 66\% Error 
+        \begin{figure}[H]
+            \centering
+                \includegraphics[width=0.9\textwidth]{Plots/3_50_200.png}
+                \caption{using a Dropout of 50\%}
+        \end{figure}
+        followed by 25\% dropout resulting in 68\% Error 
+        \begin{figure}[H]
+            \centering
+                \includegraphics[width=0.9\textwidth]{Plots/3_75_100.png}
+                \caption{using a Dropout of 25\%}
+        \end{figure}
+        and 75\% Dropout resulting in around 80\% Error.
+        \begin{figure}[H]
+            \centering
+                \includegraphics[width=0.9\textwidth]{Plots/3_75_100.png}
+                \caption{using a Dropout of 75\%}
+        \end{figure}
 \end{enumerate}
 
 
