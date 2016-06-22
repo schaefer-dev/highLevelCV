@@ -67,7 +67,7 @@
 
 \begin{enumerate}[a)]
         \setcounter{enumi}{1}
-    \item \textbf{Jittering} 
+    \item 
         %TODO
         % flip occurs in batch and thus the flipped pictures are different after every get_batch, results in overall 'more' training data
         \begin{figure}[H]
@@ -92,7 +92,7 @@
 \begin{enumerate}[a)]
         \setcounter{enumi}{1}
     \item 
-        We should not use both sets at once to compute the mean, because in that case the test data would have an impact on our training which would compromise the evaluation. Instead only the image-mean of the training data should be substracted from both the training data and the test data. The test-data should not be transformed differently than the training-data because the distribution of the test data must not be altered differently than the training data to ensure the equality of both the testing and training data distribution. 
+        We should not use both sets at once to compute the mean, because in that case the test data would have an impact on our training which would compromise the evaluation. Instead only the image-mean of the training data should be substracted from both the training data and the test data. The test-data should not be transformed differently than the training-data because the distribution of the test data must not be altered differently than the distribution of the training data to ensure the equality of both  distributions. 
     \item
         The best validation error decreased from 0.72 to 0.64 in our Plot.
         \begin{figure}[H]
@@ -106,7 +106,7 @@
                 \caption{with using mean-image substraction}
         \end{figure}
         Also the validation error seems to decrease faster.\\
-        Similar to the previous cases the training error quickly decreases further while the validation error remains rougly on the same level which indicates overfitting
+        Similar to the case using not mean subtraction the training error quickly decreases further while the validation error remains roughly on the same level, which indicates overfitting.
 \end{enumerate}
 
 
