@@ -120,22 +120,22 @@
         Of cause not! At test-time we want to utilize the full power of the network. Discarding a part of it would discard the predictive power of that part as well, which in turn weakens the prediction made by the network.
     \item
         %TODO nicht eindeutig eins besser, haengt von daten ab. Dann noch spezifisch schreiben wie es bei uns aussieht und was wie gut wird/ist
-        Using our Implementation a dropout of 50\% resulted in the lowest error (testing 200epochs) with around 0.66 error 
+        Using our Implementation a dropout of 50\% resulted in the lowest error (testing 200epochs) with around 0.48 error 
         \begin{figure}[H]
             \centering
                 \includegraphics[width=0.9\textwidth]{Plots/3_50_200.png}
                 \caption{using a Dropout of 50\%}
         \end{figure}
-        followed by 25\% dropout resulting in 0.68 error 
+        followed by 25\% dropout resulting in 0.49 error 
         \begin{figure}[H]
             \centering
                 \includegraphics[width=0.9\textwidth]{Plots/3_25_200.png}
                 \caption{using a Dropout of 25\%}
         \end{figure}
-        and 75\% Dropout resulting in around 0.80 error.
+        and 75\% Dropout resulting in around 0.68 error.
         \begin{figure}[H]
             \centering
-                \includegraphics[width=0.9\textwidth]{Plots/3_75_100.png}
+                \includegraphics[width=0.9\textwidth]{Plots/3_75_200.png}
                 \caption{using a Dropout of 75\%}
         \end{figure}
         Intuitively a dropout rate that is to high should result in a high test-error since the remaining network (after the dropout) is likely to weak to make meaningful predictions, which makes it difficult to learn from them. A dropout rate that is to low would allow more overfitting, which again leads to a higher test-error. Thus it makes sense that a dropout rate of 50\%, which lies in the middle of the other more extreme values, yields the best results.
