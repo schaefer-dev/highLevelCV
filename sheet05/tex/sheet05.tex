@@ -67,10 +67,9 @@
 
 \begin{enumerate}[a)]
         \setcounter{enumi}{1}
-    \item 
+    \item \textbf{Jittering} 
         %TODO
         % flip occurs in batch and thus the flipped pictures are different after every get_batch, results in overall 'more' training data
-        We are achieving a small error decrease.
         \begin{figure}[H]
             \centering
                 \includegraphics[width=0.9\textwidth]{Plots/init_plot_epo_200.png}
@@ -81,7 +80,8 @@
                 \includegraphics[width=0.9\textwidth]{Plots/q1_plot_epo_200.png}
                 \caption{with using left-right mirroring}
         \end{figure}
-        Our plots show that, just as expected, the left-right mirroring increases the error-rate on the training data quite a lot (traintop1 from basically 0\% to 30\% error) because the data we are using in every epoch to train the network is not equal to the training set itself and is changing every time (because 50\% of the pictures randomly chosen are flipped). This also has the effect to reduce overfitting significantly, which results in an overall smaller error on the test-set (65\% using the left-right mirroring and 70\% without).
+        Using jittering as we do effectively doubles the amount of images the network gets to see. As long ad left-right mirroring the data does not create images that are highly unrealistic (which is not the case for us), this is reasonable to do. This results in less overfitting (the gap between train and test error remains smaller) and the best test error is smaller: 0.65 vs 0.70 without jittering.
+		Also the training-error decreases more slowly, which is understandable, since the data presented to the network in each epoch changes a lot due to the jittering, which makes it more difficult for the network to adept to it correctly.
 
 \end{enumerate}
 
