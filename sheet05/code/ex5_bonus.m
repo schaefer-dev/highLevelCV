@@ -1,11 +1,11 @@
 show_part_a = true;
-show_part_b= true;
+show_part_b= false;
 
 
 %setting up Matconvnet framework, downloading VGG_F and running a VGG-F demo(Can be commented after the first compilation)
 %If your machine has GPU, you can speed up training CNNs 
 %by uncommenting vl_compilenn('enableGpu', true) 
-quickStartDemo()
+%quickStartDemo()
 
 %
 % Question 5 part a
@@ -22,6 +22,16 @@ net = vl_simplenn_tidy(net) ;
 % make sure your training set and test set is the same as previous parts.
 % Supplement Code Here
 
+% ... 
+
+imdb = bonus_setup_data(net.meta.normalization.averageImage);
+
+opts=bonus_options();
+
+[~,info]=cnn_train(net, imdb, @getBatch, opts, 'val', find(imdb.images.set == 2)) ;
+
+%...
+
 % sample code for extracting deCAF feature for one image.
 % sample load and preprocess an image
 % im = imread('peppers.png') ;
@@ -33,6 +43,26 @@ net = vl_simplenn_tidy(net) ;
 % res = vl_simplenn(net, im_) ;
 % deCAF{iIndex}={imgSets.ImageLocation(iIndex) ,res(20).x};
 % disp(['image:',num2str(iIndex)])
+
+% ...
+% Extract Test-Images
+images = imdb.images.data(:,:,1, imdb.images.set == 2);
+num_images = size(images,4);
+features = zeros(num_images, 4096, 'single');
+for i = 1:size(num_images)
+    im_ = images(:,:,1,i);
+    im_ = single(im) ; % note: 0-255 range
+    im_ = imresize(im_, net.meta.normalization.imageSize(1:2)) ;
+    im_ = bsxfun(@minus, im_, net.meta.normalization.averageImage) ;
+    
+    % run the CNN
+    res = vl_simplenn(net, im_) ;
+    a = res(20).x;
+    
+    %deCAF{iIndex}={imgSets.ImageLocation(iIndex) ,res(20).x};
+    %disp(['image:',num2str(iIndex)])
+end
+% ...
 
 
 %% apply Linear SVM for classification
