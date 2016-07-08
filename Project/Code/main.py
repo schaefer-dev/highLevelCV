@@ -11,7 +11,7 @@ from get_bow import get_bow
 
 def main():
     # Location of the dataset. Change this to the correct location when running. Remember the '/' at the end!
-    data_location = "C:/Users/Marc/Desktop/HLCV/"
+    data_location = s.path.join(os.path.dirname(__file__), '../data')
 
     # Get Training and Test Data
     (images_train, Y_train, images_test, Y_test) = load_data(data_location, num_participants=1)
