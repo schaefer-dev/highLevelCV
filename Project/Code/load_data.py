@@ -20,7 +20,7 @@ Loads the data for a given number of participants.
 
 
 # TODO Currently the test/training split is not yielding a fresh set of participants in the test set
-def load_data(data_location, num_participants=1):
+def load_data(data_location, num_participants=1, scale=0.5):
     print "Load data for %i participants..." % num_participants
     # Get image list
     image_list = load_image_list(data_location)
@@ -46,6 +46,7 @@ def load_data(data_location, num_participants=1):
         for i in range(pcipant_images.shape[0]):
             loc = data_location + "train/" + pcipant_labels[i] + '/' + pcipant_images[i]
             img = cv2.imread(loc)
+            img = cv2.resize(img, dsize=None, fx=scale, fy=scale)
             images.append(img)
 
         x_train, x_test, y_train, y_test = train_test_split(images, pcipant_labels, test_size = 0.15, random_state = 42)
