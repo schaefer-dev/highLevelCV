@@ -1,8 +1,8 @@
-show_init_cnn = true;
+show_init_cnn = false;
 show_q1 = true;
-show_q2 = true;
-show_q3 = true;
-show_q4 = true;
+show_q2 = false;
+show_q3 = false;
+show_q4 = false;
 
 
 %setting up Matconvnet framework (Can be commented after the first compilation)
