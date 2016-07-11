@@ -52,7 +52,6 @@
 	\end{frame}
 	
 	
-	\section{Tested but not working}	
     
     \begin{frame}
     	\frametitle{Classification based on the steering wheel}
@@ -125,7 +124,7 @@
 		\item OpenCV cascade classifiers worked poorly
 		\item Haar-cascade classifiers from Face-Boxer worked poorly
 		\item Dlib worked only on a few images
-		\item "Face: detection, pose estimation and landmark localization in the wild" works mostly fine
+		\item "Face" works fine about 90\% of the time
 		\vspace{0.3cm}
 		\item Great variety of face-angles (frontal vs profile)
 		\item Partial occlusions due to sunglasses or long hair
@@ -134,7 +133,7 @@
 	\end{frame}
 	
 	\begin{frame}
-		\frametitle{Dlib Face detection}
+		\frametitle{Dlib Results}
 		\begin{center}
 			\includegraphics[width=0.4\textwidth]{faces/dlibface1} \\ \vspace{0.1cm}
 			\includegraphics[width=0.35\textwidth]{faces/dlibface2} \hspace{0.1cm}
@@ -143,7 +142,7 @@
 	\end{frame}
 	
 	\begin{frame}
-		\frametitle{Correct Face detection}
+		\frametitle{"Face" Results}
 		\begin{center}
 			\includegraphics[width=0.4\textwidth]{faces/face1} \\ \vspace{0.1cm}
 			\includegraphics[width=0.35\textwidth]{faces/face4} \hspace{0.1cm}
@@ -151,12 +150,30 @@
 		\end{center}		
 	\end{frame}
 	\begin{frame}
-		\frametitle{Incorrect Face detection}
+		\frametitle{"Face" Results}
 		\begin{center}
 			\includegraphics[width=0.4\textwidth]{faces/face3} \\ \vspace{0.1cm}
 			\includegraphics[width=0.35\textwidth]{faces/face5} \hspace{0.1cm}
 			\includegraphics[width=0.35\textwidth]{faces/face7}
 		\end{center}		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{How to utilize Head-Pose estimation results}
+		\begin{itemize}
+			\item Classify directly based on facial landmarks
+			\item Or compute gaze-direction geometrically
+			\item Generate bounding box of the driver
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{SIFT/HoG across the whole image}
+		
+		\begin{itemize}
+			\item Idea: Classify based on SIFT/HoG features extracted from a ROI around the driver
+			\item No results yet due to technical problems and limited time
+		\end{itemize}
 	\end{frame}
 	
 	
