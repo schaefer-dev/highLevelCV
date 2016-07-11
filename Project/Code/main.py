@@ -15,14 +15,14 @@ def main():
     data_location = os.path.join(os.path.dirname(__file__), '../data/')
 
     # Get Training and Test Data
-    (images_train, Y_train, images_test, Y_test) = load_data(data_location, num_participants=1)
+    (images_train, Y_train, images_test, Y_test) = load_data(data_location, num_participants=20, scale=0.5)
 
     # Get Headposes
-    headpose_train = headpose_estimator(images_train)
-    headpose_test = headpose_estimator(images_test)
+    #headpose_train = headpose_estimator(images_train)
+    #headpose_test = headpose_estimator(images_test)
     
     # Get Handposes/Handpositions/Classifications based on Hands, whatever we want to do here
-    result = handpose_estimator(images_train, images_test)
+    result = handpose_estimator(images_train, Y_train, images_test, Y_test)
     
     # Generate BoW representation for each image
     bow_train = get_bow(images_train)
