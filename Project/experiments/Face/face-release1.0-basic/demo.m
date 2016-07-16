@@ -2,6 +2,7 @@
 img_path = '../../../data/train/';
 %name of the class
 img_class = 'c5';
+img_classes = {'c0', 'c1','c2', 'c3'};
 %in which image to start
 start_at = 1;
 %choose -1 to process them all, otherwise how many you want to process  
@@ -52,99 +53,101 @@ if train
     end
 end
 
+for c = 1:length(img_classes)
+   img_class = img_classes{c};
 
-%If the file doesn't exist, write its header before using
-if exist(fullfile(cd, [img_class,'.csv']), 'file') ==0
-    fid = fopen([img_class,'.csv'], 'w');
-    x = 1:68;    
-    
-    XY=strcat(', X1(',num2str(x(:)),')',', Y1(',num2str(x(:)),')',...
-        ', X2(',num2str(x(:)),')',', Y2(',num2str(x(:)),')');
-    XY= XY'
-    XY= XY(:);
-    
-    fprintf(fid, '%s, %s, %s, %s, %s','img_num', 'Name', 'Class', 'Pose', 'quant' ) ;
-    fprintf(fid,'%s', XY(:));    
-    fprintf(fid, '\n');
-    fclose(fid);
-end
+    %If the file doesn't exist, write its header before using
+    if exist(fullfile(cd, [img_class,'.csv']), 'file') ==0
+        fid = fopen([img_class,'.csv'], 'w');
+        x = 1:68;    
 
-%load all images in folder 
-ims = dir([img_path,img_class,'/*.jpg']);
+        XY=strcat(', X1(',num2str(x(:)),')',', Y1(',num2str(x(:)),')',...
+            ', X2(',num2str(x(:)),')',', Y2(',num2str(x(:)),')');
+        XY= XY'
+        XY= XY(:);
 
-%Set an appropriate end_at based on start_at and quantity
-end_at = start_at;
-if start_at > length(ims)
-   fprintf('Start_at exceeds number of images\n');   
-elseif quantity <0
-    end_at = length(ims);
-    fprintf('quantity negative, testing all images\n');   
-elseif start_at + quantity -1 > length(ims)
-    end_at = length(ims);
-    fprintf('Insufficient images, testing until the end\n');   
-else
-    end_at = start_at + quantity -1;
-    fprintf('Well defined bounds\n');   
-end
-
-
-
-
-fid = fopen([img_class,'.csv'], 'a');
-    
-for i = start_at:end_at,
-    
-    fprintf('testing: %s %d/%d\n', img_class,  i, length(ims));
-    im = imread([img_path,img_class,'\', ims(i).name]);
-    %uncomment to crop,
-    %im = imcrop(im,[0 0 size(im,2)-1, size(im,1)]);
-    figure; imagesc(im); axis image; axis off; drawnow;
-    
-    tic;
-    bs = detect(im, model, model.thresh);
-    bs = clipboxes(im, bs);
-    bs = nms_face(bs,0.3);
-    dettime = toc;
-    fprintf('Detection took %.1f seconds\n',dettime);
-    
-    %write only if a face was found
-    if length(bs) > 0  
-        
-        %make array from the boxes
-        xy = bs(1).xy';
-        xy = xy(:);    
-      
-        %Write line into file with results
-        fprintf(fid, '%d, %s, %s, %d %d', i, ims(i).name, img_class, posemap(bs(1).c), length(xy)/4);
-        fprintf(fid, sprintf(', %f', xy(:)));
+        fprintf(fid, '%s, %s, %s, %s, %s','img_num', 'Name', 'Class', 'Pose', 'quant' ) ;
+        fprintf(fid,'%s', XY(:));    
         fprintf(fid, '\n');
+        fclose(fid);
+    end
 
-        %Save progress
-        fclose(fid) ;
-        fid = fopen([img_class,'.csv'], 'a');
-    
+    %load all images in folder 
+    ims = dir([img_path,img_class,'/*.jpg']);
 
-        % show highest scoring one, uncomment next line if you want to see
-        % detection
-        figure,showboxes(im, bs(1),posemap),title('Highest scoring detection');
-        
-        % show all
-        %figure,showboxes(im, bs,posemap),title('All detections above the threshold');
+    %Set an appropriate end_at based on start_at and quantity
+    end_at = start_at;
+    if start_at > length(ims)
+       fprintf('Start_at exceeds number of images\n');   
+    elseif quantity <0
+        end_at = length(ims);
+        fprintf('quantity negative, testing all images\n');   
+    elseif start_at + quantity -1 > length(ims)
+        end_at = length(ims);
+        fprintf('Insufficient images, testing until the end\n');   
+    else
+        end_at = start_at + quantity -1;
+        fprintf('Well defined bounds\n');   
+    end
+ 
+    fprintf(['Starting tests for class: ' img_class '\n\n']);
 
-        %fprintf('Detection took %.1f seconds\n',dettime);
-        %disp('pr ess any key to continue');
-        %pause;
-        %close all;
-        
-    else        
-        fid2 = fopen('undetected.csv', 'a');        
-        fprintf(fid2, '%d, %s, %s\n',i, img_class, ims(i).name);
-        fclose(3);    
-    end;
-    
-    
-end
+    fid = fopen([img_class,'.csv'], 'a');
 
-fclose(fid) ;
+    for i = start_at:end_at,
 
-disp('done!');
+        fprintf('testing: %s %d/%d\n', img_class,  i, length(ims));
+        im = imread([img_path,img_class,'\', ims(i).name]);
+        %uncomment to crop,
+        %im = imcrop(im,[0 0 size(im,2)-1, size(im,1)]);
+        %figure; imagesc(im); axis image; axis off; drawnow;
+
+        tic;
+        bs = detect(im, model, model.thresh);
+        bs = clipboxes(im, bs);
+        bs = nms_face(bs,0.3);
+        dettime = toc;
+        fprintf('Detection took %.1f seconds\n',dettime);
+
+        %write only if a face was found
+        if length(bs) > 0  
+
+            %make array from the boxes
+            xy = bs(1).xy';
+            xy = xy(:);    
+
+            %Write line into file with results
+            fprintf(fid, '%d, %s, %s, %d %d', i, ims(i).name, img_class, posemap(bs(1).c), length(xy)/4);
+            fprintf(fid, sprintf(', %f', xy(:)));
+            fprintf(fid, '\n');
+
+            %Save progress
+            fclose(fid) ;
+            fid = fopen([img_class,'.csv'], 'a');
+
+
+            % show highest scoring one, uncomment next line if you want to see
+            % detection
+            %figure,showboxes(im, bs(1),posemap),title('Highest scoring detection');
+
+            % show all
+            %figure,showboxes(im, bs,posemap),title('All detections above the threshold');
+
+            %fprintf('Detection took %.1f seconds\n',dettime);
+            %disp('pr ess any key to continue');
+            %pause;
+            %close all;
+
+        else        
+            fid2 = fopen('undetected.csv', 'a');        
+            fprintf(fid2, '%d, %s, %s\n',i, img_class, ims(i).name);
+            fclose(fid2);    
+        end;
+
+
+    end
+
+    fclose(fid) ;
+
+    disp('done!');
+end;

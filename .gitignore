@@ -7,6 +7,9 @@ Project/data/
 # ex5 data
 sheet05/data/ex5/
 
+#ignore mex compilation files in Face Module
+*.mexw64
+
 # ignore training files of sheet03
 sheet??/matlab/test_data.mat
 sheet??/matlab/train_data.mat
