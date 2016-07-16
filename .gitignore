@@ -1,5 +1,6 @@
 Project/Code/.idea/
 Project/experiments/*/.idea/
+Project/experiments/convolutional-pose-machines/model/
 
 # Project Data
 Project/data/
