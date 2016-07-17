@@ -1,14 +1,16 @@
 %path to images folder
 img_path = '../../../data/train/';
-%name of the class
-img_class = 'c5';
-img_classes = {'c0', 'c1','c2', 'c3'};
+%name of the classes
+img_classes = {'c4'};
 %in which image to start
 start_at = 1;
 %choose -1 to process them all, otherwise how many you want to process  
 quantity = -1; 
 %you can make it false if the model is already in memory
 train = true;
+
+% change this depending on your operating system (\ windows, / unix)
+path_seperator='/';
 
 
 
@@ -97,7 +99,11 @@ for c = 1:length(img_classes)
     for i = start_at:end_at,
 
         fprintf('testing: %s %d/%d\n', img_class,  i, length(ims));
-        im = imread([img_path,img_class,'\', ims(i).name]);
+
+        % UNIX read:
+        im = imread([img_path,img_class,path_seperator, ims(i).name]);
+        
+        
         %uncomment to crop,
         %im = imcrop(im,[0 0 size(im,2)-1, size(im,1)]);
         %figure; imagesc(im); axis image; axis off; drawnow;
