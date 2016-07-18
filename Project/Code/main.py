@@ -21,8 +21,9 @@ def main():
     (images, Y) = load_training_data(data_location, num_participants=training_pcipants, scale=scale)
 
     # Get Headposes
-    #headpose_train = headpose_estimator(images_train)
-    #headpose_test = headpose_estimator(images_test)
+    paths = ["experiments/Face/face-release1.0-basic/csv0","experiments/Face/face-release1.0-basic/csv1","experiments/Face/face-release1.0-basic/csv2","experiments/Face/face-release1.0-basic/csv3","experiments/Face/face-release1.0-basic/csv4","experiments/Face/face-release1.0-basic/csv5","experiments/Face/face-release1.0-basic/csv6","experiments/Face/face-release1.0-basic/csv7","experiments/Face/face-release1.0-basic/csv8","experiments/Face/face-release1.0-basic/csv9"]
+    headpose_clf = headpose_estimator(paths,images,Y)
+    #headpose_test = headpose_estimator(paths,imglist,Y)
     
     # Get Handposes/Handpositions/Classifications based on Hands, whatever we want to do here
     hand_clf = handpose_estimator.handpose_estimator(images, Y, scale=scale)
