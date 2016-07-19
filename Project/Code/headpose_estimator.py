@@ -23,9 +23,6 @@ def headpose_estimator(paths,imglist,Y):
 		Y = []
 		for headpose in file:
 			if headpose[2] not in imgClass:
-				headpose = null
-
-			if(headpose!=null):
 				Poses.append(headpose[4].split(" ")[0])
 				quant = headpose[4].split(" ")[1]
 				for i in range(0, quant):
