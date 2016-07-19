@@ -3,6 +3,8 @@ import cv2
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
+from features import getHOG
+from features import getLBP
 '''
 It is a bit unclear what this function should do yet. We have several options:
 
@@ -30,6 +32,8 @@ def convert_classes(c):
 
 
 def prepare_images(images, scale=0.5):
+    feature = "hog"
+
     X = []
     for img in images:
         # img = img[60:350, 460:-1]
@@ -38,13 +42,27 @@ def prepare_images(images, scale=0.5):
         x1 = int(460 * scale)
         #x2 = int(350 * scale)
         img = img[y1:y2, x1:-1]
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        #cv2.imshow("Image", img)
+        #cv2.waitKey(1)
+
         # img = cv2.resize(img, dsize=None, fx=scale, fy=scale)
-        img = cv2.equalizeHist(img)
-        cv2.imshow("Image", img)
-        cv2.waitKey()
-        img = np.reshape(img, -1)
-        X.append(img)
+
+
+
+        # Extract features
+        if feature == "raw":
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            img = cv2.equalizeHist(img)
+            img = np.reshape(img, -1)
+            X.append(img)
+        elif feature == "hog":
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            hog = getHOG(img)
+            X.append(hog)
+        elif feature == "lbp":
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            lbp = getLBP(lbp)
+            X.append(lbp)
     X = np.asarray(X)
     return X
 
