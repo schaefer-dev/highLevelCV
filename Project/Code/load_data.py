@@ -37,6 +37,7 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
 
     X = []
     Y = []
+    image_names = [[] for i in range(10)]
     for p in range(num_participants):
         print "start with participant %f ..." % p
         # Pick next participant to load
@@ -72,6 +73,11 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
         pcipant_labels = np.delete(pcipant_labels, deleted, axis=0)
         X = X + images
         Y = Y + list(pcipant_labels)
+
+
+        # Add to list of image names
+        for i in range(len(pcipant_images.shape[0])):
+            image_names[pcipant_labels].append(pcipant_images[i])
         '''
         x_train, x_test, y_train, y_test = train_test_split(images, pcipant_labels, test_size = 0.15, random_state = 42)
 
@@ -82,7 +88,7 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
 
     return (X_train, Y_train, X_test, Y_test)
     '''
-    return (X, Y)
+    return (X, Y, image_names)
 
 
 def load_test_data(data_location, num_images = 1000, skip = 0, scale=0.5):
