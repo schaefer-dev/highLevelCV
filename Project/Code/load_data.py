@@ -63,7 +63,7 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
         for i in range(pcipant_images.shape[0]):
             loc = data_location + "train/" + pcipant_labels[i] + '/' + pcipant_images[i]
             rnd = random()
-            if False and pcipant_labels[i] != 'c5' and rnd > 0.1:
+            if False and pcipant_labels[i] != 'c0' and rnd > 0.1:
                 deleted.append(i)
                 continue
             else:
@@ -76,9 +76,9 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
 
 
         # Add to list of image names
-        for i in range(pcipant_images.shape[0]):
-            temp = (pcipant_labels[i])[1]
-            image_names[int(temp)].append(pcipant_images[i])
+        #for i in range(pcipant_images.shape[0]):
+        #    temp = (pcipant_labels[i])[1]
+        #    image_names[int(temp)].append(pcipant_images[i])
         '''
         x_train, x_test, y_train, y_test = train_test_split(images, pcipant_labels, test_size = 0.15, random_state = 42)
 

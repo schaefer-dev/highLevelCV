@@ -3,6 +3,7 @@ import cv2
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
+from sklearn import preprocessing
 from features import getHOG
 from features import getLBP
 '''
@@ -18,12 +19,12 @@ annotaion of the data.
 Hopefully we could distinguish at least a few classes from this. Just try to train for example a Random Forrest for that.
 '''
 def convert_classes(c):
-    c[c == "c0"] = "on"
+    c[c == "c0"] = "tw"
     c[c == "c1"] = "on" #o5
     c[c == "c2"] = "on"
     c[c == "c3"] = "on" #5
     c[c == "c4"] = "on"
-    c[c == "c5"] = "tw" # unclear
+    c[c == "c5"] = "on" # unclear
     c[c == "c6"] = "on"
     c[c == "c7"] = "on"
     c[c == "c8"] = "on"
@@ -32,7 +33,7 @@ def convert_classes(c):
 
 
 def prepare_images(images, scale=0.5):
-    feature = "hog"
+    feature = "raw"
 
     X = []
     for img in images:
@@ -63,7 +64,9 @@ def prepare_images(images, scale=0.5):
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             lbp = getLBP(lbp)
             X.append(lbp)
+
     X = np.asarray(X)
+    X = preprocessing.scale(X.astype(np.double))
     return X
 
 def handpose_estimator(images, Y, scale = 0.5):
