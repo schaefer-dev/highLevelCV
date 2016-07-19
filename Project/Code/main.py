@@ -22,7 +22,7 @@ def main():
     data_location = os.path.join(os.path.dirname(__file__), '../data/')
 
     # Get Training and Test Data
-    training_pcipants = 4
+    training_pcipants = 10
     (images, Y, image_names) = load_training_data(data_location, num_participants=training_pcipants, scale=scale)
 
     if headClassifier:
@@ -44,12 +44,16 @@ def main():
 
     # Perform validation
     if handClassifier:
-        (images, Y) = load_training_data(data_location, num_participants=1, scale=scale, skip=training_pcipants)
-        Y = handpose_estimator.convert_classes(np.asarray(Y))
+        (images, Y, image_names) = load_training_data(data_location, num_participants=4, scale=scale, skip=training_pcipants)
+        #Y = handpose_estimator.convert_classes(np.asarray(Y))
         Y = np.asarray(Y)
         X = handpose_estimator.prepare_images(images, scale)
         pred = hand_clf.predict(X)
         print classification_report(Y, pred)
+        cm = confusion_matrix(Y, pred)
+        plot_confusion_matrix(cm)
+
+    if headClassifier:
         pred = headpose_clf.predict(images)
         print classification_report(Y, pred)
 
