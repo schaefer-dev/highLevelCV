@@ -14,22 +14,24 @@ their corresponding headposes in the files.
 def headpose_estimator(paths,imglist,Y):
 	filenumber = 0
 	Poses = []
-	XCords = []
-	YCords = []
+	#XCords = []
+	#YCords = []
 	for imgClass in imglist:
 		file = parseCsv(paths[filenumber])
 		filenumber = filenumber+1
-		X = []
-		Y = []
+		#X = []
+		#Y = []
 		for headpose in file:
 			if headpose[2] in imgClass:
 				Poses.append(headpose[4].split(" ")[0])
 				quant = headpose[4].split(" ")[1]
-				for i in range(0, quant):
-					if(i%2==0):
-						X.append(headpose[5+i])
-					else:
-						Y.append(headpose[5+i])
+				#for i in range(0, quant):
+				#	if(i%2==0):
+				#		X.append(headpose[5+i])
+				#	else:
+				#		Y.append(headpose[5+i])
+		#XCords.append(X)
+		#YCords.append(Y)
 
 	clf = RandomForestClassifier(n_estimators=10, n_jobs=3, class_weight="balanced")
 	clf.fit(Poses, Y)
