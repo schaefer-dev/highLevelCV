@@ -46,8 +46,8 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
         # DEBUG
         loc = data_location + "train/" + image_list[0, 1] + '/' + image_list[0, 2]
         img = cv2.imread(loc)
-        cv2.imshow("Image", img)
-        cv2.waitKey(1)
+        #cv2.imshow("Image", img)
+        #cv2.waitKey(1)
         # DEBUG
 
         # Find all images from that participant

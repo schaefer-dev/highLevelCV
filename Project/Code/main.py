@@ -14,8 +14,8 @@ from util import plot_confusion_matrix
 
 
 def main():
-    handClassifier = True
-    headClassifier = False
+    handClassifier = False
+    headClassifier = True
 
     scale = 0.6
     # Location of the dataset. Change this to the correct location when running. Remember the '/' at the end!
@@ -28,7 +28,7 @@ def main():
     if headClassifier:
         # Get Headposes
         paths = ["../experiments/Face/face-release1.0-basic/c0.csv","../experiments/Face/face-release1.0-basic/c1.csv","../experiments/Face/face-release1.0-basic/c2.csv","../experiments/Face/face-release1.0-basic/c3.csv","../experiments/Face/face-release1.0-basic/c4.csv","../experiments/Face/face-release1.0-basic/c5.csv","../experiments/Face/face-release1.0-basic/c6.csv","../experiments/Face/face-release1.0-basic/c7.csv","../experiments/Face/face-release1.0-basic/c8.csv","../experiments/Face/face-release1.0-basic/c9.csv"]
-        headpose_clf = headpose_estimator(paths,images,Y)
+        headpose_clf = headpose_estimator(paths,image_names,Y)
         #headpose_test = headpose_estimator(paths,imglist,Y)
 
     # Get Handposes/Handpositions/Classifications based on Hands, whatever we want to do here
