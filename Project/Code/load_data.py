@@ -76,8 +76,9 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
 
 
         # Add to list of image names
-        for i in range(len(pcipant_images.shape[0])):
-            image_names[pcipant_labels].append(pcipant_images[i])
+        for i in range(pcipant_images.shape[0]):
+            temp = (pcipant_labels[i])[1]
+            image_names[int(temp)].append(pcipant_images[i])
         '''
         x_train, x_test, y_train, y_test = train_test_split(images, pcipant_labels, test_size = 0.15, random_state = 42)
 
