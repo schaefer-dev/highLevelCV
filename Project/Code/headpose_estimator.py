@@ -11,9 +11,17 @@ the function prototype may have to be changed to be able to identify the images 
 their corresponding headposes in the files.
 '''
 
-def headpose_estimator(paths,imglist,Y):
+def headpose_estimator(features,Y):
+	Y = np.asarray(Y)
+	print(len(Y))
+	print(len(features))
+	clf = RandomForestClassifier(n_estimators=10, n_jobs=3, class_weight="balanced")
+	clf.fit(features, Y)
+	return clf
+
+def get_head_features(paths,imglist):
 	filenumber = 0
-	Poses = []
+	features = []
 	#XCords = []
 	#YCords = []
 	for imgClass in imglist:
@@ -22,18 +30,17 @@ def headpose_estimator(paths,imglist,Y):
 		#X = []
 		#Y = []
 		for headpose in file:
-			if headpose[2] in imgClass:
-				Poses.append(headpose[4].split(" ")[0])
-				quant = headpose[4].split(" ")[1]
-				#for i in range(0, quant):
-				#	if(i%2==0):
-				#		X.append(headpose[5+i])
-				#	else:
-				#		Y.append(headpose[5+i])
+			feature = []
+			imgname=headpose[1].strip()
+			if imgname in imgClass:
+				pose = headpose[3].split(" ")[1]
+				feature.append(pose)
+				quant = headpose[3].split(" ")[2]
+				for i in range(0, int(quant)):
+					feature.append(headpose[4+i])
+				features.append(feature)
 		#XCords.append(X)
 		#YCords.append(Y)
-
-	clf = RandomForestClassifier(n_estimators=10, n_jobs=3, class_weight="balanced")
-	clf.fit(Poses, Y)
-	return clf
+	#features = np.asarray(features)
+	return features
 		

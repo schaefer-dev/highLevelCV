@@ -6,6 +6,7 @@ import os
 
 from load_data import load_training_data
 from headpose_estimator import headpose_estimator
+from headpose_estimator import get_head_features
 import handpose_estimator
 from get_bow import get_bow
 from sklearn.metrics import classification_report
@@ -28,8 +29,8 @@ def main():
     if headClassifier:
         # Get Headposes
         paths = ["../experiments/Face/face-release1.0-basic/c0.csv","../experiments/Face/face-release1.0-basic/c1.csv","../experiments/Face/face-release1.0-basic/c2.csv","../experiments/Face/face-release1.0-basic/c3.csv","../experiments/Face/face-release1.0-basic/c4.csv","../experiments/Face/face-release1.0-basic/c5.csv","../experiments/Face/face-release1.0-basic/c6.csv","../experiments/Face/face-release1.0-basic/c7.csv","../experiments/Face/face-release1.0-basic/c8.csv","../experiments/Face/face-release1.0-basic/c9.csv"]
-        headpose_clf = headpose_estimator(paths,image_names,Y)
-        #headpose_test = headpose_estimator(paths,imglist,Y)
+        features = get_head_features(paths,image_names)
+        headpose_clf = headpose_estimator(features,Y)
 
     # Get Handposes/Handpositions/Classifications based on Hands, whatever we want to do here
     hand_clf = None
