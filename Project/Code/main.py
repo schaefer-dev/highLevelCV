@@ -21,7 +21,7 @@ def main():
     (images, Y) = load_training_data(data_location, num_participants=training_pcipants, scale=scale)
 
     # Get Headposes
-    paths = ["experiments/Face/face-release1.0-basic/csv0","experiments/Face/face-release1.0-basic/csv1","experiments/Face/face-release1.0-basic/csv2","experiments/Face/face-release1.0-basic/csv3","experiments/Face/face-release1.0-basic/csv4","experiments/Face/face-release1.0-basic/csv5","experiments/Face/face-release1.0-basic/csv6","experiments/Face/face-release1.0-basic/csv7","experiments/Face/face-release1.0-basic/csv8","experiments/Face/face-release1.0-basic/csv9"]
+    paths = ["../experiments/Face/face-release1.0-basic/c0.csv","../experiments/Face/face-release1.0-basic/c1.csv","../experiments/Face/face-release1.0-basic/c2.csv","../experiments/Face/face-release1.0-basic/c3.csv","../experiments/Face/face-release1.0-basic/c4.csv","../experiments/Face/face-release1.0-basic/c5.csv","../experiments/Face/face-release1.0-basic/c6.csv","../experiments/Face/face-release1.0-basic/c7.csv","../experiments/Face/face-release1.0-basic/c8.csv","../experiments/Face/face-release1.0-basic/c9.csv"]
     headpose_clf = headpose_estimator(paths,images,Y)
     #headpose_test = headpose_estimator(paths,imglist,Y)
     
@@ -34,10 +34,12 @@ def main():
 
     # Perform validation
     (images, Y) = load_training_data(data_location, num_participants=1, scale=scale, skip=training_pcipants)
-    #Y = handpose_estimator.convert_classes(np.asarray(Y))
+    Y = handpose_estimator.convert_classes(np.asarray(Y))
     Y = np.asarray(Y)
     X = handpose_estimator.prepare_images(images, scale)
     pred = hand_clf.predict(X)
+    print classification_report(Y, pred)
+    pred = headpose_clf.predict(images)
     print classification_report(Y, pred)
 
 
