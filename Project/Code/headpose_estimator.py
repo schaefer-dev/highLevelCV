@@ -22,7 +22,7 @@ def headpose_estimator(paths,imglist,Y):
 		X = []
 		Y = []
 		for headpose in file:
-			if headpose[2] in imgClass:
+			if headpose[2] not in imgClass:
 				headpose = null
 
 			if(headpose!=null):
