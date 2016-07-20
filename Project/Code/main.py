@@ -6,6 +6,7 @@ import os
 
 from load_data import load_training_data
 from headpose_estimator import headpose_estimator
+from headpose_estimator import get_head_features
 import handpose_estimator
 from handpose_estimator import run_handpose_estimator
 from get_bow import get_bow
@@ -15,22 +16,23 @@ from util import plot_confusion_matrix
 
 
 def main():
-    handClassifier = True
-    headClassifier = False
+    handClassifier = False
+    headClassifier = True
 
     scale = 0.6
     # Location of the dataset. Change this to the correct location when running. Remember the '/' at the end!
     data_location = os.path.join(os.path.dirname(__file__), '../data/')
 
     # Get Training and Test Data
-    training_pcipants = 4
+
+    training_pcipants = 10
     (images, Y, image_names) = load_training_data(data_location, num_participants=training_pcipants, scale=scale)
 
     if headClassifier:
         # Get Headposes
         paths = ["../experiments/Face/face-release1.0-basic/c0.csv","../experiments/Face/face-release1.0-basic/c1.csv","../experiments/Face/face-release1.0-basic/c2.csv","../experiments/Face/face-release1.0-basic/c3.csv","../experiments/Face/face-release1.0-basic/c4.csv","../experiments/Face/face-release1.0-basic/c5.csv","../experiments/Face/face-release1.0-basic/c6.csv","../experiments/Face/face-release1.0-basic/c7.csv","../experiments/Face/face-release1.0-basic/c8.csv","../experiments/Face/face-release1.0-basic/c9.csv"]
-        headpose_clf = headpose_estimator(paths,images,Y)
-        #headpose_test = headpose_estimator(paths,imglist,Y)
+        (features,labels) = get_head_features(paths,image_names)
+        (headpose_scaler, headpose_clf) = headpose_estimator(features,labels)
 
     # Get Handposes/Handpositions/Classifications based on Hands, whatever we want to do here
     hand_clf = None
@@ -45,7 +47,7 @@ def main():
 
     # Perform validation
     if handClassifier:
-        (images, Y, image_names) = load_training_data(data_location, num_participants=1, scale=scale, skip=training_pcipants)
+        (images, Y, image_names) = load_training_data(data_location, num_participants=3, scale=scale, skip=training_pcipants)
         #Y = handpose_estimator.convert_classes(np.asarray(Y))
         Y = np.asarray(Y)
 
@@ -55,8 +57,13 @@ def main():
         plot_confusion_matrix(cm)
 
     if headClassifier:
-        pred = headpose_clf.predict(images)
-        print classification_report(Y, pred)
+        (images, Y, image_names) = load_training_data(data_location, num_participants=4, scale=scale, skip=training_pcipants)
+        (features,labels) = get_head_features(paths,image_names)
+        features = headpose_scaler.transform(features)
+        pred = headpose_clf.predict(features)
+        print classification_report(labels, pred)
+        cm = confusion_matrix(labels, pred)
+        plot_confusion_matrix(cm)
 
 
     
