@@ -12,9 +12,7 @@ their corresponding headposes in the files.
 '''
 
 def headpose_estimator(features,Y):
-	Y = np.asarray(Y)
-	print(len(Y))
-	print(len(features))
+	#Y = np.asarray(Y)
 	clf = RandomForestClassifier(n_estimators=10, n_jobs=3, class_weight="balanced")
 	clf.fit(features, Y)
 	return clf
@@ -22,6 +20,7 @@ def headpose_estimator(features,Y):
 def get_head_features(paths,imglist):
 	filenumber = 0
 	features = []
+	labels = []
 	#XCords = []
 	#YCords = []
 	for imgClass in imglist:
@@ -30,17 +29,24 @@ def get_head_features(paths,imglist):
 		#X = []
 		#Y = []
 		for headpose in file:
+			label = []
 			feature = []
 			imgname=headpose[1].strip()
+			#print(imgname)
+			#print(imgClass)
 			if imgname in imgClass:
+				label.append(headpose[2].strip())
 				pose = headpose[3].split(" ")[1]
 				feature.append(pose)
 				quant = headpose[3].split(" ")[2]
-				for i in range(0, int(quant)):
-					feature.append(headpose[4+i])
+				for i in range(0, 38):
+					feature.append(float(headpose[4+i].strip()))
+				feature = np.asarray(feature)
 				features.append(feature)
+				labels.append(label)
 		#XCords.append(X)
 		#YCords.append(Y)
-	#features = np.asarray(features)
-	return features
+	features = np.asarray(features)
+	labels = np.ravel(labels)
+	return (features,labels)
 		

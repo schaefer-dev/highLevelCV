@@ -23,14 +23,14 @@ def main():
     data_location = os.path.join(os.path.dirname(__file__), '../data/')
 
     # Get Training and Test Data
-    training_pcipants = 10
+    training_pcipants = 6
     (images, Y, image_names) = load_training_data(data_location, num_participants=training_pcipants, scale=scale)
 
     if headClassifier:
         # Get Headposes
         paths = ["../experiments/Face/face-release1.0-basic/c0.csv","../experiments/Face/face-release1.0-basic/c1.csv","../experiments/Face/face-release1.0-basic/c2.csv","../experiments/Face/face-release1.0-basic/c3.csv","../experiments/Face/face-release1.0-basic/c4.csv","../experiments/Face/face-release1.0-basic/c5.csv","../experiments/Face/face-release1.0-basic/c6.csv","../experiments/Face/face-release1.0-basic/c7.csv","../experiments/Face/face-release1.0-basic/c8.csv","../experiments/Face/face-release1.0-basic/c9.csv"]
-        features = get_head_features(paths,image_names)
-        headpose_clf = headpose_estimator(features,Y)
+        (features,labels) = get_head_features(paths,image_names)
+        headpose_clf = headpose_estimator(features,labels)
 
     # Get Handposes/Handpositions/Classifications based on Hands, whatever we want to do here
     hand_clf = None
@@ -55,8 +55,9 @@ def main():
         plot_confusion_matrix(cm)
 
     if headClassifier:
-        pred = headpose_clf.predict(images)
-        print classification_report(Y, pred)
+        (features,labels) = get_head_features(paths,image_names)
+        pred = headpose_clf.predict(features)
+        print classification_report(labels, pred)
 
 
     
