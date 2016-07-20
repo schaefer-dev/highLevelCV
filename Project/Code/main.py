@@ -7,6 +7,7 @@ import os
 from load_data import load_training_data
 from headpose_estimator import headpose_estimator
 import handpose_estimator
+from handpose_estimator import run_handpose_estimator
 from get_bow import get_bow
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
@@ -22,7 +23,7 @@ def main():
     data_location = os.path.join(os.path.dirname(__file__), '../data/')
 
     # Get Training and Test Data
-    training_pcipants = 10
+    training_pcipants = 4
     (images, Y, image_names) = load_training_data(data_location, num_participants=training_pcipants, scale=scale)
 
     if headClassifier:
@@ -34,7 +35,7 @@ def main():
     # Get Handposes/Handpositions/Classifications based on Hands, whatever we want to do here
     hand_clf = None
     if handClassifier:
-        hand_clf = handpose_estimator.handpose_estimator(images, Y, scale=scale)
+        (scaler, hand_clf) = handpose_estimator.handpose_estimator(images, Y, scale=scale)
 
     ################## TESTING ########################
 
@@ -44,11 +45,11 @@ def main():
 
     # Perform validation
     if handClassifier:
-        (images, Y, image_names) = load_training_data(data_location, num_participants=4, scale=scale, skip=training_pcipants)
+        (images, Y, image_names) = load_training_data(data_location, num_participants=1, scale=scale, skip=training_pcipants)
         #Y = handpose_estimator.convert_classes(np.asarray(Y))
         Y = np.asarray(Y)
-        X = handpose_estimator.prepare_images(images, scale)
-        pred = hand_clf.predict(X)
+
+        pred = run_handpose_estimator((scaler, hand_clf), images, scale=scale)
         print classification_report(Y, pred)
         cm = confusion_matrix(Y, pred)
         plot_confusion_matrix(cm)

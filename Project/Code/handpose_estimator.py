@@ -1,11 +1,12 @@
 import numpy as np
 import cv2
-from sklearn.svm import SVC
+from sklearn.svm import LinearSVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from sklearn import preprocessing
 from features import getHOG
 from features import getLBP
+from sklearn.preprocessing import StandardScaler
 '''
 It is a bit unclear what this function should do yet. We have several options:
 
@@ -66,23 +67,29 @@ def prepare_images(images, scale=0.5):
             X.append(lbp)
 
     X = np.asarray(X)
-    X = preprocessing.scale(X.astype(np.double))
     return X
 
 def handpose_estimator(images, Y, scale = 0.5):
     print "Train Handpose Estimator..."
     #Y = convert_classes(np.asarray(Y))
     Y = np.asarray(Y)
-    #scale = 0.5
 
     # prepare training data
     X = prepare_images(images, scale)
+    scaler = StandardScaler(copy=False)
+    X = scaler.fit_transform(X)
 
     # Train classifier
-    #clf = SVC(C=0.1)
-    clf = RandomForestClassifier(n_estimators=10, n_jobs=3, class_weight="balanced")
+    clf = LinearSVC()
+    #clf = RandomForestClassifier(n_estimators=10, n_jobs=3, class_weight="balanced")
     clf.fit(X, Y)
 
+    return (scaler,clf)
 
+def run_handpose_estimator((scaler, clf), images, scale = 0.5):
+    # prepare training data
+    X = prepare_images(images, scale)
+    X = scaler.transform(X)
 
-    return clf
+    pred = clf.predict(X)
+    return pred
