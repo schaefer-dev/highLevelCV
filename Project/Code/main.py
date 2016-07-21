@@ -5,7 +5,9 @@ import csv
 import os
 
 from load_data import load_training_data
+from load_data import load_steering_wheel_labels
 from headpose_estimator import headpose_estimator
+from headpose_estimator import run_headpose_estimator
 from headpose_estimator import get_head_features
 import handpose_estimator
 from handpose_estimator import run_handpose_estimator
@@ -16,8 +18,8 @@ from util import plot_confusion_matrix
 
 
 def main():
-    handClassifier = False
-    headClassifier = True
+    handClassifier = True
+    headClassifier = False
 
     scale = 0.6
     # Location of the dataset. Change this to the correct location when running. Remember the '/' at the end!
@@ -25,8 +27,8 @@ def main():
 
     # Get Training and Test Data
 
-    training_pcipants = 10
-    (images, Y, image_names) = load_training_data(data_location, num_participants=training_pcipants, scale=scale)
+    training_pcipants = 15
+    (images, Y, pIDs, image_names) = load_training_data(data_location, skip=0, num_participants=training_pcipants, scale=scale)
 
     if headClassifier:
         # Get Headposes
@@ -37,7 +39,8 @@ def main():
     # Get Handposes/Handpositions/Classifications based on Hands, whatever we want to do here
     hand_clf = None
     if handClassifier:
-        (scaler, hand_clf) = handpose_estimator.handpose_estimator(images, Y, scale=scale)
+        steering_wheel_labels = load_steering_wheel_labels(data_location)
+        (scaler, hand_clf) = handpose_estimator.handpose_estimator(images, Y, pIDs, steering_wheel_labels, scale=scale)
 
     ################## TESTING ########################
 
@@ -47,20 +50,20 @@ def main():
 
     # Perform validation
     if handClassifier:
-        (images, Y, image_names) = load_training_data(data_location, num_participants=3, scale=scale, skip=training_pcipants)
+        (images, Y, pIDs, image_names) = load_training_data(data_location, num_participants=5, scale=scale, skip=training_pcipants)
         #Y = handpose_estimator.convert_classes(np.asarray(Y))
         Y = np.asarray(Y)
 
-        pred = run_handpose_estimator((scaler, hand_clf), images, scale=scale)
+        steering_wheel_labels = load_steering_wheel_labels(data_location)
+        pred = run_handpose_estimator((scaler, hand_clf), images, pIDs, steering_wheel_labels, scale=scale)
         print classification_report(Y, pred)
         cm = confusion_matrix(Y, pred)
         plot_confusion_matrix(cm)
 
     if headClassifier:
-        (images, Y, image_names) = load_training_data(data_location, num_participants=4, scale=scale, skip=training_pcipants)
-        (features,labels) = get_head_features(paths,image_names)
-        features = headpose_scaler.transform(features)
-        pred = headpose_clf.predict(features)
+        (images, labels, pIDs, image_names) = load_training_data(data_location, num_participants=1, scale=scale, skip=training_pcipants)
+        (pred, labels) = run_headpose_estimator(headpose_scaler, headpose_clf, image_names, paths)
+
         print classification_report(labels, pred)
         cm = confusion_matrix(labels, pred)
         plot_confusion_matrix(cm)

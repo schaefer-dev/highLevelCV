@@ -15,6 +15,14 @@ def load_image_list(data_location):
     info = np.asarray(info)
     return info
 
+def load_steering_wheel_labels(data_location):
+    info = []
+    with open(data_location + 'labels.csv', 'rb') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='|')
+        for row in reader:
+            info.append(row)
+    info = np.asarray(info)
+    return info
 
 '''
 Loads the data for a given number of participants.
@@ -37,6 +45,7 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
 
     X = []
     Y = []
+    pIDs = []
     image_names = [[] for i in range(10)]
     for p in range(num_participants):
         print "start with participant %f ..." % p
@@ -54,6 +63,7 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
         pcipant_idxs = image_list[:, 0] == pcipant
         pcipant_images = image_list[pcipant_idxs, 2]
         pcipant_labels = image_list[pcipant_idxs, 1]
+        pcipant_ID = np.repeat(pcipant, pcipant_images.shape[0])
 
         pcipant_idxs = np.nonzero(pcipant_idxs)
         image_list = np.delete(image_list, pcipant_idxs, axis=0)
@@ -73,6 +83,7 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
         pcipant_labels = np.delete(pcipant_labels, deleted, axis=0)
         X = X + images
         Y = Y + list(pcipant_labels)
+        pIDs = pIDs + list(pcipant_ID)
 
 
         # Add to list of image names
@@ -89,7 +100,7 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
 
     return (X_train, Y_train, X_test, Y_test)
     '''
-    return (X, Y, image_names)
+    return (X, Y, pIDs, image_names)
 
 
 def load_test_data(data_location, num_images = 1000, skip = 0, scale=0.5):
