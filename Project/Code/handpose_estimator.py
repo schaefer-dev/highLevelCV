@@ -33,19 +33,37 @@ def convert_classes(c):
     return c
 
 
-def prepare_images(images, scale=0.5):
+def prepare_images(images, pIDs, steering_wheel_labels, scale=0.5):
     feature = "raw"
 
     X = []
-    for img in images:
+    for i in range(len(images)):
+        img = images[i]
+
+        center = None
+        for row in steering_wheel_labels:
+            if row[0] == pIDs[i]:
+                center = (int(row[1]), int(row[2]))
+                break
+
+        wl = 100
+        wr = 55
+        ht = 120
+        hb = 120
+        y1 = int((center[1] - ht) * scale)
+        y2 = int((center[1] + hb) * scale)
+        x1 = int((center[0] - wl) * scale)
+        x2 = int((center[0] + wr) * scale)
+        cx = int(wl * scale)
+        cy = int(ht * scale)
         # img = img[60:350, 460:-1]
-        y1 = int(60 * scale)
-        y2 = int(350 * scale)
-        x1 = int(460 * scale)
-        #x2 = int(350 * scale)
-        img = img[y1:y2, x1:-1]
+        #y1 = int(60 * scale)
+        #y2 = int(350 * scale)
+        #x1 = int(460 * scale)
+        img = img[y1:y2, x1:x2]
+        #cv2.circle(img, (cx,cy), 2, (0,0,255), -1)
         #cv2.imshow("Image", img)
-        #cv2.waitKey(1)
+        #cv2.waitKey(5)
 
         # img = cv2.resize(img, dsize=None, fx=scale, fy=scale)
 
@@ -69,26 +87,26 @@ def prepare_images(images, scale=0.5):
     X = np.asarray(X)
     return X
 
-def handpose_estimator(images, Y, scale = 0.5):
+def handpose_estimator(images, Y, pIDs, steering_wheel_labels, scale = 0.5):
     print "Train Handpose Estimator..."
     #Y = convert_classes(np.asarray(Y))
     Y = np.asarray(Y)
 
     # prepare training data
-    X = prepare_images(images, scale)
+    X = prepare_images(images, pIDs, steering_wheel_labels, scale)
     scaler = StandardScaler(copy=False)
     X = scaler.fit_transform(X)
 
     # Train classifier
-    clf = LinearSVC()
-    #clf = RandomForestClassifier(n_estimators=10, n_jobs=3, class_weight="balanced")
+    #clf = LinearSVC()
+    clf = RandomForestClassifier(n_estimators=10, n_jobs=3, class_weight="balanced")
     clf.fit(X, Y)
 
     return (scaler,clf)
 
-def run_handpose_estimator((scaler, clf), images, scale = 0.5):
+def run_handpose_estimator((scaler, clf), images, pIDs, steering_wheel_labels, scale = 0.5):
     # prepare training data
-    X = prepare_images(images, scale)
+    X = prepare_images(images,pIDs, steering_wheel_labels, scale)
     X = scaler.transform(X)
 
     pred = clf.predict(X)

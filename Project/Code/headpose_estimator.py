@@ -12,13 +12,34 @@ the function prototype may have to be changed to be able to identify the images 
 their corresponding headposes in the files.
 '''
 
+def convert_classes(c):
+    c[c == "c0"] = "on"
+    c[c == "c1"] = "on" #o5
+    c[c == "c2"] = "on"
+    c[c == "c3"] = "on" #5
+    c[c == "c4"] = "on"
+    c[c == "c5"] = "on" # unclear
+    c[c == "c6"] = "on"
+    c[c == "c7"] = "on"
+    c[c == "c8"] = "on"
+    c[c == "c9"] = "tw"
+    return c
+
+def run_headpose_estimator(scaler, clf, image_names, paths):
+	(features, labels) = get_head_features(paths, image_names)
+	labels = convert_classes(labels)
+	features = scaler.transform(features)
+	pred = clf.predict(features)
+	return (pred, labels)
+
 def headpose_estimator(features,Y):
 	#Y = np.asarray(Y)
 	scaler = StandardScaler(copy=False)
 	features = scaler.fit_transform(features)
+	Y = convert_classes(Y)
 
 	#clf = RandomForestClassifier(n_estimators=10, n_jobs=3, class_weight="balanced")
-	clf = SVC()
+	clf = SVC(class_weight='balanced')
 	clf.fit(features, Y)
 	return (scaler, clf)
 
