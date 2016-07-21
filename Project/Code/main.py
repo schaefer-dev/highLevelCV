@@ -15,7 +15,7 @@ from get_bow import get_bow
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from util import plot_confusion_matrix
-
+from load_data import load_random_same
 
 def main():
     handClassifier = True
@@ -27,8 +27,10 @@ def main():
 
     # Get Training and Test Data
 
-    training_pcipants = 15
+    training_pcipants = 5
     (images, Y, pIDs, image_names) = load_training_data(data_location, skip=0, num_participants=training_pcipants, scale=scale)
+    (train_images_names,test_images_names,train_images,test_images) = load_random_same(data_location,0.5)
+
 
     if headClassifier:
         # Get Headposes
@@ -63,7 +65,6 @@ def main():
     if headClassifier:
         (images, labels, pIDs, image_names) = load_training_data(data_location, num_participants=1, scale=scale, skip=training_pcipants)
         (pred, labels) = run_headpose_estimator(headpose_scaler, headpose_clf, image_names, paths)
-
         print classification_report(labels, pred)
         cm = confusion_matrix(labels, pred)
         plot_confusion_matrix(cm)
