@@ -103,3 +103,48 @@ def load_test_data(data_location, num_images = 1000, skip = 0, scale=0.5):
         img = cv2.imread(loc)
         img = cv2.resize(img, dsize=None, fx=scale, fy=scale)
         images.append(img)
+
+def load_random_same(data_location,amount):
+    # load image_list
+    image_list = load_image_list(data_location)
+
+    # Pick next participant to load
+    pcipant = image_list[0, 0]
+
+
+
+    # Find all participants
+    participants = []
+    for image in image_list:
+        if image[0] not in participants:
+            participants.append(image[0])
+
+    participant = participants[int(random()*len(participants))]
+
+    train_images_names = []
+    test_images_names = []
+    test_images_names = [[] for i in range(10)]
+    train_images_names = [[] for i in range(10)]
+    test_images = []
+    train_images = []
+    labels = []
+    for image in image_list:
+        if image[0]==participant:
+            if random() < amount:
+                test_images.append(data_location + "train/" + image[1] + '/' + image[2])
+                temp = (image[1])[1]
+                test_images_names[int(temp)].append(image[2])
+            else:
+                train_images.append(data_location + "train/" + image[1] + '/' + image[2])
+                temp = (image[1])[1]
+                train_images_names[int(temp)].append(image[2])
+
+    print(len(train_images))
+    print(len(test_images))
+    return (train_images_names,test_images_names,train_images,test_images)
+
+
+
+
+
+   
