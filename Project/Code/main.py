@@ -18,8 +18,8 @@ from util import plot_confusion_matrix
 from load_data import load_random_same
 
 def main():
-    handClassifier = True
-    headClassifier = False
+    handClassifier = False
+    headClassifier = True
 
     scale = 0.6
     # Location of the dataset. Change this to the correct location when running. Remember the '/' at the end!
@@ -28,14 +28,14 @@ def main():
     # Get Training and Test Data
 
     training_pcipants = 5
-    (images, Y, pIDs, image_names) = load_training_data(data_location, skip=0, num_participants=training_pcipants, scale=scale)
-    (train_images_names,test_images_names,train_images,test_images) = load_random_same(data_location,0.5)
+    #(images, Y, pIDs, image_names) = load_training_data(data_location, skip=0, num_participants=training_pcipants, scale=scale)
+    (train_images_names,test_images_names,train_images,test_images) = load_random_same(data_location,0.2)
 
 
     if headClassifier:
         # Get Headposes
         paths = ["../experiments/Face/face-release1.0-basic/c0.csv","../experiments/Face/face-release1.0-basic/c1.csv","../experiments/Face/face-release1.0-basic/c2.csv","../experiments/Face/face-release1.0-basic/c3.csv","../experiments/Face/face-release1.0-basic/c4.csv","../experiments/Face/face-release1.0-basic/c5.csv","../experiments/Face/face-release1.0-basic/c6.csv","../experiments/Face/face-release1.0-basic/c7.csv","../experiments/Face/face-release1.0-basic/c8.csv","../experiments/Face/face-release1.0-basic/c9.csv"]
-        (features,labels) = get_head_features(paths,image_names)
+        (features,labels) = get_head_features(paths,train_images_names)
         (headpose_scaler, headpose_clf) = headpose_estimator(features,labels)
 
     # Get Handposes/Handpositions/Classifications based on Hands, whatever we want to do here
@@ -63,8 +63,8 @@ def main():
         plot_confusion_matrix(cm)
 
     if headClassifier:
-        (images, labels, pIDs, image_names) = load_training_data(data_location, num_participants=1, scale=scale, skip=training_pcipants)
-        (pred, labels) = run_headpose_estimator(headpose_scaler, headpose_clf, image_names, paths)
+        #(images, labels, pIDs, image_names) = load_training_data(data_location, num_participants=1, scale=scale, skip=training_pcipants)
+        (pred, labels) = run_headpose_estimator(headpose_scaler, headpose_clf, test_images_names, paths)
         print classification_report(labels, pred)
         cm = confusion_matrix(labels, pred)
         plot_confusion_matrix(cm)
