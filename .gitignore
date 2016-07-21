@@ -1,3 +1,8 @@
+Project/experiments/Face/face-release1.0-basic/fconv.mexa64
+Project/experiments/Face/face-release1.0-basic/features.mexa64
+Project/experiments/Face/face-release1.0-basic/reduce.mexa64
+Project/experiments/Face/face-release1.0-basic/resize.mexa64
+Project/experiments/Face/face-release1.0-basic/shiftdt.mexa64
 Project/Code/.idea/
 Project/experiments/*/.idea/
 Project/experiments/convolutional-pose-machines/model/
