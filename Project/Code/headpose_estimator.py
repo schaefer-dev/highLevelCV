@@ -65,15 +65,28 @@ def get_head_features(paths,imglist):
 				pose = headpose[3].split(" ")[1]
 				feature.append(pose)
 				quant = headpose[3].split(" ")[2]
-				px = float(headpose[4].strip())
-				py = float(headpose[5].strip())
+				px1 = float(headpose[4].strip())
+				py1 = float(headpose[5].strip())
+				px2 = float(headpose[6].strip())
+				py2 = float(headpose[7].strip())
+				px = (px1+px2)/2
+				py = (py1+py2)/2
 				feature.append(px)
 				feature.append(py)
-				for i in range(2, 38):
-					if i%2 == 0:
-						feature.append(float(headpose[4+i].strip()) - px)
-					else:
-						feature.append(float(headpose[4 + i].strip()) - py)
+				for i in range(1, 38):
+					px1 = float(headpose[4+i*4].strip())
+					py1 = float(headpose[5+i*4].strip())
+					px2 = float(headpose[6+i*4].strip())
+					py2 = float(headpose[7+i*4].strip())
+					feature.append((px1+px2)/2 - px)
+					feature.append((py1 + px2) / 2 - px)
+
+				#feature.append(py)
+				#for i in range(2, 38):
+				#	if i%2 == 0:
+				#		feature.append(float(headpose[4+i].strip()) - px)
+				#	else:
+				#		feature.append(float(headpose[4 + i].strip()) - py)
 				feature = np.asarray(feature)
 				features.append(feature)
 				labels.append(label)
@@ -83,4 +96,4 @@ def get_head_features(paths,imglist):
 
 	labels = np.ravel(labels)
 	return (features,labels)
-		
+
