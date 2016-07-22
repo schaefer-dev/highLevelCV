@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 from sklearn.svm import LinearSVC
+from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from sklearn import preprocessing
@@ -98,8 +99,8 @@ def handpose_estimator(images, Y, pIDs, steering_wheel_labels, scale = 0.5):
     X = scaler.fit_transform(X)
 
     # Train classifier
-    #clf = LinearSVC()
-    clf = RandomForestClassifier(n_estimators=10, n_jobs=3, class_weight="balanced")
+    clf = LinearSVC(class_weight='balanced', C=1)
+    #clf = RandomForestClassifier(n_estimators=10, n_jobs=3, class_weight="balanced")
     clf.fit(X, Y)
 
     return (scaler,clf)
