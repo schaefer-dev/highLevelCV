@@ -1,5 +1,7 @@
 from os.path import exists, isdir, basename, join, splitext
+import os
 import sift
+import load_data
 from glob import glob
 from numpy import zeros, resize, sqrt, histogram, hstack, vstack, savetxt, zeros_like
 import scipy.cluster.vq as vq
@@ -9,7 +11,7 @@ import argparse
 
 
 EXTENSIONS = [".jpg", ".bmp", ".png", ".pgm", ".tif", ".tiff"]
-DATASETPATH = '../../data/train'
+DATASETPATH = '../../data/trainBOW'
 PRE_ALLOCATION_BUFFER = 1000  # for sift
 HISTOGRAMS_FILE = 'trainingdata.svm'
 K_THRESH = 1  # early stopping threshold for kmeans originally at 1e-5, increased for speedup
@@ -113,6 +115,7 @@ if __name__ == '__main__':
     all_files_labels = {}
     all_features = {}
     cat_label = {}
+
     for cat, label in zip(cats, range(ncats)):
         cat_path = join(datasetpath, cat)
         cat_files = get_imgfiles(cat_path)
