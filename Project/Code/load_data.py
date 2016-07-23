@@ -42,7 +42,7 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
     car3 = ["p021", "p022", "p024", "p026"]
     car4 = ["p035", "p039", "p041", "p042", "p045", "p047", "p0049", "p050", "p051", "p052", "p056"]
     car5 = ["p061", "p064", "p066", "p072", "p075", "p081"]
-    for pcipant in car1 + car4 + car3 + car5:
+    for pcipant in car1 + car2 + car3 + car5:
         pcipant_idxs = image_list[:, 0] == pcipant
         pcipant_idxs = np.nonzero(pcipant_idxs)
         image_list = np.delete(image_list, pcipant_idxs, axis=0)
@@ -86,7 +86,7 @@ def load_training_data(data_location, num_participants=1, scale=0.5, skip = 0):
         for i in range(pcipant_images.shape[0]):
             loc = data_location + "train/" + pcipant_labels[i] + '/' + pcipant_images[i]
             rnd = random()
-            if False and (pcipant_labels[i] != 'c2' and pcipant_labels[i] != 'c4'):# and rnd > 0.1:
+            if True and (pcipant_labels[i] != 'c0' and pcipant_labels[i] != 'c5'):# and rnd > 0.1:
                 deleted.append(i)
                 continue
             else:
