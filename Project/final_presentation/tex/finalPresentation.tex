@@ -12,7 +12,7 @@
 	 Marc Tonsen \\
  Dominik Weber\\}
  \institute[]{Saarland University}
-\date{11.07.2016}
+\date{25.07.2016}
 
 
 
@@ -51,19 +51,19 @@
 	\end{frame}
 
     \begin{frame}
-		\frametitle{the different classes}
+		\frametitle{Classes}
 			\begin{center}
                 \quad drinking \quad \quad \quad \quad \quad \quad  texting left\\
 				\includegraphics[width=4cm]{img_0} \vspace{0.1cm}
 				\includegraphics[width=4cm]{img_5} \\
 				\includegraphics[width=4cm]{img_6}\vspace{0.1cm}
 				\includegraphics[width=4cm]{img_26}\\
-                \quad \quad texting right \quad \quad \quad hair and makeup
+                \quad texting right \quad \quad \quad \quad hair and makeup
 			\end{center}
 	\end{frame}
 	
 	\begin{frame}
-		\frametitle{the different classes}
+		\frametitle{Classes}
 		\begin{center}
             talking to passenger \quad \quad \quad operating radio \quad \\
 			\includegraphics[width=4cm]{img_19} \vspace{0.1cm}
@@ -75,7 +75,7 @@
 	\end{frame}
 	
 	\begin{frame}
-        \frametitle{the different classes}
+        \frametitle{Classes}
 		\begin{center}
             save driving \quad \quad \quad \quad \quad \quad \quad reaching behind\\
 			\includegraphics[width=5cm]{img_34} \vspace{0.1cm}
@@ -83,33 +83,100 @@
 		\end{center}
 	\end{frame}
 
+    \begin{frame}{Motivation}
+		\frametitle{Motivation}
+		Distraction-affected crashes:
+		\begin{itemize}
+			\item 18\% of injury crashes \cite{knuthwebsite}
+			\item 16\% of police-reported motor vehicle crashes
+			\item 3000 people killed in the US per year
+			\item 400,000 injured in the US per year
+		\end{itemize}
+		\vspace{0.2cm}
+		Thus distraction-detection is important! \\		\vspace{0.2cm}
+		Using specialized sensors and trackers is too expensive! \\
+		\vspace{0.2cm}
+		Simple cameras combined with CV algorithms are non-intrusive and cheap!
+	\end{frame}
 
 
-    \begin{frame}{theDataset}
-        \frametitle{the Dataset}
+
+    \begin{frame}{Dataset}
+        \frametitle{Dataset}
         \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{itemize}
-                \item around 2000 pictures per class
+                \item 
+                    around 2000 pictures per class
                     % in the available training set, which we also used for testing
                     % because we don't have the classes of the test set and we didn't
                     % want to rely on the online evaluation of the testset containing
                     % almost 80.000 pictures -> more control
-                \item 26 different participants
-                \item 4 different cars (with different camera angles)
-                \item different light situations
-                \item sometimes very minor differences between classes
+                \item 
+                    26 different participants
+                    % with each participant having roughly the same amount of pictures
+                    % per class.
+                \item 
+                    4 different cars (with different camera angles)
+                \item 
+                    different light situations
+                \item 
+                    sometimes very minor differences between certain classes
              \end{itemize}
         \end{column}
-        \begin{column}{0.5\textwidth}  %%<--- here
+        \begin{column}{0.5\textwidth}
             \begin{center}
                 \includegraphics[width=0.8\textwidth]{c0}\\
                 \includegraphics[width=0.8\textwidth]{c_0_angle2_passenger}
+                % both of these pictures are being contained in the c0 (save driving)
+                % class.
             \end{center}
         \end{column}
         \end{columns}
     \end{frame}
+
+
+	\begin{frame}
+		\frametitle{Related Work}
+		
+		\begin{columns}
+			\begin{column}{0.75\textwidth}
+				Driver-Distraction Detection:
+				\begin{itemize}
+					\item Datasets mostly from cameras with frontal-views \cite{itsc:bergasa2008}
+					\item Some approaches with specialized sensors (RGBD cameras etc.) \cite{Ragab2014}
+					\item Often recorded in artificial environments \cite{Ragab2014}
+					\item Mostly rely on gaze-tracking or head-pose estimation \cite{Dorazio} \cite{6957817}
+				\end{itemize}		
+				Current methods are not applicable in our case!
+			\end{column}
+			\begin{column}{0.25\textwidth}  %%<--- here
+				\begin{center}
+					\includegraphics[width=0.9\textwidth]{frontal-view-dataset} \\
+					\includegraphics[width=0.9\textwidth]{RanForSim}
+				\end{center}
+			\end{column}
+		\end{columns}
+		
+	\end{frame}
+
+    	
+	\begin{frame}
+		\frametitle{Related Work}
+		
+		\begin{itemize}
+				\item Activity Recognition
+					\begin{itemize}
+						\item Often use different sensors (wearable sensors, smartphones) \cite{6258525} \cite{6365160}
+						\item Camera based ones rely on continues video \cite{1315249} \cite{1430826}
+
 	
+					\end{itemize}		
+					\item Person-object interactions 	\cite{NIPS2011_0858}
+					\item Human-Attribute recognition 	\cite{6957817}
+				\end{itemize}
+		
+	\end{frame}
 	
     
     
