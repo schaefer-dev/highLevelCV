@@ -27,7 +27,7 @@ def main():
 
     # Get Training and Test Data
 
-    training_pcipants = 4
+    training_pcipants = 8
     (images, Y, pIDs, image_names) = load_training_data(data_location, skip=0, num_participants=training_pcipants, scale=scale)
     (train_images_names,test_images_names,train_images,test_images) = load_random_same(data_location,0.5)
 
@@ -52,7 +52,7 @@ def main():
 
     # Perform validation
     if handClassifier:
-        (images, Y, pIDs, image_names) = load_training_data(data_location, num_participants=1, scale=scale, skip=training_pcipants)
+        (images, Y, pIDs, image_names) = load_training_data(data_location, num_participants=3, scale=scale, skip=training_pcipants)
         #Y = handpose_estimator.convert_classes(np.asarray(Y))
         Y = np.asarray(Y)
 
