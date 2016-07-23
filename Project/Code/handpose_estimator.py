@@ -35,7 +35,7 @@ def convert_classes(c):
 
 
 def prepare_images(images, pIDs, steering_wheel_labels, scale=0.5):
-    feature = "raw"
+    feature = "hog"
 
     X = []
     for i in range(len(images)):
@@ -82,8 +82,16 @@ def prepare_images(images, pIDs, steering_wheel_labels, scale=0.5):
             X.append(hog)
         elif feature == "lbp":
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            lbp = getLBP(lbp)
+            lbp = getLBP(img)
+            lbp = np.reshape(lbp, -1)
             X.append(lbp)
+        elif feature == 'hog+lbp':
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            hog = getHOG(img)
+            lbp = getLBP(img)
+            lbp = np.reshape(lbp, -1)
+            f = np.concatenate((hog,lbp))
+            X.append(f)
 
     X = np.asarray(X)
     return X
@@ -99,7 +107,8 @@ def handpose_estimator(images, Y, pIDs, steering_wheel_labels, scale = 0.5):
     X = scaler.fit_transform(X)
 
     # Train classifier
-    clf = LinearSVC(class_weight='balanced', C=1)
+    #clf = SVC(kernel='linear', class_weight='balanced', C=1)
+    clf = SVC(kernel='poly', class_weight='balanced', C=1)
     #clf = RandomForestClassifier(n_estimators=10, n_jobs=3, class_weight="balanced")
     clf.fit(X, Y)
 
