@@ -170,6 +170,44 @@
 		\end{columns}
 	\end{frame}
 
+	\begin{frame}
+		\frametitle{Headpose-estimation}
+		The Idea:
+		\begin{itemize}
+			\item use the headpose as a feature to predict right class
+			\item narrow down the possible classes
+			\item find out if picture in a specific class (ex. talking to passenger)
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Headpose-estimation}
+		The Problems:
+		\begin{itemize}
+			\item most head-detectors didn't find a head at all caused by:
+				\begin{itemize}
+					\item Great variety of face-angles (frontal vs profile)
+					\item Partial occlusions due to sunglasses or long hair
+				\end{itemize}
+			\item long computation
+			\item similar classes
+		\end{itemize}
+		\includegraphics[width=0.5\textwidth]{img_89653}
+        \includegraphics[width=0.5\textwidth]{c_0_angle2_passenger}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Face}
+		\begin{itemize}
+			\item recognized ca 75\% of the heads
+			\item calculates the angle from face to camera
+			\item marks 39 or 68 points in the face
+			\item bad results with svm learning (insert data)
+			\item recognize if talking to passenger or not (insert data)
+			\item train and test with same paticipent (insert data)
+		\end{itemize}
+	\end{frame}
+
     
 	\begin{frame}[allowframebreaks]
 		\frametitle{References} 
