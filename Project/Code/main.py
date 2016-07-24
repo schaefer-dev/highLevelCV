@@ -16,10 +16,16 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from util import plot_confusion_matrix
 from load_data import load_random_same
+from mult_hog_detector import get_mult_hog_features
+from mult_hog_detector import load_mult_HOG_data
+from mult_hog_detector import get_mult_HOG_classifier
+from mult_hog_detector import run_mult_HOG_classifier
+
 
 def main():
     handClassifier = False
-    headClassifier = True
+    headClassifier = False
+    mult_hog = True
 
     scale = 0.6
     # Location of the dataset. Change this to the correct location when running. Remember the '/' at the end!
@@ -27,9 +33,11 @@ def main():
 
     # Get Training and Test Data
 
-    training_pcipants = 8
-    (images, Y, pIDs, image_names) = load_training_data(data_location, skip=0, num_participants=training_pcipants, scale=scale)
-    (train_images_names,test_images_names,train_images,test_images) = load_random_same(data_location,0.5)
+    if handClassifier:
+        training_pcipants = 1
+        (images, Y, pIDs, image_names) = load_training_data(data_location, skip=0, num_participants=training_pcipants, scale=scale)
+    if headClassifier:
+        (train_images_names,test_images_names,train_images,test_images) = load_random_same(data_location,0.5)
 
 
     if headClassifier:
@@ -43,6 +51,19 @@ def main():
     if handClassifier:
         steering_wheel_labels = load_steering_wheel_labels(data_location)
         (scaler, hand_clf) = handpose_estimator.handpose_estimator(images, Y, pIDs, steering_wheel_labels, scale=scale)
+
+    if mult_hog:
+        imgTrainPath = "C:\Users\enggr\Documents\git\hlcv\Project\data\\trainBOW"
+        imgClassList = ["c0", "c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9"]
+
+        (images, labels) = load_mult_HOG_data(imgTrainPath,imgClassList)
+        features = get_mult_hog_features(images)
+        mult_HOG_clf = get_mult_HOG_classifier(features,labels)
+
+        print len(images)
+        print len(labels)
+        print len(features)
+
 
     ################## TESTING ########################
 
@@ -68,6 +89,17 @@ def main():
         print classification_report(labels, pred)
         cm = confusion_matrix(labels, pred)
         plot_confusion_matrix(cm)
+
+    if mult_hog:
+        imgTestPath = "C:\Users\enggr\Documents\git\hlcv\Project\data\\testBOW"
+        imgClassList = ["c0", "c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9"]
+        (images, labels) = load_mult_HOG_data(imgTestPath, imgClassList)
+        (features) = get_mult_hog_features(images)
+        pred = run_mult_HOG_classifier(mult_HOG_clf ,features)
+        print classification_report(labels, pred)
+        cm = confusion_matrix(labels, pred)
+        plot_confusion_matrix(cm)
+
 
 
     
