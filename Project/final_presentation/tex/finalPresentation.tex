@@ -28,20 +28,14 @@
         \vspace{0.5cm}
         According to U.S. Department of Transportation and the National Highway Traffic Safety Administration \cite{knuthwebsite}
 		\begin{itemize}
-            \item 10\% of all fatal crashes
-			\item 18\% of all injury crashes
+            \item 10\% of all fatal crashes $\rightarrow$ 3.000 people killed
+			\item 18\% of all injury crashes $\rightarrow$ 400.000 poeple injured
 		\end{itemize}
-        were reported as distraction-affected crashes.\\
-        % So overall in 2013 there were over 3000 people killed and over 400.000 injured in motor vehicle crashes involving distracted drivers.\\
-        \begin{itemize}
-            \item 3.000 people killed
-            \item 400.000 injured
-        \end{itemize}
         in motor vehicle crashes involving distracted drivers.\\
 		\vspace{0.5cm}
-		% -> distraction-detection is a really important topic to reduce these numbers!
-		$\Rightarrow$ Simple cameras combined with CV algorithms are non-intrusive and relatively cheap! % solution to achieve this goal.
-        % compared to for example specialized sensors
+        % these big numbers indicate a problem which has to be adressed in our opinion.
+		$\Rightarrow$ Simple cameras combined with CV algorithms are non-intrusive and relatively cheap! % solution to detect distracted drivers
+        % solution to detect distracted drivers compared to for example specialized sensors
 	\end{frame}
 	
 	
@@ -151,12 +145,12 @@
                 \textbf{Driver-Distraction Detection:}
 				\begin{itemize}
 					\item Datasets mostly from cameras with frontal-views, captures in artificial environments  \cite{itsc:bergasa2008}
-					\item Some approaches with specialized sensors (RGBD cameras etc.) \cite{Ragab2014}
+					% \item Some approaches with specialized sensors (RGBD cameras etc.) \cite{Ragab2014}
 					\item Mostly rely on gaze-tracking or head-pose estimation \cite{Dorazio} \cite{6957817}
 				\end{itemize}		
                 \textbf{Activity Recognition}
 					\begin{itemize}
-						\item Often use different sensors (wearable sensors, smartphones) \cite{6258525} \cite{6365160}
+						\item Often use different sensors (e.g. wearable sensors) \cite{6258525} \cite{6365160}
 						\item Camera based ones rely on continues video \cite{1315249} \cite{1430826}
 					\end{itemize}	
                 \vspace{0.5cm}
@@ -170,6 +164,21 @@
 			\end{column}
 		\end{columns}
 	\end{frame}
+
+
+    \begin{frame}
+        \frametitle{Our Approach}
+        \begin{itemize}
+            \item already various extremely high precision CNNs publicly available in contest-forum
+            \item very limited computational ressources
+            \item apply as much knowledge from the course as possible
+        \end{itemize}
+        \vspace{1cm}
+        \begin{centering}
+           \Large \textbf{$\Rightarrow$ explore possibilities of clasical computer vision}
+        \end{centering}
+        
+    \end{frame}
 
 	\begin{frame}
 		\frametitle{Headpose-estimation}
