@@ -164,6 +164,8 @@
 			\end{column}
 		\end{columns}
 	\end{frame}
+	
+	\section{Approaches}
 
 
     \begin{frame}
@@ -269,7 +271,139 @@
 		
 	\end{frame}
 	
+	
+	\begin{frame}
+		\frametitle{Landmarks with HOG}		
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				Procedure:
+				\begin{itemize}
+					\item Labeled about 50 images per class with distinct class landmarks (phone, bottle, face front, face sidewards, etc)
+					\item Trained a detector using HOG features for each of these landmarks
+					\item To train, each of these detectors provides a boolean feature, i.e. whether the landmark is present or not
+					\item Trained an SVC based on these features					
+				\end{itemize}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=0.85\textwidth]{mult_HOG/HOG_phone_det}\\
+					\includegraphics[width=0.5\textwidth]{mult_HOG/HOG_phone}
+					% both of these pictures are being contained in the c0 (save driving)
+					% class.
+				\end{center}
+			\end{column}
+		\end{columns}
+		
+	\end{frame}
 
+	\begin{frame}
+		\frametitle{Landmarks with HOG: Results}
+		1 Training Participant, 1 test, all classes
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{mult_HOG/1c0123456789mat}\\					
+				\end{center}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{mult_HOG/1c0123456789rep}
+				\end{center}
+			\end{column}
+		\end{columns}		
+	\end{frame}
+
+
+	\begin{frame}
+		\frametitle{Landmarks with HOG: Results}
+		4 Training Participants, 1 test, all classes
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{mult_HOG/4c0123456789matComparable}\\			
+				\end{center}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					%\includegraphics[width=0.85\textwidth]{mult_HOG/1c0123456789mat}\\
+					\includegraphics[width=\textwidth]{mult_HOG/4c0123456789repComparable}
+				\end{center}
+			\end{column}
+		\end{columns}		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Landmarks with HOG: Results}
+		4 Training Participants, 1 test, No class 7
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{mult_HOG/4c012345689matComparable}\\			
+				\end{center}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{mult_HOG/4c012345689repComparable}
+				\end{center}
+			\end{column}
+		\end{columns}		
+	\end{frame}
+	
+	
+	\begin{frame}
+		\frametitle{Landmarks with HOG: Results}
+		4 Training Participants, 1 test, No class 7 nor 5
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{mult_HOG/4c01234689matComparable}\\			
+				\end{center}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{mult_HOG/4c01234689repComparable}
+				\end{center}
+			\end{column}
+		\end{columns}		
+	\end{frame}	
+	
+	\begin{frame}
+		\frametitle{Landmarks with HOG: Results}
+		4 Training Participants, several test, No class 7 nor 5
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{mult_HOG/4c01234689matTest}\\			
+				\end{center}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{mult_HOG/4c01234689repTest}
+				\end{center}
+			\end{column}
+		\end{columns}		
+	\end{frame}	
+	
+	\begin{frame}
+		\frametitle{Landmarks with HOG: Improvements}		
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				Problems and solutions:
+				\begin{itemize}
+					\item Landmarks for c5(operating radio) and c7(reaching behind) Not working $\Rightarrow$ Use different ones!
+					\item Landmarks for c4(Talking on phone-Left) and c8(hair and make up) produce several false positives $\Rightarrow$ make them more robust
+					\item Class c0(safe driving)sometimes not very precise $\Rightarrow$ add more distinctive landmarks
+				\end{itemize}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=0.85\textwidth]{mult_HOG/ReachingBehind}\\
+					\includegraphics[width=0.85\textwidth]{mult_HOG/talk_phone_left}
+				\end{center}
+			\end{column}
+		\end{columns}
+		
+	\end{frame}
 
     
 	\begin{frame}[allowframebreaks]
