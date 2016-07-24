@@ -20,12 +20,14 @@ from mult_hog_detector import get_mult_hog_features
 from mult_hog_detector import load_mult_HOG_data
 from mult_hog_detector import get_mult_HOG_classifier
 from mult_hog_detector import run_mult_HOG_classifier
+from sklearn.externals import joblib
 
 
 def main():
     handClassifier = False
     headClassifier = False
     mult_hog = True
+    hog_train = True
 
     scale = 0.6
     # Location of the dataset. Change this to the correct location when running. Remember the '/' at the end!
@@ -54,15 +56,17 @@ def main():
 
     if mult_hog:
         imgTrainPath = "C:\Users\enggr\Documents\git\hlcv\Project\data\\trainBOW"
-        imgClassList = ["c0", "c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9"]
+        imgClassList = ["c0", "c1", "c2", "c3", "c4", "c5", "c6", "c8", "c9"]
 
-        (images, labels) = load_mult_HOG_data(imgTrainPath,imgClassList)
-        features = get_mult_hog_features(images)
-        mult_HOG_clf = get_mult_HOG_classifier(features,labels)
-
-        print len(images)
-        print len(labels)
-        print len(features)
+        if hog_train:
+            (images, labels) = load_mult_HOG_data(imgTrainPath,imgClassList)
+            features = get_mult_hog_features(images)
+            mult_HOG_clf = get_mult_HOG_classifier(features,labels)
+            joblib.dump(mult_HOG_clf,  'mult_HOG_model.pkl', compress=9)
+            print "Trained"
+        else:
+            mult_HOG_clf = joblib.load('mult_HOG_model.pkl')
+            print "loaded"
 
 
     ################## TESTING ########################
@@ -92,7 +96,7 @@ def main():
 
     if mult_hog:
         imgTestPath = "C:\Users\enggr\Documents\git\hlcv\Project\data\\testBOW"
-        imgClassList = ["c0", "c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9"]
+        imgClassList = ["c0", "c1", "c2", "c3", "c4", "c5", "c6", "c8", "c9"]
         (images, labels) = load_mult_HOG_data(imgTestPath, imgClassList)
         (features) = get_mult_hog_features(images)
         pred = run_mult_HOG_classifier(mult_HOG_clf ,features)
