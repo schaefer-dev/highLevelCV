@@ -190,38 +190,12 @@
 			\item narrow down the possible classes
 			\item find out if picture in a specific class (ex. talking to passenger)
 		\end{itemize}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Headpose-estimation}
-		The Problems:
-		\begin{itemize}
-			\item most head-detectors didn't find a head at all caused by:
-				\begin{itemize}
-					\item Great variety of face-angles (frontal vs profile)
-					\item Partial occlusions due to sunglasses or long hair
-				\end{itemize}
-			\item long computation
-			\item similar classes
-		\end{itemize}
-		\includegraphics[width=0.45\textwidth]{img_89653} \vspace{0.1cm}
-        \includegraphics[width=0.45\textwidth]{c_0_angle2_passenger}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Face}
-		\includegraphics[width=0.25\textwidth]{faces/face1.PNG} \vspace{0.1cm}
-		\includegraphics[width=0.25\textwidth]{faces/face2.PNG} \vspace{0.1cm}
+		Face:
 		\begin{itemize}
 			\item recognized about 75\% of the heads
-			\item calculates the angle from face to camera
-			\item marks 39 or 68 points in the face
-			\item bad results with svm learning (insert data)
-			\item recognize if talking to passenger or not (insert data)
-			\item train and test with same paticipent (insert data)
+			\item bad results with svm learning
+			\item recognize if talking to passenger or not
 		\end{itemize}
-		\includegraphics[width=0.25\textwidth]{faces/face3} \hspace{0.1cm}
-		\includegraphics[width=0.25\textwidth]{faces/face7}
 	\end{frame}
 	
 	\begin{frame}
@@ -270,7 +244,97 @@
 		 \end{columns}
 		
 	\end{frame}
+		
+
+	\begin{frame}
+		\frametitle{Classification based on hands}
+		Appearance of hands varies a lot between classes
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[height=0.5\textheight]{handpose_example1}\\			
+				\end{center}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[height=0.5\textheight]{handpose_example2}\\			
+				\end{center}
+			\end{column}
+		\end{columns}		
+	\end{frame}
 	
+	\begin{frame}
+		\frametitle{Classification based on hands}
+		Appearance of hands varies a lot between classes
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{center}			
+					\includegraphics[height=0.5\textheight]{handpose_example3}\\			
+				\end{center}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{center}			
+					\includegraphics[height=0.5\textheight]{handpose_example4}\\			
+				\end{center}
+			\end{column}
+		\end{columns}		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Classification based on hands}
+		Results for training on 4 (within the same car) and 20 Participants
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{handpose_plot_4p_c9}\\			
+				\end{center}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{handpose_plot_4p_c9}
+				\end{center}
+			\end{column}
+		\end{columns}		
+	\end{frame}	
+	
+	\begin{frame}
+		\frametitle{Classification based on hands}
+		Results for 1 vs 1 classification of c1 and c3
+		\begin{columns}
+			\begin{column}{0.3\textwidth}
+				\begin{center}
+					\includegraphics[width=0.9\textwidth]{handpose_p8_c1+c3}\\			
+					\includegraphics[width=0.9\textwidth]{handpose_p20_c1+c3}\\
+				\end{center}
+			\end{column}
+			\begin{column}{0.7\textwidth}
+				\begin{center}
+					\includegraphics[width=0.9\textwidth]{handpose_p8_c1+c3_txt}\\
+					\includegraphics[width=0.9\textwidth]{handpose_p20_c1+c3_txt}\\
+				\end{center}
+			\end{column}
+		\end{columns}		
+	\end{frame}
+	
+\begin{frame}
+	\frametitle{Classification based on hands}
+	Results for 1 vs 1 classification of c0 and c7
+	\begin{columns}
+		\begin{column}{0.3\textwidth}
+			\begin{center}
+				\includegraphics[width=0.9\textwidth]{handpose_p8_c0+c7}\\
+				\includegraphics[width=0.9\textwidth]{handpose_p20_c0+c7}\\
+			\end{center}
+		\end{column}
+		\begin{column}{0.7\textwidth}
+			\begin{center}
+				\includegraphics[width=0.9\textwidth]{handpose_p8_c0+c7_txt}\\
+				\vspace{0.2cm}
+				\includegraphics[width=0.9\textwidth]{handpose_p20_c0+c7_txt}\\
+			\end{center}
+		\end{column}
+	\end{columns}		
+\end{frame}
 	
 	\begin{frame}
 		\frametitle{Landmarks with HOG}		
@@ -364,7 +428,7 @@
 			\end{column}
 			\begin{column}{0.5\textwidth}
 				\begin{center}
-					\includegraphics[width=0.85\textwidth]{mult_HOG/ReachingBehind}\\
+%					\includegraphics[width=0.85\textwidth]{mult_HOG/ReachingBehind}\\
 					\includegraphics[width=0.85\textwidth]{mult_HOG/talk_phone_left}
 				\end{center}
 			\end{column}
