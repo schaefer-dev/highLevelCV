@@ -184,13 +184,13 @@
 
 	\begin{frame}
 		\frametitle{Headpose-estimation}
-		The Idea:
+        \textbf{The Idea:}
 		\begin{itemize}
-			\item use the headpose as a feature to predict right class
+			\item use the headpose as a feature to predict the correct class
 			\item narrow down the possible classes
-			\item find out if picture in a specific class (ex. talking to passenger)
+			\item find out if the picture is in a specific class (ex. talking to passenger)
 		\end{itemize}
-		Face:
+        \textbf{Face:}
 		\begin{itemize}
 			\item recognized about 75\% of the heads
 			\item bad results with svm learning
@@ -200,7 +200,7 @@
 	
 	\begin{frame}
 		\frametitle{Headpose-estimation}
-		Headpose distribution:
+        \textbf{Headpose distribution:}
 		\begin{itemize}
 			\item In some cases predominant head angle is clear:		
 
@@ -211,9 +211,9 @@
 	
 	\begin{frame}
 		\frametitle{Headpose-estimation}
-		Headpose distribution:
+        \textbf{Headpose distribution:}
 		\begin{itemize}
-			\item In some others not that much
+			\item In other cases not that much
 			
 
 		\end{itemize}
@@ -223,7 +223,7 @@
 	
 	\begin{frame}
 		\frametitle{Headpose-estimation}
-		The problem with headpose:
+        \textbf{The problem with headpose:}
 		\begin{columns}
 		 	\begin{column}{0.5\textwidth}
 		 		\begin{center}
@@ -248,7 +248,7 @@
 
 	\begin{frame}
 		\frametitle{Classification based on hands}
-		Appearance of hands varies a lot between classes
+        \textbf{Appearance of hands varies a lot between classes}
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
 				\begin{center}
@@ -265,7 +265,7 @@
 	
 	\begin{frame}
 		\frametitle{Classification based on hands}
-		Appearance of hands varies a lot between classes
+        \textbf{Appearance of hands varies a lot between classes}
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
 				\begin{center}			
@@ -340,7 +340,7 @@
 		\frametitle{Landmarks with HOG}		
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
-				Procedure:
+                \textbf{Procedure:}
 				\begin{itemize}
 					\item Labeled about 50 images per class with distinct class landmarks (phone, bottle, face front, face sidewards, etc)
 					\item Trained a detector using HOG features for each of these landmarks
@@ -383,7 +383,7 @@
 	
 	\begin{frame}
 		\frametitle{Landmarks with HOG: Results}
-		4 Training Participants, 1 test, No class 7 nor 5
+		4 Training Participants, 1 test, no class 7 nor 5
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
 				\begin{center}
@@ -400,7 +400,7 @@
 	
 	\begin{frame}
 		\frametitle{Landmarks with HOG: Results}
-		4 Training Participants, several test, No class 7 nor 5
+		4 Training Participants, several test, no class 7 nor 5
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
 				\begin{center}
@@ -419,11 +419,11 @@
 		\frametitle{Landmarks with HOG: Improvements}		
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
-				Problems and solutions:
+                \textbf{Problems and solutions:}
 				\begin{itemize}
-					\item Landmarks for c5(operating radio) and c7(reaching behind) Not working $\Rightarrow$ Use different ones!
-					\item Landmarks for c4(Talking on phone-Left) and c8(hair and make up) produce several false positives $\Rightarrow$ make them more robust
-					\item Class c0(safe driving)sometimes not very precise $\Rightarrow$ add more distinctive landmarks
+					\item Landmarks for c5 (operating radio) and c7 (reaching behind) Not working $\Rightarrow$ Use different ones!
+					\item Landmarks for c4 (Talking on phone-Left) and c8 (hair and make up) produce several false positives $\Rightarrow$ make them more robust
+					\item Class c0 (safe driving) sometimes not very precise $\Rightarrow$ add more distinctive landmarks
 				\end{itemize}
 			\end{column}
 			\begin{column}{0.5\textwidth}
