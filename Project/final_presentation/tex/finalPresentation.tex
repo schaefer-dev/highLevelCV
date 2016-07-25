@@ -190,38 +190,12 @@
 			\item narrow down the possible classes
 			\item find out if picture in a specific class (ex. talking to passenger)
 		\end{itemize}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Headpose-estimation}
-		The Problems:
-		\begin{itemize}
-			\item most head-detectors didn't find a head at all caused by:
-				\begin{itemize}
-					\item Great variety of face-angles (frontal vs profile)
-					\item Partial occlusions due to sunglasses or long hair
-				\end{itemize}
-			\item long computation
-			\item similar classes
-		\end{itemize}
-		\includegraphics[width=0.45\textwidth]{img_89653} \vspace{0.1cm}
-        \includegraphics[width=0.45\textwidth]{c_0_angle2_passenger}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Face}
-		\includegraphics[width=0.25\textwidth]{faces/face1.PNG} \vspace{0.1cm}
-		\includegraphics[width=0.25\textwidth]{faces/face2.PNG} \vspace{0.1cm}
+		Face:
 		\begin{itemize}
 			\item recognized about 75\% of the heads
-			\item calculates the angle from face to camera
-			\item marks 39 or 68 points in the face
 			\item bad results with svm learning
 			\item recognize if talking to passenger or not
-			\item train and test with same paticipent
 		\end{itemize}
-		\includegraphics[width=0.25\textwidth]{faces/face3} \hspace{0.1cm}
-		\includegraphics[width=0.25\textwidth]{faces/face7}
 	\end{frame}
 	
 	\begin{frame}
