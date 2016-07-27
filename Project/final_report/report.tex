@@ -28,13 +28,13 @@
 \author{Guillermo Reyes\\
 {\tt\small enggreys@gmail.com}
 \and
-Second Author\\
+Daniel Schaefer\\
 {\tt\small secondauthor@i2.org}
 \and
-Thirds Author\\
+Marc Tonsen\\
 {\tt\small secondauthor@i2.org}
 \and
-Fourth Author\\
+Dominik Weber\\
 {\tt\small secondauthor@i2.org}
 }
 
@@ -53,12 +53,44 @@ Fourth Author\\
 %%%%%%%%% BODY TEXT
 
 \section{Introduction}
+According to the U.S. Department of Transoprtation and National Highway Traffic Safety Administration, about 18\% of all injury crashes and 10\% of fatal crashes are reported to involve distracted drivers at the moment of the accident ~\cite{knuthwebsite}. This, unfortunately, translates to over 3000 people killed and 400,000 injured per year, in the United States alone due to motor vehicle crashes.\\
+This clearly speaks for measures to be taken. Spotting distracted drivers in time could help to take appropriate actions and thus prevent accidents and save thousands of lives each year. In order to detect distracted drivers, different approaches have been taken. However, many of them and intrusive and expensive. However by using simple cameras combined with computer vision algorithms, one can get a solution that is both cheap and non-intrusive.\\
+For this task we have entered the Kaggle Competition: State Farm Distracted Driver Detection ~\cite{Kaggle}. The challenge consists of classifying images of drivers engaging in the behaviors described below.
+
+\begin{enumerate}
+	\item Safe driving
+	\item Texting with right hand
+	\item Talking on the phone with right hand
+	\item Texting with left hand
+	\item Talking on the phone with left hand
+	\item Operating the radio
+	\item Drinking
+	\item Reaching behind
+	\item Hair and makeup
+	\item Talking to passenger
+\end{enumerate}
+
+The competition provides the dataset with over 2000 training images per class, 26 different drivers with diverse ethnic backgrounds, in 4 distinct cars and camera angles and distinctive lighting conditions as well as some noise in the data.
+
+In this paper we propose different approaches to solve this task using some classic computer vision methods to find out how well they stack up against state of the art methods such Deep Neural Networks, which can already achieve up to 99\% accuracy .
+
 
 \section{Related Work}
 
+
+
 \section{Proposed Method}
 
+\subsection{HOG Landmarks}
+
+
+
 \section{Experimental Results}
+
+\subsection{HOG Landmarks}
+
+
+
 
 \section{Conclusion}
 
