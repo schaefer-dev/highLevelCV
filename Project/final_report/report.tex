@@ -87,7 +87,7 @@ There are already quite a few approaches regarding distracted driver distraction
 
 Additionally some of these datasets are being captured in artificial environments (for example Racing Simulators) \cite{itsc:bergasa2008} which results in much more consistent variables like e.g. light situation and camera angle. In some of the approaches additional sensors are being used (e.g. RGB-depth cameras) which obviously also extend the possibilities greatly but also the cost is increased. \cite{Ragab2014}
 
-We also decided to do some research on the very familiar topic ''Activity Recognition'' to explore further possibilities. Unfortunately most of the approaches in the Activity Recognition field rely on additional sensors (eg. wearable sensors) \cite{6258525} \cite{6365160} or rely on continuous video instead of single pictures. \cite{1315249} \cite{1430826}
+We also decided to do some research on the very familiar topic ``Activity Recognition'' to explore further possibilities. Unfortunately most of the approaches in the Activity Recognition field rely on additional sensors (eg. wearable sensors) \cite{6258525} \cite{6365160} or rely on continuous video instead of single pictures. \cite{1315249} \cite{1430826}
 
 We conclude that current methods are not completely applicable to the problems we have at hand, so we have to come up with something new.
 
@@ -97,7 +97,7 @@ We conclude that current methods are not completely applicable to the problems w
 \section{The Dataset}
 The first step we took was analyzing the dataset. We are given over 2.000 pictures per class from 26 different drivers in total. Each of the drivers has roughly the same amount of pictures per class. 
 
-The drivers are split up in four cars. Depending on the car the camera angles varies. During the analysis process we also noticed that there is labeling noise in the data. For example we found several pictures in the ''safe driving'' class, which should in our opinion belong to the ''Talking to passenger'' one. Also lighting-conditions changed rapidly and the drivers have different ethnicities.
+The drivers are split up in four cars. Depending on the car the camera angles varies. During the analysis process we also noticed that there is labeling noise in the data. For example we found several pictures in the ``safe driving'' class, which should in our opinion belong to the ``Talking to passenger'' one. Also lighting-conditions changed rapidly and the drivers have different ethnicities.
 
 
 Additionally to this so called training set, of which we know the driver (and thus car) and class of each picture, we also have a so called test set containing around 80.000 unclassified pictures. The only option to verify results on this set is to upload them to the competition website, but because of the time necessary to classify all these 80.000 pictures combined with the fact that we only get very limited information back, we decided to run our tests only on parts of the training set to speed up our evaluation process.
@@ -143,7 +143,7 @@ It is important to note that the steering wheel is not aligned across the datase
 \subsection{Bodepose-based classification}
 An expectation is that reliable localization of head and arms would allow us to differentiate most of the classes because of the different positions the mentioned body-parts are in, during the different distractions.
 
-On gitHub we found the open source implementation ''Convolutional Pose Machines'' which is able to estimate key bodypart poses, like wrists, shoulders, elbows, neck and head.\cite{DBLP:journals/corr/WeiRKS16} The paper was presented at the Conference on Computer Vision and Pattern Recognition in 2016 and outperformed everything else we found greatly using the pretrained models provided on gitHub. 
+On gitHub we found the open source implementation ``Convolutional Pose Machines'' which is able to estimate key bodypart poses, like wrists, shoulders, elbows, neck and head.\cite{DBLP:journals/corr/WeiRKS16} The paper was presented at the Conference on Computer Vision and Pattern Recognition in 2016 and outperformed everything else we found greatly using the pretrained models provided on gitHub. 
 
 Unfortunately we could not use this implementation in this project, because of the computational resources necessary. None of our team members had access to a CUDA supported video card with over two gigabytes of VRAM which was not nearly enough for this Pose-Machine to work. Doing everything on CPU was not an option since this took between one to four minutes per picture. Although this at least made it possible to take a look at the results this pose machine is able to achieve using neural networks, we can not precisely evaluate the performance of this approach, but in all the pictures we were able to test, the heatmaps of the said body-parts are looking usable across all the different classes. An example of how the heatmaps for interesting bodyparts look like can be seen in Figure \ref{BodyPoseExample}.\\
 \begin{figure}[h]
@@ -267,6 +267,7 @@ Listing of the achieved results using the headpose estimation, the hand-based cl
 	\caption{results of angle and points features with svm}
 	\label{headposeandpoints_feature}
 	\end{figure}
+
 Our next idea was to use the points of the face in relation to a fixed point in the face expecting that it helps us recognize the vertical angle of the drivers head. The results(Figure\ref{headposeandpoints_feature}) were a little bit better but still far from good.
 
 \begin{figure}[h]
@@ -293,7 +294,8 @@ The main problem could reside in the fact that the head pose distribution is not
 	\caption{results of angle and points features with svm}
 	\label{C5ornot}
 	\end{figure}
-Our last attempt was to test if it is possible to find out if the image is in the class ''talking to the passenger'' or not. Again we trained with angle and relative points, but this time only C9 and not C9. The results (Figure\ref{C5ornot}) were better bur not satisfiable to use it in the project.
+
+Our last attempt was to test if it is possible to find out if the image is in the class``talking to the passenger''or not. Again we trained with angle and relative points, but this time only C9 and not C9. The results (Figure\ref{C5ornot}) were better bur not satisfiable to use it in the project.
 
 A possible explanation for this is that there appears to be no dominant headpose for this class as one would expect. Figure \ref{headpose_histogram_c9} shows that the head horizontal angle of the driver commonly lies in the range of [0-60] degrees. Thus when an image presents a head pose angle of 60 degrees for instance, it is reasonable to assume it would be mostly undecidable by looking only at this feature.
 
@@ -303,8 +305,6 @@ A possible explanation for this is that there appears to be no dominant headpose
 	\caption{Histogram of headposes for class c9 (Talking to passenger). There is no apparent dominant pose}
 	\label{headpose_histogram_c9}
 \end{figure}
-
-
 
 \subsection{Hand-based classification}
 
@@ -448,7 +448,7 @@ Finally since there is much bias in testing only against one participant, we hav
 \section{Conclusion}
 Considering the previous experiments, it can be deducted that achieving Convolutional Neural Network comparable performance using only classic computer vision algorithms is not an easy task. It might be a good idea to combine both approaches for example by using a bodypose estimation like we mentioned in the proposed methods part using neural networks or some other good performing body pose estimator to complement our current approaches. Although one would have to experiment with this to see if it is worth it.
 
-Assuming one does not have the computational limitations we had, DNN may be the more desirable approach, as traditional methods are difficult to use for such a complex task, mainly because they need to be highly customized to ''work together'' seamlessly and it is probably not worth spending this much time experimenting when a CNN can achieve extremely high precisions immediately. 
+Assuming one does not have the computational limitations we had, DNN may be the more desirable approach, as traditional methods are difficult to use for such a complex task, mainly because they need to be highly customized to ``work together'' seamlessly and it is probably not worth spending this much time experimenting when a CNN can achieve extremely high precisions immediately. 
 
 On the other hand, by using classic computer approaches such as the ones we have discussed, one can understand what is happening, and if a certain class is failing to be properly recognized, the problem can be isolated and individual changes can be made to improve on these while with neural networks, such problems would be much harder to identify and solve.
 
