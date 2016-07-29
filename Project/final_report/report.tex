@@ -174,13 +174,21 @@ For the last approach used in this paper, we look for specific things in the ima
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.45\textwidth]{mult_HOG/HOG_phone_det}\vspace{0.01\textwidth}
-	\includegraphics[width=0.25\textwidth]{mult_HOG/HOG_phone}
-	\caption{\textit{Above.} Bounding box around phone on the right hand while texting. \textit{Below.} HoG of this landmark after training with approximately 50 images}
-	\label{HoG_phone}
+	\includegraphics[width=0.45\textwidth]{mult_HOG/HOG_phone_det}%\vspace{0.01\textwidth}
+%	\includegraphics[width=0.25\textwidth]{mult_HOG/HOG_phone}
+	\caption{Bounding box around phone on the right hand while texting. }
+	\label{HoG_phone_det}
 \end{figure}
 
-In order to detect this landmarks, approximately 50 images per class were taken and manually labeled bounding boxes around the selected landmarks. The detectors were then trained based on HoG features for each landmark with the help of Dlib \cite{dlib09}. In Figure \ref{HoG_phone} one can see an example of what this looks like.
+\begin{figure}[h]
+	\centering
+	%\includegraphics[width=0.45\textwidth]{mult_HOG/HOG_phone_det}%\vspace{0.01\textwidth}
+		\includegraphics[width=0.25\textwidth]{mult_HOG/HOG_phone}
+	\caption{HoG of the right hand holding phone while texting landmark after training with approximately 50 images}
+		\label{HoG_phone}
+	\end{figure}
+
+In order to detect this landmarks, approximately 50 images per class were taken and manually labeled bounding boxes around the selected landmarks. The detectors were then trained based on HoG features for each landmark with the help of Dlib \cite{dlib09}. In Figure \ref{HoG_phone_det} one can see an example of a detection of a person texting with the right hand, and in Figure \ref{HoG_phone} what the HoG for this landmarks looks like.
 
 After having trained the detectors, one can use these to determine whether a certain landmark is present in an image or not. Then, by training a simple SVC that uses as predictors an array of boolean features each one of which representing the presence, or absence, of a landmark, one can potentially predict the activity performed by the driver.
 
