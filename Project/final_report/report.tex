@@ -6,6 +6,9 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{float}
+\usepackage{caption}
+
 
 % Include other packages here, before hyperref.
 
@@ -17,7 +20,7 @@
 \cvprfinalcopy 
 
 \def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
-
+\graphicspath{ {pictures/} }
 \setcounter{page}{1}
 \begin{document}
 
@@ -53,8 +56,10 @@ Dominik Weber\\
 %%%%%%%%% BODY TEXT
 
 \section{Introduction}
-According to the U.S. Department of Transoprtation and National Highway Traffic Safety Administration, about 18\% of all injury crashes and 10\% of fatal crashes are reported to involve distracted drivers at the moment of the accident ~\cite{knuthwebsite}. This, unfortunately, translates to over 3000 people killed and 400,000 injured per year, in the United States alone due to motor vehicle crashes.\\
-This clearly speaks for measures to be taken. Spotting distracted drivers in time could help to take appropriate actions and thus prevent accidents and save thousands of lives each year. In order to detect distracted drivers, different approaches have been taken. However, many of them and intrusive and expensive. However by using simple cameras combined with computer vision algorithms, one can get a solution that is both cheap and non-intrusive.\\
+According to the U.S. Department of Transoprtation and National Highway Traffic Safety Administration, about 18\% of all injury crashes and 10\% of fatal crashes are reported to involve distracted drivers at the moment of the accident ~\cite{knuthwebsite}. This, unfortunately, translates to over 3000 people killed and 400,000 injured per year, in the United States alone due to motor vehicle crashes.
+
+This clearly speaks for measures to be taken. Spotting distracted drivers in time could help to take appropriate actions and thus prevent accidents and save thousands of lives each year. In order to detect distracted drivers, different approaches have been taken. However, many of them and intrusive and expensive. However by using simple cameras combined with computer vision algorithms, one can get a solution that is both cheap and non-intrusive.
+
 For this task we have entered the Kaggle Competition: State Farm Distracted Driver Detection ~\cite{Kaggle}. The challenge consists of classifying images of drivers engaging in the behaviors described below.
 
 \begin{enumerate}
@@ -82,6 +87,49 @@ In this paper we propose different approaches to solve this task using some clas
 \section{Proposed Method}
 
 \subsection{HOG Landmarks}
+For last approach used in this paper, we look for specific things in the images that help us make a decision. We call these specific things landmarks. A landmark can be anything in the images(pose, objects, etc.) that can be used to distinguish a class from the others. These landmarks are chosen arbitrarily in this paper and we shall later evaluate how well they perform. Below we outline what of these landmarks are, note that there is at least one distinctive landmark per class.
+
+\begin{enumerate}
+	\item Head facing front, towards the road.
+	\item Head facing sideways towards the copilot
+	\item Head facing backwards towards the back passengers.
+	\item Empty gap in front of the head rest
+	\item Right hand holding phone while texting
+	\item Right hand holding phone while talking\
+	\item Left hand holding phone while texting
+	\item Left hand holding phone while talking
+	\item Hand holding bottle/cup
+	\item Hand near head
+	\item Hand reaching behind
+	\item Hand reaching for radio	
+\end{enumerate}
+
+
+
+
+First off, we have taken approximately 50 images per class have manually labeled the bounding boxes around the selected landmarks. We then proceeded to train a detector based on HOG features for each of the landmarks with  help of Dlib \cite{dlib09}. 
+
+
+
+%\begin{minipage}[t]{.5\textwidth}
+%	\includegraphics[width=\textwidth]{mult_HOG/HOG_phone}
+%	\captionsetup{justification=raggedright, singlelinecheck=false}
+%	\captionof{figure}{H Feistel Function}
+%\end{minipage}%
+%\begin{minipage}[t]{.5\textwidth}
+%	\includegraphics[width=\textwidth]{mult_HOG/HOG_phone}
+%	\captionsetup{justification=raggedright, singlelinecheck=false}
+%	\captionof{figure}{HOG of the right hand holding phone while texting landmark}
+%\end{minipage}
+
+
+%\begin{figure*}[h]
+%	\includegraphics[width=0.85\columnwidth]{mult_HOG/HOG_phone}
+%	\captionsetup{justification=raggedright,
+%		singlelinecheck=false
+%	}
+%	\caption{HOG of the right hand holding phone while texting landmark}
+%\end{figure*}
 
 
 
