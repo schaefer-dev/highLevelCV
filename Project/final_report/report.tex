@@ -107,7 +107,6 @@ Additionally to this so called training set, of which we know the driver (and th
 \section{Proposed Methods}
 In this paragraph we are going to explain the different approaches we had in mind.
 
-
 \subsection{Head-based classification}
 \begin{figure}[h]
 	\centering
@@ -141,7 +140,11 @@ It is important to note that the steering wheel is not aligned across the datase
 
 
 \subsection{Bodepose-based classification}
-We expected that reliable localization of head and arms would allow us to differentiate most of the classes because of the different positions the mentioned body-parts are in, during the different distractions. On gitHub we found the open source implementation ''Convolutional Pose Machines'' which is able to predict the key bodyparts for us, like wrists, shoulders, elbows, neck and head.\cite{DBLP:journals/corr/WeiRKS16} The paper was presented at the Conference on Computer Vision and Pattern Recognition in 2016 and outperformed everything else we found greatly using the pretrained models provided on gitHub. Unfortunately we could not use this implementation in our project, because of the computational performance necessary. Nobody of us had access to a CUDA supported video card with over two gigabytes of VRAM which was not nearly enough for this Pose-Machine to work. Doing everything on CPU was not an option for us because this took between one to four minutes per picture. Although this at least made it possible to take a look at the results this pose machine is able to achieve. We can not really precisely evaluate the performance of this approach but in all the pictures we were able to test the heatmaps of the said body-parts are looking usable across all the different classes. You can see an example of how the heatmaps for interesting bodyparts look like in Figure \ref{BodyPoseExample}.\\
+We expected that reliable localization of head and arms would allow us to differentiate most of the classes because of the different positions the mentioned body-parts are in, during the different distractions.
+
+On gitHub we found the open source implementation ''Convolutional Pose Machines'' which is able to predict the key bodyparts for us, like wrists, shoulders, elbows, neck and head.\cite{DBLP:journals/corr/WeiRKS16} The paper was presented at the Conference on Computer Vision and Pattern Recognition in 2016 and outperformed everything else we found greatly using the pretrained models provided on gitHub. 
+
+Unfortunately we could not use this implementation in our project, because of the computational performance necessary. Nobody of us had access to a CUDA supported video card with over two gigabytes of VRAM which was not nearly enough for this Pose-Machine to work. Doing everything on CPU was not an option for us because this took between one to four minutes per picture. Although this at least made it possible to take a look at the results this pose machine is able to achieve using neural networks. We can not really precisely evaluate the performance of this approach but in all the pictures we were able to test the heatmaps of the said body-parts are looking usable across all the different classes. You can see an example of how the heatmaps for interesting bodyparts look like in Figure \ref{BodyPoseExample}.\\
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{BodyPoseExample}
@@ -384,6 +387,9 @@ Other classes such as c0(safe driving) and c8(hair and makeup) have arguably low
 Finally since there is much bias in testing only against one participant, we have tested also several images from the Testset. These images were randomly picked and manually labeled with the right class, however since this required manual work, only a handful of images, 242 in 8 classes, were selected. In Figure \ref{Landmarks_4no5no7test} we can see the results of this. The performance is still comparable with the aforementioned outcomes, but interesting to note is that the overall recall dropped much (15\%) and the precision particularly from class c8 dropped remarkably low (29\% vs 69\% before). As can be seen from the confusion matrix many images of, in general, all classes were wrongly predicted to be class c8. As mentioned before, this may be due to classes not particularly well defined by landmarks, landmarks not being detected in the images, or many false positives from class c8 for which we would need to improve the robustness of the detectors.
 
 \section{Conclusion}
+Concluding from our experiments we think that it is save to say that you can not easily achieve with Convolutional Neural Network comparable performance using only classic computer vision algorithms. It might be a good idea to combine both aproaches for example by using a bodypose estimation like we mentioned in the proposed methods part using neural networks to complement our current approach. Although you would have to experiment with this to see if it is worth it.
+
+Assuming you do not have the computational limitations we had, we think that traditional methods are difficult to use for such a complex task, mainly because they need to be highly customized to ''work together'' seamlessly and it is probably not worth spending this much time experimenting when you could just use a CNN and achieve extremely high precisions immediately. 
 
 
 \section{Future Work}
