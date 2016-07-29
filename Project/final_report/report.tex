@@ -122,7 +122,7 @@ It is important to note that the steering wheel is not aligned across the datase
 
 
 \subsection{HOG Landmarks}
-For last approach used in this paper, we look for specific things in the images that help us make a decision. We call these specific things landmarks. A landmark can be anything in the images(pose, objects, etc.) that can be used to distinguish a class from the others. These landmarks are chosen arbitrarily in this paper and we shall later evaluate how well they perform. Below we outline what of these landmarks are, note that there is at least one distinctive landmark per class.
+For the last approach used in this paper, we look for specific things in the images that help us make a decision. We call these specific things landmarks. A landmark can be anything in the images(pose, objects, etc.) that can be used to distinguish a class from the others. These landmarks are chosen arbitrarily in this paper and we shall later evaluate how well they perform. Below we outline what of these landmarks are, note that there is at least one distinctive landmark per class.
 
 \begin{enumerate}
 	\item Head facing front, towards the road.
@@ -141,8 +141,9 @@ For last approach used in this paper, we look for specific things in the images 
 
 
 
+In order to detect this landmarks, approximately 50 images per class were taken and manually labeled bounding boxes around the selected landmarks. The detectors were then trained based on HOG features for each landmark with the help of Dlib \cite{dlib09}.
 
-First off, we have taken approximately 50 images per class have manually labeled the bounding boxes around the selected landmarks. We then proceeded to train a detector based on HOG features for each of the landmarks with  help of Dlib \cite{dlib09}. 
+ 
 
 
 
