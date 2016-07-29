@@ -36,7 +36,7 @@
 {\tt\small enggreys@gmail.com}
 \and
 Daniel Schaefer\\
-{\tt\small secondauthor@i2.org}
+{\tt\small s9dlscae@stud.uni-saarland.de}
 \and
 Marc Tonsen\\
 {\tt\small secondauthor@i2.org}
@@ -49,12 +49,7 @@ Dominik Weber\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-   The ABSTRACT is to be in fully-justified italicized text, at the top
-   of the left-hand column, below the author 
-   information. Use the word ``Abstract'' as the title, in 12-point
-   Times, boldface type, centered relative to the column, initially
-   capitalized. The abstract is to be in 10-point, single-spaced type.
-   Leave two blank lines after the Abstract, then begin the main text.
+   In this project we tried to solve the task of deciding whether or not a driver is distracted, and if so, what the driver is being distracted by. For this we explored the possibilities of classical computer vision algorithms instead of using Deep Learning mainly because of computational limitations and already publicly available solutions using Deep Learning.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
@@ -83,8 +78,23 @@ For this task we have entered the Kaggle Competition: State Farm Distracted Driv
 
 In this paper we propose different approaches to solve this task using some classic computer vision methods to find out how well they stack up against state of the art methods such Deep Neural Networks, which can already achieve up to 99\% accuracy .
 
+% TODO erwaehnen von Computational Limits + allgemein gruende fuer die entscheidung kein cnn zu machcen
+
+
+\section{Related Work}
+
+There are already quite a few approaches regarding distracted driver distraction, although these approaches are mainly working on picture datasets with frontal-views on the face and rely almost exclusively on gaze-tracking or head-pose estimation. \cite{Dorazio} \cite{6957817}
+
+Additionally some of these datasets are being captured in artificial environments (for example Racing Simulators) \cite{itsc:bergasa2008} which results in much more consistent variables like e.g. light situation and camera angle. In some of the approaches additional sensors are being used (e.g. RGB-depth cameras) which obviously also extend the possibilities greatly. \cite{Ragab2014}
+
+We also decided to do some research on the very familiar topic ''Activity Recognition'' to explore further possibilities. Unfortunately most of the approaches in the Activity Recognition field rely on additional sensors (eg. wearable sensors) \cite{6258525} \cite{6365160} or rely on continuous video instead of single pictures. \cite{1315249} \cite{1430826}
+
+So our conclusion was that the current methods are not really applicable to the problems we wanted to solve, so we have to come up with something on our own!
+
+
+
 \section{The Dataset}
-The first step we took was analysing the dataset. We are given over 2.000 pictures per class from 26 different drivers in total. Each of the drivers has roughly the same amount of pictures per class. 
+The first step we took was analyzing the dataset. We are given over 2.000 pictures per class from 26 different drivers in total. Each of the drivers has roughly the same amount of pictures per class. 
 
 The drivers are split up in four cars. Depending on the car the camera angles varies. During the analysis process we also noticed that there is labeling noise in the data. For example we found several pictures in the ''safe driving'' class, which should in our opinion belong to the ''Talking to passenger'' one. Also lighting-conditions changed rapidly and the drivers have different ethnicities.
 
@@ -94,14 +104,14 @@ Additionally to this so called training set, of which we know the driver (and th
 
 
 
-\section{Related Work}
 
 
 
-\section{Proposed Method}
+\section{Proposed Methodology}
 
 
-\subsection{Headpose Estimation}
+
+\subsection{Head-based classification}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.2\textwidth]{face1}\hspace{0.01\textwidth}
@@ -130,6 +140,19 @@ When examining the dataset, we found that many of the classes can be well distin
 Besides using Support Vector Machines for classification, which was the only classifier discussed in the lecture, we have also tried Random Forrests.\\
 It is important to note that the steering wheel is not aligned across the dataset. The training-data was recorded in 4 different cars with varying camera angles. As we will show, it is important to align the steering wheel in the cropped images for a good performance. We have manually labeled the center of all steering wheels to perform this alignment.
 
+
+\subsection{Bodepose-based classification}
+We expected that reliable localization of head and arms would allow us to differentiate most of the classes because of the different positions the mentioned body-parts are in, during the different distractions. On gitHub we found the open source implementation ''Convolutional Pose Machines'' which is able to predict the key bodyparts for us, like wrists, shoulders, elbows, neck and head.\cite{DBLP:journals/corr/WeiRKS16} The paper was presented at the Conference on Computer Vision and Pattern Recognition in 2016 and outperformed everything else we found greatly using the pretrained models provided on gitHub. Unfortunately we could not use this implementation in our project, because of the computational performance necessary. Nobody of us had access to a CUDA supported video card with over two gigabytes of VRAM which was not nearly enough for this Pose-Machine to work. Doing everything on CPU was not an option for us because this took between one to four minutes per picture. Although this at least made it possible to take a look at the results this pose machine is able to achieve. We can't really precisely evaluate the performance of this approach but in all the pictures we were able to test the heatmaps of the said body-parts are looking usable across all the different classes. You can see an example of how the heatmaps for interesting bodyparts look like in Figure \ref{BodyPoseExample}.\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{BodyPoseExample}
+    \caption{Example Heatmaps of Conbolutional Pose Machines}
+    \label{BodyPoseExample}
+\end{figure}
+
+Without our computational limitations these bodypose-machines would probably be a very nice addition to the headpose and handpose estimation we are currently using.
+
+
 \subsection{HOG Landmarks}
 For the last approach used in this paper, we look for specific things in the images that help us make a decision. We call these specific things landmarks. A landmark can be anything in the images(pose, objects, etc.) that can be used to distinguish a class from the others. These landmarks are chosen arbitrarily in this paper and we shall later evaluate how well they perform. Below we outline what of these landmarks are, note that there is at least one distinctive landmark per class.
 
@@ -147,8 +170,6 @@ For the last approach used in this paper, we look for specific things in the ima
 	\item Hand reaching behind
 	\item Hand reaching for radio	
 \end{enumerate}
-
-
 
 In order to detect this landmarks, approximately 50 images per class were taken and manually labeled bounding boxes around the selected landmarks. The detectors were then trained based on HOG features for each landmark with the help of Dlib \cite{dlib09}.
 After having trained the detectors, one can use these to determine whether a certain landmark is present in an image or not. Then, by training a simple SVC that uses as predictors an array of boolean features each one of which representing the presence, or absence, of a landmark, one can potentially predict the activity performed by the driver.
