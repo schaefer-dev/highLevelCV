@@ -85,13 +85,17 @@ In this paper we propose different approaches to solve this task using some clas
 
 
 \section{Related Work}
-There are already quite a few approaches regarding distracted driver distraction, although these approaches are mainly working on picture datasets with frontal-views on the face and rely almost exclusively on gaze-tracking or head-pose estimation. \cite{Dorazio} \cite{6957817}
+e a few approaches regarding distracted driver distraction, although these approaches are mainly working on picture datasets with frontal-views on the face and rely almost exclusively on gaze-tracking or head-pose estimation. \cite{Dorazio} \cite{6957817}
 
 Additionally some of these datasets are being captured in artificial environments (for example Racing Simulators) \cite{itsc:bergasa2008} which results in much more consistent variables like e.g. light situation and camera angle. In some of the approaches additional sensors are being used (e.g. RGB-depth cameras) which obviously also extend the possibilities greatly. \cite{Ragab2014}
 
 We also decided to do some research on the very familiar topic ''Activity Recognition'' to explore further possibilities. Unfortunately most of the approaches in the Activity Recognition field rely on additional sensors (eg. wearable sensors) \cite{6258525} \cite{6365160} or rely on continious video instead of single pictures. \cite{1315249} \cite{1430826}
 
 So our conclusion was that the current methods are not really applicable to the problems we wanted to solve, so we have to come up with something on our own!
+
+
+
+
 
 
 
@@ -106,21 +110,11 @@ Additionally to this so called training set, of which we know the driver (and th
 
 
 
+\section{Related Work}
 
 
 
-\section{Proposed Methodology}
-
-
-\subsection{Head-based classification}
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.2\textwidth]{face1}\hspace{0.01\textwidth}
-	\includegraphics[width=0.2\textwidth]{faces/face7}\\ \vspace{0.01\textwidth}
-	\caption{good and bad example of Face}
-	\label{face_estimation_example}
-\end{figure}
-One of our ideas was to use a headdetector or a facedetector to extract a feature and predict the correct class or narrow down the possible classes. At least we hoped it would be possible to say if a picture is in a specific class or not. We tried about 7 different head or facedetecors and all had Problems to detect the head. We think the problem was that the pictures have a relative small resolution. An other Problem could be the different angles, because some detectors only worked with frontal view others only in the sideview. Long hair, sunglasses and other occlusion could be a problem too. In the end we found Face~\cite{Ramanan:2012:FDP:2354409.2355119}, which found heads in about 80\% of the pictures and gave us the horizontal angle from face to camera and 39 or 68 points of the face.Even if it found a face, it was not always the correct one. Face is runnning in matlab, so we used it to create a .csv file for every class + a file for the pictures where it was impossible to find a head. Then we let a Support Vector Machine and a Random learn on this data. First we only used the angle. Then we used angle and the points in relation to a fixed point in the face and hoped that these point could show us if the person is looking straight or lookung down on his mobilephone or the radio. We tried with both to predict the right class and to predict if the person is talking to the passenger or not.
+\section{Proposed Method}
 
 \subsection{Hand-based classification}
 \begin{figure}[h]
@@ -141,7 +135,9 @@ When examining the dataset, we found that many of the classes can be well distin
 Besides using Support Vector Machines for classification, which was the only classifier discussed in the lecture, we have also tried Random Forrests.\\
 It is important to note that the steering wheel is not aligned across the dataset. The training-data was recorded in 4 different cars with varying camera angles. As we will show, it is important to align the steering wheel in the cropped images for a good performance. We have manually labeled the center of all steering wheels to perform this alignment.
 
-\subsection{HOG Landmarks}
+
+
+\subsection{HoG Landmarks}
 For the last approach used in this paper, we look for specific things in the images that help us make a decision. We call these specific things landmarks. A landmark can be anything in the images(pose, objects, etc.) that can be used to distinguish a class from the others. These landmarks are chosen arbitrarily in this paper and we shall later evaluate how well they perform. Below we outline what of these landmarks are, note that there is at least one distinctive landmark per class.
 
 \begin{enumerate}
@@ -154,14 +150,20 @@ For the last approach used in this paper, we look for specific things in the ima
 	\item Left hand holding phone while texting
 	\item Left hand holding phone while talking
 	\item Hand holding bottle/cup
-	\item Hand near head
+	\item Hand scratching near head
 	\item Hand reaching behind
 	\item Hand reaching for radio	
 \end{enumerate}
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{mult_HOG/HOG_phone_det}\vspace{0.01\textwidth}
+	\includegraphics[width=0.25\textwidth]{mult_HOG/HOG_phone}
+	\caption{\textit{Above.} Bounding box around phone on the right hand while texting. \textit{Below.} HoG of this landmark after training with approximately 50 images}
+	\label{HoG_phone}
+\end{figure}
 
-
-In order to detect this landmarks, approximately 50 images per class were taken and manually labeled bounding boxes around the selected landmarks. The detectors were then trained based on HOG features for each landmark with the help of Dlib \cite{dlib09}.
+In order to detect this landmarks, approximately 50 images per class were taken and manually labeled bounding boxes around the selected landmarks. The detectors were then trained based on HoG features for each landmark with the help of Dlib \cite{dlib09}. In Figure \ref{HoG_phone} one can see an example of what this looks like.
 After having trained the detectors, one can use these to determine whether a certain landmark is present in an image or not. Then, by training a simple SVC that uses as predictors an array of boolean features each one of which representing the presence, or absence, of a landmark, one can potentially predict the activity performed by the driver.
 
 
@@ -251,10 +253,51 @@ After having trained the detectors, one can use these to determine whether a cer
 	Although the classification accuracy of an SVM with HoG features is significantly better then random with more then 30\%, it is not good enough to be practically relevant. The confusion matrix in Figure \ref{hand_estimation_cm} displays the classification errors of a classifier trained on 20 participants (6 participants in the test set) and HoG features. There does not seem to be any logically explainable confusion. To further investigate our thesis that some of the classes should be easy to distinguish based on the appearance of the hands on the steering wheel, we trained a few 1-vs-1 classifiers. As is illustrated in Table \ref{hand_estimation_1vs1}, they did achieve a very good accuracy. 
 	
 	
-\subsection{HOG Landmarks}
+\subsection{HoG Landmarks}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{mult_HOG/4c0123456789matComparable}
+	\includegraphics[width=0.4\textwidth]{mult_HOG/4c0123456789repComparable}
+	\caption{\textit{Above.} Confusion matrix for an SVM trained on HoG Landmarks of 4 participants and evaluated on 1 test participant. \textit{Below.} Textual report of the mentioned setting}
+	\label{Landmarks_4all}
+\end{figure}
+
+The initial results already outperform previous approaches as can be seen from Figure \ref{Landmarks_4all}  with almost 70\% average precision. However, there are some things to be noted. The recall for classes c5(operating the radio) and c7(reaching behind) is critically low (0.0 and 0.3 respectively) which leads us to believe that the Landmarks are very loosely defined and, thus, cannot be properly recognized. This has a big impact of course in the average precision and recall. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{mult_HOG/4c01234689matComparable}
+	\includegraphics[width=0.4\textwidth]{mult_HOG/4c01234689repComparable}
+	\caption{\textit{Above.} Confusion matrix for an SVM trained on HoG Landmarks of 4 participants and evaluated on 1 test participant. Classes c5 and c7 have been omitted and classes c6, c8 and c9 have been shifted to the left. \textit{Below.} Textual report of the mentioned setting}
+	\label{Landmarks_4no5no7}
+\end{figure}
+
+The question might follow: how well does the approach work for the classes whose Landmarks are effectively recognized?. By removing both classes c5 and c7, average precision and recall are both improved over 13\% as can be appreciated from Figure \ref{Landmarks_4no5no7}. 
+
+Now if we take a look at class c4(taking on the phone left hand), we see that recall is quite good at 97\% whereas its precision is only 66\% indicating possibly multiple false positives as show in Figure \ref{Landmarks_false_detection}. This is most likely due to the labeling of this particular landmark, since when talking on the phone with the left hand, part of the face is inside the bounding box and occluding part of the phone.
 
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{mult_HOG/talk_phone_left}
+	\caption{False positive. A detector identifies the use of the phone for talking with the left hand, where in reality the left hand is holding the wheel. }
+	\label{Landmarks_false_detection}
+\end{figure}
 
+Class c1 (texting with the right hand) on the other hand has comparably low recall, at at 52\%, but 100\% precision which indicates that this is a strong feature and that even though there are very few false positives, there may remain almost half of the images without detecting the phone on the hand. The same can be said about class c3 (texting with the left hand) This may be due to the angle in which the person is using the phone. Another possibility is of course that other detectors are producing false positives, and thus interfering with the decision.
+
+Other classes such as c0(safe driving) and c8(hair and makeup) have arguably lower both precision and recall than some of the ther better recognized classes. While it is not completely obvious what happens here, most likely the landmarks characteristic of these classes are not sufficient, to determine i.e. their landmarks are present in several other classes, as in the head facing front, however the it could also be possible that some of the landmarks are not recognized and some times they give false positives.
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{mult_HOG/4c01234689matTest}
+	\includegraphics[width=0.4\textwidth]{mult_HOG/4c01234689repTest}
+	\caption{\textit{Above.} Confusion matrix for an SVM trained on HoG Landmarks of 4 participants and evaluated on several test participants. Classes c5 and c7 have been omitted and classes c6, c8 and c9 have been shifted to the left. \textit{Below.} Textual report of the mentioned setting}
+	\label{Landmarks_4no5no7test}
+\end{figure}
+
+Finally since there is much bias in testing only against one participant, we have tested also several images from the Testset. These images were randomly picked and manually labeled with the right class, however since this required manual work, only a handful of images, 242 in 8 classes, were selected. In Figure \ref{Landmarks_4no5no7test} we can see the results of this. The performance is still comparable with the aforementioned outcomes, but interesting to note is that the overall recall dropped much (15\%) and the precision particularly from class c8 dropped remarkably low (29\% vs 69\% before). As can be seen from the confusion matrix many images of, in general, all classes were wrongly predicted to be class c8. As mentioned before, this may be due to classes not particularly well defined by landmarks, landmarks not being detected in the images, or many false positives from class c8 for which we would need to improve the robustness of the detectors.
 
 \section{Conclusion}
 
