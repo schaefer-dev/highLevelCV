@@ -110,6 +110,17 @@ Additionally to this so called training set, of which we know the driver (and th
 
 \section{Proposed Method}
 
+
+\subsection{Headpose Estimator}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.2\textwidth]{face1}\hspace{0.01\textwidth}
+	\includegraphics[width=0.2\textwidth]{faces/face7}\\ \vspace{0.01\textwidth}
+	\caption{good and bad example of Face}
+	\label{face_estimation_example}
+\end{figure}
+One of our ideas was to use a headdetector or a facedetector to extract a feature and predict the correct class or narrow down the possible classes. At least we hoped it would be possible to say if a picture is in a specific class or not. We tried about 7 different head or facedetecors and all had Problems to detect the head. We think the problem was that the pictures have a relative small resolution. An other Problem could be the different angles, because some detectors only worked with frontal view others only in the sideview. Long hair, sunglasses and other occlusion could be a problem too. In the end we found Face~\cite{Ramanan:2012:FDP:2354409.2355119}, which found heads in about 80\% of the pictures and gave us the horizontal angle from face to camera and 39 or 68 points of the face.Even if it found a face, it was not always the correct one. Face is runnning in matlab, so we used it to create a .csv file for every class + a file for the pictures where it was impossible to find a head. Then we let a Support Vector Machine and a Random learn on this data. First we only used the angle. Then we used angle and the points in relation to a fixed point in the face and hoped that these point could show us if the person is looking straight or lookung down on his mobilephone or the radio. We tried with both to predict the right class and to predict if the person is talking to the passenger or not.
+
 \subsection{Hand-based classification}
 \begin{figure}[h]
 	\centering
@@ -128,8 +139,6 @@ When examining the dataset, we found that many of the classes can be well distin
 \end{itemize}
 Besides using Support Vector Machines for classification, which was the only classifier discussed in the lecture, we have also tried Random Forrests.\\
 It is important to note that the steering wheel is not aligned across the dataset. The training-data was recorded in 4 different cars with varying camera angles. As we will show, it is important to align the steering wheel in the cropped images for a good performance. We have manually labeled the center of all steering wheels to perform this alignment.
-
-
 
 \subsection{HOG Landmarks}
 For the last approach used in this paper, we look for specific things in the images that help us make a decision. We call these specific things landmarks. A landmark can be anything in the images(pose, objects, etc.) that can be used to distinguish a class from the others. These landmarks are chosen arbitrarily in this paper and we shall later evaluate how well they perform. Below we outline what of these landmarks are, note that there is at least one distinctive landmark per class.
@@ -152,6 +161,9 @@ For the last approach used in this paper, we look for specific things in the ima
 
 
 In order to detect this landmarks, approximately 50 images per class were taken and manually labeled bounding boxes around the selected landmarks. The detectors were then trained based on HOG features for each landmark with the help of Dlib \cite{dlib09}.
+After having trained the detectors, one can use these to determine whether a certain landmark is present in an image or not. Then, by training a simple SVC that uses as predictors an array of boolean features each one of which representing the presence, or absence, of a landmark, one can potentially predict the activity performed by the driver.
+
+
 
  
 
