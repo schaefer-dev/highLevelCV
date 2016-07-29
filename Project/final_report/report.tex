@@ -269,7 +269,18 @@ Listing of the results we could achieve using the headpose estimation and the ha
 	\caption{results of angle and points features with svm}
 	\label{headposeandpoints_feature}
 	\end{figure}
-Our next idea was to use the points of the face in relation to a fixed point in the face in the hope that it would help us to recognise the vertical angle of the drivers head. The results(Figure\ref{headposeandpoints_feature}) were a little bit better ut still far from good.
+	\begin{figure}
+	\includegraphics[width=0.15\textwidth]{headpose_evaluation_c1}
+	\includegraphics[width=0.15\textwidth]{headpose_evaluation_c2}
+	\includegraphics[width=0.15\textwidth]{headpose_evaluation_c3}
+	\includegraphics[width=0.15\textwidth]{headpose_evaluation_c4}
+	\includegraphics[width=0.15\textwidth]{headpose_evaluation_c5}
+	\includegraphics[width=0.15\textwidth]{headpose_evaluation_c6}
+	\includegraphics[width=0.15\textwidth]{headpose_evaluation_c7}\hspace{0.01\textwidth}
+	\includegraphics[width=0.15\textwidth]{headpose_evaluation_c8}\hspace{0.009\textwidth}
+	\includegraphics[width=0.15\textwidth]{headpose_evaluation_c9}
+	\end{figure}
+Our next idea was to use the points of the face in relation to a fixed point in the face in the hope that it would help us to recognize the vertical angle of the drivers head. The results(Figure\ref{headposeandpoints_feature}) were a little bit better but still far from good.
 
 \subsubsection{one vs. all with head-pose and points}
 \begin{figure}[h]
@@ -283,7 +294,7 @@ Our next idea was to use the points of the face in relation to a fixed point in 
 	\caption{results of angle and points features with svm}
 	\label{C5ornot}
 	\end{figure}
-Our last try was to test if it is possible to find out if the image is in the class ``talking to the passenger'' or not. Again we trained with angle and relative points, but this time only C5 and notC5. The results(Figure\ref{C5ornot}) were better bur not satisfiable, because it is still too bad to use it in the project.
+Our last try was to test if it is possible to find out if the image is in the class ``talking to the passenger'' or not. Again we trained with angle and relative points, but this time only C5 and notC5. The results(Figure\ref{C5ornot}) were better bur not satisfiable, because it is still too bad to use it in the project. The think the bad results with headpose are based on the problem that many classes have the same angle values and other classes have no dominant angle at all, like you can see in Figure
 
 \subsection{Hand-based classification}
 
