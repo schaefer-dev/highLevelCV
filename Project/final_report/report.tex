@@ -142,6 +142,9 @@ For the last approach used in this paper, we look for specific things in the ima
 
 
 In order to detect this landmarks, approximately 50 images per class were taken and manually labeled bounding boxes around the selected landmarks. The detectors were then trained based on HOG features for each landmark with the help of Dlib \cite{dlib09}.
+After having trained the detectors, one can use these to determine whether a certain landmark is present in an image or not. Then, by training a simple SVC that uses as predictors an array of boolean features each one of which representing the presence, or absence, of a landmark, one can potentially predict the activity performed by the driver.
+
+
 
  
 
