@@ -94,9 +94,6 @@ So our conclusion was that the current methods are not really applicable to the 
 
 
 
-
-
-
 \section{The Dataset}
 The first step we took was analyzing the dataset. We are given over 2.000 pictures per class from 26 different drivers in total. Each of the drivers has roughly the same amount of pictures per class. 
 
@@ -107,12 +104,8 @@ Additionally to this so called training set, of which we know the driver (and th
 
 
 
-
-\section{Related Work}
-
-
-
-\section{Proposed Method}
+\section{Proposed Methods}
+In this paragraph we are going to explain the different approaches we had in mind.
 
 
 \subsection{Head-based classification}
@@ -222,6 +215,7 @@ After having trained the detectors, one can use these to determine whether a cer
 
 
 \section{Experimental Results}
+Listing of the results we could achieve using the headpose estimation and the hand-based classification and finally the HoG landmarks.
 \subsection{Headpose Estimation}
 	\subsubsection{Angle as feature}
 	Out first try was to only use the angle of the face to the camera as a feature. The results(Figure\ref{headpose_feature}) were bad. The Problem was that the angle alone was far to less information.
