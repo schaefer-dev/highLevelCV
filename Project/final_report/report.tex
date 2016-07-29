@@ -33,7 +33,7 @@
 
 %%%%%%%%% Author Names
 \author{Guillermo Reyes\\
-{\tt\small enggreys@gmail.com}
+{\tt\small s8gureye@stud.uni-saarland.de}
 \and
 Daniel Schaefer\\
 {\tt\small s9dlscae@stud.uni-saarland.de}
@@ -76,7 +76,7 @@ For this task we have entered the Kaggle Competition: State Farm Distracted Driv
 	\item Talking to passenger
 \end{enumerate}
 
-In this paper we propose different approaches to solve this task using some classic computer vision methods to find out how well they stack up against state of the art methods such Deep Neural Networks, which can already achieve up to 99\% accuracy.
+In this paper we propose different approaches to solve this task using some classic computer vision methods to find out how well they stack up against state of the art methods such Deep Neural Networks (DNN), which can already achieve up to 99\% accuracy.
 
 % TODO erwaehnen von Computational Limits + allgemein gruende fuer die entscheidung kein cnn zu machcen
 
@@ -105,7 +105,7 @@ Additionally to this so called training set, of which we know the driver (and th
 
 
 \section{Proposed Methods}
-In this paragraph we are going to explain the different approaches we had in mind.
+In this section we describe the different approaches followed to solve this task.
 
 \subsection{Head-based classification}
 \begin{figure}[h]
@@ -115,7 +115,7 @@ In this paragraph we are going to explain the different approaches we had in min
 	\caption{good and bad example of Face}
 	\label{face_estimation_example}
 \end{figure}
-One of our ideas was to use a head-detector or a face-detector to extract a feature and predict the correct class or narrow down the possible classes. At least we hoped it would be possible to say if a picture is in a specific class or not. We tried different head or face-detectors and all had Problems to detect the head or didn't gave us enough features. We think the problem was that the pictures have a relative small resolution. An other Problem could be the different angles, because some detectors only worked with frontal view others only in the side view. Long hair, sunglasses and other occlusion could be a problem too. In the end we found Face~\cite{Ramanan:2012:FDP:2354409.2355119}, which found heads in about 80\% of the pictures and gave us the horizontal angle from face to camera and 39 or 68 points of the face.Even if it found a face, it was not always the correct one. Face is running in matlab, so we used it to create a .csv file for every class + a file for the pictures where it was impossible to find a head. Then we let a Support Vector Machine and a Random learn on this data. First we only used the angle. Then we used angle and the points in relation to a fixed point in the face and hoped that these point could show us if the person is looking straight or looking down on his mobile phone or the radio. We tried with both to predict the right class and to predict if the person is talking to the passenger or not.
+One idea is to use a head-detector or a face-detector to extract a feature and predict the correct class or narrow down the possible classes. If nothing else, it would be expected that, for some classes, this approach would be able to determine if an image is of a certain classe or not. Different head or face-detectors were tried and all had Problems to detect the head or didn't provide enough features. The main problems could be that the pictures have a relatively small resolution, another Problem could be the different angles, since some detectors only worked with frontal view and others only in the side view. Long hair, sunglasses and other occlusion could be a problem too. However, for this paper use Face~\cite{Ramanan:2012:FDP:2354409.2355119}, which found heads in about 80\% of the pictures and estimates the horizontal angle from face to camera and 39 or 68 points of the face. Unfortunately, even if a face is found, it is not always the correct one. Face is running in matlab and takes approximately 10 seconds to estimate the head pose, so we create a .csv file for every class and a file for the pictures where it was impossible to find a head. Then we let a Support Vector Machine (SVM) and a Random Forest learn on this data. First only  the angle is used. Then we use angle and the points in relation to a fixed point in the face as an attempt to estimate if a person is looking up or down on his mobile phone or the radio. Both methods were used to predict the right class and to verify if the driver is talking to the passenger or not.
 
 
 \subsection{Hand-based classification}
@@ -134,17 +134,18 @@ When examining the dataset, we found that many of the classes can be well distin
 	\item \textbf{HoG}: Histogram of oriented gradients, which we have discussed in the lecture. We use the scikit-image implementation
 	\item \textbf{LBP}: Local binary patterns, which is a feature originally developed for texture classification. It has been reported to work well in combination with HoG features in some cases. We also use the scikit-image implementation for this.
 \end{itemize}
-Besides using Support Vector Machines for classification, which was the only classifier discussed in the lecture, we have also tried Random Forrests.\\
+Besides using Support Vector Machines for classification,  we have also tried Random Forests, but it is open how well other classification algorithms work on this data.
+
 It is important to note that the steering wheel is not aligned across the dataset. The training-data was recorded in 4 different cars with varying camera angles. As we will show, it is important to align the steering wheel in the cropped images for a good performance. We have manually labeled the center of all steering wheels to perform this alignment.
 
 
 
 \subsection{Bodepose-based classification}
-We expected that reliable localization of head and arms would allow us to differentiate most of the classes because of the different positions the mentioned body-parts are in, during the different distractions.
+An expectation is that reliable localization of head and arms would allow us to differentiate most of the classes because of the different positions the mentioned body-parts are in, during the different distractions.
 
-On gitHub we found the open source implementation ''Convolutional Pose Machines'' which is able to predict the key bodyparts for us, like wrists, shoulders, elbows, neck and head.\cite{DBLP:journals/corr/WeiRKS16} The paper was presented at the Conference on Computer Vision and Pattern Recognition in 2016 and outperformed everything else we found greatly using the pretrained models provided on gitHub. 
+On gitHub we found the open source implementation ''Convolutional Pose Machines'' which is able to estimate key bodypart poses, like wrists, shoulders, elbows, neck and head.\cite{DBLP:journals/corr/WeiRKS16} The paper was presented at the Conference on Computer Vision and Pattern Recognition in 2016 and outperformed everything else we found greatly using the pretrained models provided on gitHub. 
 
-Unfortunately we could not use this implementation in our project, because of the computational performance necessary. Nobody of us had access to a CUDA supported video card with over two gigabytes of VRAM which was not nearly enough for this Pose-Machine to work. Doing everything on CPU was not an option for us because this took between one to four minutes per picture. Although this at least made it possible to take a look at the results this pose machine is able to achieve using neural networks. We can not really precisely evaluate the performance of this approach but in all the pictures we were able to test the heatmaps of the said body-parts are looking usable across all the different classes. You can see an example of how the heatmaps for interesting bodyparts look like in Figure \ref{BodyPoseExample}.\\
+Unfortunately we could not use this implementation in this project, because of the computational resources necessary. None of our team members had access to a CUDA supported video card with over two gigabytes of VRAM which was not nearly enough for this Pose-Machine to work. Doing everything on CPU was not an option since this took between one to four minutes per picture. Although this at least made it possible to take a look at the results this pose machine is able to achieve using neural networks, we can not precisely evaluate the performance of this approach, but in all the pictures we were able to test, the heatmaps of the said body-parts are looking usable across all the different classes. An example of how the heatmaps for interesting bodyparts look like can be seen in Figure \ref{BodyPoseExample}.\\
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{BodyPoseExample}
@@ -152,12 +153,12 @@ Unfortunately we could not use this implementation in our project, because of th
     \label{BodyPoseExample}
 \end{figure}
 
-Without our computational limitations these bodypose-machines would probably be a very nice addition to the headpose and handpose estimation we are currently using.
+Without our computational limitations these bodypose-machines would probably be a very nice addition and performance booster to the headpose and handpose estimation we are currently using.
 
 
 \subsection{HOG Landmarks}
 
-For the last approach used in this paper, we look for specific things in the images that help us make a decision. We call these specific things landmarks. A landmark can be anything in the images(pose, objects, etc.) that can be used to distinguish a class from the others. These landmarks are chosen arbitrarily in this paper and we shall later evaluate how well they perform. Below we outline what of these landmarks are, note that there is at least one distinctive landmark per class.
+For the last approach used in this paper, we look for specific things in the images that help us make a prediction. We call these specific things landmarks. A landmark can be anything in the images(pose, objects, etc.) that can be used to distinguish a class from the others. These landmarks are chosen arbitrarily in this paper and we shall later evaluate how well they perform. Below we outline what each of these landmarks are, note that there is at least one distinctive landmark per class.
 
 \begin{enumerate}
 	\item Head facing front, towards the road.
@@ -191,13 +192,10 @@ For the last approach used in this paper, we look for specific things in the ima
 		\label{HoG_phone}
 	\end{figure}
 
-In order to detect this landmarks, approximately 50 images per class were taken and manually labeled bounding boxes around the selected landmarks. The detectors were then trained based on HoG features for each landmark with the help of Dlib \cite{dlib09}. In Figure \ref{HoG_phone_det} one can see an example of a detection of a person texting with the right hand, and in Figure \ref{HoG_phone} what the HoG for this landmarks looks like.
+In order to detect these landmarks, approximately 50 images per class were taken and manually annotated with bounding boxes around the selected landmarks. The detectors were then trained based on HoG features for each landmark with the help of Dlib \cite{dlib09}. In Figure \ref{HoG_phone_det} one can see an example of a detection of a person texting with the right hand, and in Figure \ref{HoG_phone} what the HoG for this landmark looks like.
 
 After having trained the detectors, one can use these to determine whether a certain landmark is present in an image or not. Then, by training a simple SVC that uses as predictors an array of boolean features each one of which representing the presence, or absence, of a landmark, one can potentially predict the activity performed by the driver.
 
-
-
- 
 
 
 
@@ -226,10 +224,10 @@ After having trained the detectors, one can use these to determine whether a cer
 
 
 \section{Experimental Results}
-Listing of the results we could achieve using the headpose estimation and the hand-based classification and finally the HoG landmarks.
+Listing of the achieved results using the headpose estimation, the hand-based classification and finally the HoG landmarks.
 \subsection{Headpose Estimation}
 	\subsubsection{Angle as feature}
-	Our first approach was to only use the angle of the face to the camera as a feature. The results(Figure\ref{headpose_feature}) were bad. The Problem was that the angle alone was far too few information.
+	Our first approach was to only use the angle of the face to the camera as a feature. The results(Figure\ref{headpose_feature}) were bad. The Problem being that the angle alone is far too few information.
 	\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{angle_only}\hspace{0.01\textwidth}
@@ -269,7 +267,19 @@ Listing of the results we could achieve using the headpose estimation and the ha
 	\caption{results of angle and points features with svm}
 	\label{headposeandpoints_feature}
 	\end{figure}
-Our next idea was to use the points of the face in relation to a fixed point in the face in the hope that it would help us to recognise the vertical angle of the drivers head. The results(Figure\ref{headposeandpoints_feature}) were a little bit better ut still far from good.
+Our next idea was to use the points of the face in relation to a fixed point in the face expecting that it helps us recognize the vertical angle of the drivers head. The results(Figure\ref{headposeandpoints_feature}) were a little bit better but still far from good.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.24\textwidth]{headpose_evaluation_c1}%\hspace{0.01\textwidth}
+	\includegraphics[width=0.24\textwidth]{headpose_evaluation_c1}\\ \vspace{0.01\textwidth}
+	\includegraphics[width=0.24\textwidth]{headpose_evaluation_c6}%\hspace{0.01\textwidth}
+	\includegraphics[width=0.24\textwidth]{headpose_evaluation_c7}
+	\caption{Examples of head pose histograms. In all these classes the dominant head angle is 60 degrees}
+	\label{head_pose_distribution}
+\end{figure}
+
+The main problem could reside in the fact that the head pose distribution is not as robust or unique to the class as was expected and many classes have similar dominant head pose as can be seen in Figure \ref{head_pose_distribution} and even when considering all points the angle could still be a strong feature. 
 
 \subsubsection{one vs. all with head-pose and points}
 \begin{figure}[h]
@@ -283,7 +293,18 @@ Our next idea was to use the points of the face in relation to a fixed point in 
 	\caption{results of angle and points features with svm}
 	\label{C5ornot}
 	\end{figure}
-Our last try was to test if it is possible to find out if the image is in the class ``talking to the passenger'' or not. Again we trained with angle and relative points, but this time only C5 and notC5. The results(Figure\ref{C5ornot}) were better bur not satisfiable, because it is still too bad to use it in the project.
+Our last attempt was to test if it is possible to find out if the image is in the class ''talking to the passenger'' or not. Again we trained with angle and relative points, but this time only C9 and not C9. The results (Figure\ref{C5ornot}) were better bur not satisfiable to use it in the project.
+
+A possible explanation for this is that there appears to be no dominant headpose for this class as one would expect. Figure \ref{headpose_histogram_c9} shows that the head horizontal angle of the driver commonly lies in the range of [0-60] degrees. Thus when an image presents a head pose angle of 60 degrees for instance, it is reasonable to assume it would be mostly undecidable by looking only at this feature.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{headpose_evaluation_c9}
+	\caption{Histogram of headposes for class c9 (Talking to passenger). There is no apparent dominant pose}
+	\label{headpose_histogram_c9}
+\end{figure}
+
+
 
 \subsection{Hand-based classification}
 
@@ -337,7 +358,7 @@ Our last try was to test if it is possible to find out if the image is in the cl
 		\caption{Classification accuracies for different 1-vs-1 classifiers trained on 8 participants (3 participants in test set).}
 		\label{hand_estimation_1vs1}
 	\end{table}
-	Although the classification accuracy of an SVM with HoG features is significantly better then random with more then 30\%, it is not good enough to be practically relevant. The confusion matrix in Figure \ref{hand_estimation_cm} displays the classification errors of a classifier trained on 20 participants (6 participants in the test set) and HoG features. There does not seem to be any logically explainable confusion. To further investigate our thesis that some of the classes should be easy to distinguish based on the appearance of the hands on the steering wheel, we trained a few 1-vs-1 classifiers. As is illustrated in Table \ref{hand_estimation_1vs1}, they did achieve a very good accuracy. 
+	Although the classification accuracy of an SVM with HoG features is significantly better than random with more then 30\%, it is not good enough to be practically relevant. The confusion matrix in Figure \ref{hand_estimation_cm} displays the classification errors of a classifier trained on 20 participants (6 participants in the test set) and HoG features. There does not seem to be any logically explainable confusion. To further investigate our thesis that some of the classes should be easy to distinguish based on the appearance of the hands on the steering wheel, we trained a few 1-vs-1 classifiers. As is illustrated in Table \ref{hand_estimation_1vs1}, they did achieve a very good accuracy. 
 	
 	
 \subsection{HoG Landmarks}
@@ -363,7 +384,7 @@ Our last try was to test if it is possible to find out if the image is in the cl
 	\label{Landmarks_4all}
 \end{figure}
 
-The initial results already outperform previous approaches as can be seen from Figure \ref{Landmarks_4all}  with almost 70\% average precision. However, there are some things to be noted. The recall for classes c5(operating the radio) and c7(reaching behind) is critically low (0.0 and 0.3 respectively) which leads us to believe that the Landmarks are very loosely defined and, thus, cannot be properly recognized. This has a big impact of course in the average precision and recall. 
+The initial results already outperform previous approaches as can be seen from Figure \ref{Landmarks_4all}  with almost 70\% average precision. However, there are some things to be noted. The recall for classes c5(operating the radio) and c7(reaching behind) is critically low (0.0 and 0.03 respectively) which leads to believe that the Landmarks are very loosely defined and, thus, cannot be properly recognized. This has a big impact of course in the average precision and recall. 
 
 \begin{figure}[h]
 	\centering
@@ -385,7 +406,7 @@ The initial results already outperform previous approaches as can be seen from F
 	\label{Landmarks_4no5no7}
 \end{figure}
 
-The question might follow: how well does the approach work for the classes whose Landmarks are effectively recognized?. By removing both classes c5 and c7, average precision and recall are both improved over 13\% as can be appreciated from Figure \ref{Landmarks_4no5no7}. 
+The question might follow: how well does the approach work for the classes whose Landmarks are effectively recognized? By removing both classes c5 and c7, average precision and recall are both improved about 13\% as can be appreciated from Figure \ref{Landmarks_4no5no7}. 
 
 Now if we take a look at class c4(taking on the phone left hand), we see that recall is quite good at 97\% whereas its precision is only 66\% indicating possibly multiple false positives as show in Figure \ref{Landmarks_false_detection}. This is most likely due to the labeling of this particular landmark, since when talking on the phone with the left hand, part of the face is inside the bounding box and occluding part of the phone.
 
@@ -397,9 +418,9 @@ Now if we take a look at class c4(taking on the phone left hand), we see that re
 	\label{Landmarks_false_detection}
 \end{figure}
 
-Class c1 (texting with the right hand) on the other hand has comparably low recall, at at 52\%, but 100\% precision which indicates that this is a strong feature and that even though there are very few false positives, there may remain almost half of the images without detecting the phone on the hand. The same can be said about class c3 (texting with the left hand) This may be due to the angle in which the person is using the phone. Another possibility is of course that other detectors are producing false positives, and thus interfering with the decision.
+Class c1 (texting with the right hand) on the other hand has comparably low recall, at at 52\%, but 100\% precision which indicates that its landmark is a strong feature and that even though there are very few false positives, there may remain almost half of the images without detecting the phone on the hand. The same can be said about class c3 (texting with the left hand). This may be due to the angle in which the person is using the phone. Another possibility is of course that other detectors are producing false positives, and thus interfering with the decision.
 
-Other classes such as c0(safe driving) and c8(hair and makeup) have arguably lower both precision and recall than some of the ther better recognized classes. While it is not completely obvious what happens here, most likely the landmarks characteristic of these classes are not sufficient, to determine i.e. their landmarks are present in several other classes, as in the head facing front, however the it could also be possible that some of the landmarks are not recognized and some times they give false positives.
+Other classes such as c0(safe driving) and c8(hair and makeup) have arguably lower both precision and recall than some of the other better recognized classes. While it is not completely obvious what happens here, most likely the landmarks, characteristic of these classes, are not sufficient to determine the class i.e. their landmarks are present in several other classes, as in the head facing front, however the it could also be possible that some of the landmarks are not recognized and some times they give false positives.
 
 
 \begin{figure}[h]
@@ -422,18 +443,18 @@ Other classes such as c0(safe driving) and c8(hair and makeup) have arguably low
 	\label{Landmarks_4no5no7test}
 \end{figure}
 
-Finally since there is much bias in testing only against one participant, we have tested also several images from the Testset. These images were randomly picked and manually labeled with the right class, however since this required manual work, only a handful of images, 242 in 8 classes, were selected. In Figure \ref{Landmarks_4no5no7test} we can see the results of this. The performance is still comparable with the aforementioned outcomes, but interesting to note is that the overall recall dropped much (15\%) and the precision particularly from class c8 dropped remarkably low (29\% vs 69\% before). As can be seen from the confusion matrix many images of, in general, all classes were wrongly predicted to be class c8. As mentioned before, this may be due to classes not particularly well defined by landmarks, landmarks not being detected in the images, or many false positives from class c8 for which we would need to improve the robustness of the detectors.
+Finally since there is much bias in testing only against one participant, we have tested also several images from the original Testset. These images were randomly picked and manually labeled with the right class, however since this required manual work, only a handful of images (242 in 8 classes) were selected. In Figure \ref{Landmarks_4no5no7test} we can see the results of this. The performance is still comparable with the aforementioned outcomes, but interesting to note is that the overall recall dropped much (15\%) and the precision, particularly from class c8 dropped remarkably low (29\% vs 69\% before). As can be seen from the confusion matrix many images of, in general, all classes were wrongly predicted to be class c8. As mentioned before, this may be due to classes not particularly well defined by landmarks, landmarks not being detected in the images, or many false positives from class c8 for which one would need to improve the robustness of the detectors.
 
 \section{Conclusion}
-Concluding from our experiments we think that it is safe to say that you can not easily achieve Convolutional Neural Network comparable performance using only classic computer vision algorithms. It might be a good idea to combine both approaches for example by using a bodypose estimation like we mentioned in the proposed methods part using neural networks to complement our current approach. Although one would have to experiment with this to see if it is worth it.
+Considering the previous experiments, it can be deducted that achieving Convolutional Neural Network comparable performance using only classic computer vision algorithms is not an easy task. It might be a good idea to combine both approaches for example by using a bodypose estimation like we mentioned in the proposed methods part using neural networks or some other good performing body pose estimator to complement our current approaches. Although one would have to experiment with this to see if it is worth it.
 
-Assuming one does not have the computational limitations we had, we think that traditional methods are difficult to use for such a complex task, mainly because they need to be highly customized to ''work together'' seamlessly and it is probably not worth spending this much time experimenting when you could just use a CNN and achieve extremely high precisions immediately. 
+Assuming one does not have the computational limitations we had, DNN may be the more desirable approach, as traditional methods are difficult to use for such a complex task, mainly because they need to be highly customized to ''work together'' seamlessly and it is probably not worth spending this much time experimenting when a CNN can achieve extremely high precisions immediately. 
 
-On the other hand, by using classic computer approaches such as the ones we have used, one can understand what is happening, and if a certain class is failing to be properly recognized, the problem can be isolated and individual changes can be made to improve on these while with neural networks, such problems would be much harder to identify and solve.
+On the other hand, by using classic computer approaches such as the ones we have discussed, one can understand what is happening, and if a certain class is failing to be properly recognized, the problem can be isolated and individual changes can be made to improve on these while with neural networks, such problems would be much harder to identify and solve.
 
 
 \section{Future Work}
-Regarding the future work, even though our current approach already gives some good results it can still be optimized a lot by experimenting with combining what we have right now, like the HoG Landmarks with the Hand'based classification, and trying different parameters for everything. Additionally, more Landmarks could be added and other could be made more robust. The biggest problem is to get features that describe everything important well. Additionally implementing a body-pose estimation, will most likely have a positive impact on the classification performance, because it could be used to describe the arms position. This combined with the hand- and headpose-estimation would basically cover all the important body parts to distinguish between all the classes. To achieve this one would probably have to invest in new hardware to increase the computational power.
+Regarding future work, even though our current approach already gives some good results it can still be optimized a lot by experimenting with combining what we have right now, like the HoG Landmarks with the Hand-based classification, and trying different parameters for everything. Additionally, more Landmarks could be added and others could be made more robust. The biggest problem is to get features that describe everything that is important well. Additionally implementing a body-pose estimation, will most likely have a positive impact on the classification performance, particularly because it could be used to describe the arms position and orientation. This combined with the hand- and headpose-estimation would basically cover all the important body parts to distinguish between all the classes. To achieve this one would probably have to invest in new hardware to increase the computational power.
 
 
 
