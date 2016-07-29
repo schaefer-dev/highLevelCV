@@ -57,7 +57,7 @@ Dominik Weber\\
 \section{Introduction}
 
 
-According to the U.S. Department of Transoprtation and National Highway Traffic Safety Administration, about 18\% of all injury crashes and 10\% of fatal crashes are reported to involve distracted drivers at the moment of the accident ~\cite{knuthwebsite}. In 2013 this, unfortunately, translated to over 3000 people killed and 400,000 people injured, in the United States alone due to motor vehicle crashes.
+According to the U.S. Department of Transportation and National Highway Traffic Safety Administration, about 18\% of all injury crashes and 10\% of fatal crashes are reported to involve distracted drivers at the moment of the accident ~\cite{knuthwebsite}. In 2013 this, unfortunately, translated to over 3000 people killed and 400,000 people injured, in the United States alone due to motor vehicle crashes.
 
 This clearly speaks for measures to be taken. Spotting distracted drivers in time could help to take appropriate actions and thus prevent accidents and save thousands of lives every year. In order to detect distracted drivers, different approaches have been taken. However, many of them are intrusive and expensive. However by using simple cameras combined with computer vision algorithms, one can get a solution that is both cheap and non-intrusive.\\
 
@@ -116,7 +116,7 @@ In this paragraph we are going to explain the different approaches we had in min
 	\caption{good and bad example of Face}
 	\label{face_estimation_example}
 \end{figure}
-One of our ideas was to use a headdetector or a facedetector to extract a feature and predict the correct class or narrow down the possible classes. At least we hoped it would be possible to say if a picture is in a specific class or not. We tried different head or facedetecors and all had Problems to detect the head or didnt gave us enough features. We think the problem was that the pictures have a relative small resolution. An other Problem could be the different angles, because some detectors only worked with frontal view others only in the sideview. Long hair, sunglasses and other occlusion could be a problem too. In the end we found Face~\cite{Ramanan:2012:FDP:2354409.2355119}, which found heads in about 80\% of the pictures and gave us the horizontal angle from face to camera and 39 or 68 points of the face.Even if it found a face, it was not always the correct one. Face is runnning in matlab, so we used it to create a .csv file for every class + a file for the pictures where it was impossible to find a head. Then we let a Support Vector Machine and a Random learn on this data. First we only used the angle. Then we used angle and the points in relation to a fixed point in the face and hoped that these point could show us if the person is looking straight or lookung down on his mobilephone or the radio. We tried with both to predict the right class and to predict if the person is talking to the passenger or not.
+One of our ideas was to use a head-detector or a face-detector to extract a feature and predict the correct class or narrow down the possible classes. At least we hoped it would be possible to say if a picture is in a specific class or not. We tried different head or face-detectors and all had Problems to detect the head or didn't gave us enough features. We think the problem was that the pictures have a relative small resolution. An other Problem could be the different angles, because some detectors only worked with frontal view others only in the side view. Long hair, sunglasses and other occlusion could be a problem too. In the end we found Face~\cite{Ramanan:2012:FDP:2354409.2355119}, which found heads in about 80\% of the pictures and gave us the horizontal angle from face to camera and 39 or 68 points of the face.Even if it found a face, it was not always the correct one. Face is running in matlab, so we used it to create a .csv file for every class + a file for the pictures where it was impossible to find a head. Then we let a Support Vector Machine and a Random learn on this data. First we only used the angle. Then we used angle and the points in relation to a fixed point in the face and hoped that these point could show us if the person is looking straight or looking down on his mobile phone or the radio. We tried with both to predict the right class and to predict if the person is talking to the passenger or not.
 
 
 \subsection{Hand-based classification}
@@ -174,13 +174,21 @@ For the last approach used in this paper, we look for specific things in the ima
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.45\textwidth]{mult_HOG/HOG_phone_det}\vspace{0.01\textwidth}
-	\includegraphics[width=0.25\textwidth]{mult_HOG/HOG_phone}
-	\caption{\textit{Above.} Bounding box around phone on the right hand while texting. \textit{Below.} HoG of this landmark after training with approximately 50 images}
-	\label{HoG_phone}
+	\includegraphics[width=0.45\textwidth]{mult_HOG/HOG_phone_det}%\vspace{0.01\textwidth}
+%	\includegraphics[width=0.25\textwidth]{mult_HOG/HOG_phone}
+	\caption{Bounding box around phone on the right hand while texting. }
+	\label{HoG_phone_det}
 \end{figure}
 
-In order to detect this landmarks, approximately 50 images per class were taken and manually labeled bounding boxes around the selected landmarks. The detectors were then trained based on HoG features for each landmark with the help of Dlib \cite{dlib09}. In Figure \ref{HoG_phone} one can see an example of what this looks like.
+\begin{figure}[h]
+	\centering
+	%\includegraphics[width=0.45\textwidth]{mult_HOG/HOG_phone_det}%\vspace{0.01\textwidth}
+		\includegraphics[width=0.25\textwidth]{mult_HOG/HOG_phone}
+	\caption{HoG of the right hand holding phone while texting landmark after training with approximately 50 images}
+		\label{HoG_phone}
+	\end{figure}
+
+In order to detect this landmarks, approximately 50 images per class were taken and manually labeled bounding boxes around the selected landmarks. The detectors were then trained based on HoG features for each landmark with the help of Dlib \cite{dlib09}. In Figure \ref{HoG_phone_det} one can see an example of a detection of a person texting with the right hand, and in Figure \ref{HoG_phone} what the HoG for this landmarks looks like.
 
 After having trained the detectors, one can use these to determine whether a certain landmark is present in an image or not. Then, by training a simple SVC that uses as predictors an array of boolean features each one of which representing the presence, or absence, of a landmark, one can potentially predict the activity performed by the driver.
 
@@ -260,7 +268,7 @@ Listing of the results we could achieve using the headpose estimation and the ha
 	\end{figure}
 Our next idea was to use the points of the face in relation to a fixed point in the face in the hope that it would help us to recognise the vertical angle of the drivers head. The results(Figure\ref{headposeandpoints_feature}) were a little bit better ut still far from good.
 
-\subsubsection{one vs. all with headpose and points}
+\subsubsection{one vs. all with head-pose and points}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{c5ornot.png}\hspace{0.01\textwidth}
