@@ -55,8 +55,8 @@ Dominik Weber\\
 %%%%%%%%% BODY TEXT
 
 \section{Introduction}
-According to the U.S. Department of Transoprtation and National Highway Traffic Safety Administration, about 18\% of all injury crashes and 10\% of fatal crashes are reported to involve distracted drivers at the moment of the accident ~\cite{knuthwebsite}. This, unfortunately, translates to over 3000 people killed and 400,000 injured per year, in the United States alone due to motor vehicle crashes.\\
-This clearly speaks for measures to be taken. Spotting distracted drivers in time could help to take appropriate actions and thus prevent accidents and save thousands of lives each year. In order to detect distracted drivers, different approaches have been taken. However, many of them and intrusive and expensive. However by using simple cameras combined with computer vision algorithms, one can get a solution that is both cheap and non-intrusive.\\
+According to the U.S. Department of Transoprtation and National Highway Traffic Safety Administration, about 18\% of all injury crashes and 10\% of fatal crashes are reported to involve distracted drivers at the moment of the accident ~\cite{knuthwebsite}. In 2013 this, unfortunately, translated to over 3000 people killed and 400,000 people injured, in the United States alone due to motor vehicle crashes.\\
+This clearly speaks for measures to be taken. Spotting distracted drivers in time could help to take appropriate actions and thus prevent accidents and save thousands of lives every year. In order to detect distracted drivers, different approaches have been taken. However, many of them are intrusive and expensive. However by using simple cameras combined with computer vision algorithms, one can get a solution that is both cheap and non-intrusive.\\
 For this task we have entered the Kaggle Competition: State Farm Distracted Driver Detection ~\cite{Kaggle}. The challenge consists of classifying images of drivers engaging in the behaviors described below.
 
 \begin{enumerate}
@@ -72,9 +72,15 @@ For this task we have entered the Kaggle Competition: State Farm Distracted Driv
 	\item Talking to passenger
 \end{enumerate}
 
-The competition provides the dataset with over 2000 training images per class, 26 different drivers with diverse ethnic backgrounds, in 4 distinct cars and camera angles and distinctive lighting conditions as well as some noise in the data.
-
 In this paper we propose different approaches to solve this task using some classic computer vision methods to find out how well they stack up against state of the art methods such Deep Neural Networks, which can already achieve up to 99\% accuracy .
+
+\section{The Dataset}
+The first step we took was analysing the dataset. We are given over 2.000 pictures per class with overall 26 different drivers with each of these drivers having roughly the same amount of pictures per class. 
+
+These 26 different drivers are split up in four cars. Depending on the car the camera angles vary, which we assumed could be quite a problem. During the analyse process we also noticed that there is quite a bit of noise in the data. For example we found several pictures in the ''safe driving'' class, which should in our opinion belong to the ''Talking to passenger'' one. Other potential problems we identified at this point are the drasticly changing light-situations and also the different ethic backgrounds of drivers.
+
+Additionally to this so called training set, of which we know the driver (and thus car) and class of each picture, we also have a so called test set containing around 80.000 unclassified pictures. The only option to verify results on this set is to upload them to the competition website, but because of the time neccessary to classify all these 80.000 pictures combined with the fact that we only get very limited information back, we decided to run our tests on parts of the training set because we can easily and quickly analyse precision, recall and confusion matrix this way.
+
 
 
 \section{Related Work}
