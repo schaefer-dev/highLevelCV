@@ -39,7 +39,7 @@ Daniel Schaefer\\
 {\tt\small s9dlscae@stud.uni-saarland.de}
 \and
 Marc Tonsen\\
-{\tt\small secondauthor@i2.org}
+{\tt\small s9matons@stud.uni-saarland.de}
 \and
 Dominik Weber\\
 {\tt\small s9dowebe@stud.uni-saarland.de}
@@ -49,7 +49,7 @@ Dominik Weber\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-   In this project we tried to solve the task of deciding whether or not a driver is distracted, and if so, what the driver is being distracted by. For this we explored the possibilities of classical computer vision algorithms instead of using Deep Learning mainly because of computational limitations and already publicly available solutions using Deep Learning. The results get up to 82\% precision and 77\% recall for a subset of the classes while there are simple solutions to improve them even further.
+   In this project we tried to solve the task of deciding whether or not a driver is distracted, and if so, what the driver is being distracted by. For this we explored the possibilities of classical computer vision algorithms instead of using Deep Learning mainly because of computational limitations and already publicly available solutions using Deep Learning. The results get up to 82\% precision and 77\% recall for a subset of the classes while there are solutions to improve them even further.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
@@ -57,11 +57,11 @@ Dominik Weber\\
 \section{Introduction}
 
 
-According to the U.S. Department of Transportation and National Highway Traffic Safety Administration, about 18\% of all injury crashes and 10\% of fatal crashes are reported to involve distracted drivers at the moment of the accident ~\cite{knuthwebsite}. In 2013 this, unfortunately, translated to over 3000 people killed and 400,000 people injured, in the United States alone due to motor vehicle crashes.
+According to the U.S. Department of Transportation and National Highway Traffic Safety Administration, about 18\% of all injury crashes and 10\% of fatal crashes are reported to involve distracted drivers at the moment of the accident ~\cite{knuthwebsite}. In 2013 this, unfortunately, translated to over 3.000 people killed and 400.000 people injured, in the United States alone due to motor vehicle crashes.
 
 This clearly speaks for measures to be taken. Spotting distracted drivers in time could help to take appropriate actions and thus prevent accidents and save thousands of lives every year. In order to detect distracted drivers, different approaches have been taken. However, many of them are intrusive and expensive. However by using simple cameras combined with computer vision algorithms, one can get a solution that is both cheap and non-intrusive.\\
 
-For this task we have entered the Kaggle Competition: State Farm Distracted Driver Detection ~\cite{Kaggle}. The challenge consists of classifying images of drivers engaging in the behaviors described below.
+For this task we have entered the Kaggle competition: State Farm Distracted Driver Detection ~\cite{Kaggle}. The challenge consists of classifying images of drivers engaging in the behaviors described below.
 
 \begin{enumerate}
 	\item Safe driving
@@ -83,9 +83,9 @@ In this paper we propose different approaches to solve this task using some clas
 
 \section{Related Work}
 
-There are already quite a few approaches regarding distracted driver distraction, although these approaches are mainly working on picture datasets with frontal-views on the face and rely almost exclusively on gaze-tracking or head-pose estimation. \cite{Dorazio} \cite{6957817}
+There are already quite a few approaches regarding distracted driver distraction, although these approaches are mainly working on picture datasets with frontal-views on the face and rely almost exclusively on gaze-tracking or head pose estimation. \cite{Dorazio} \cite{6957817}
 
-Additionally some of these datasets are being captured in artificial environments (for example Racing Simulators) \cite{itsc:bergasa2008} which results in much more consistent variables like e.g. light situation and camera angle. In some of the approaches additional sensors are being used (e.g. RGB-depth cameras) which obviously also extend the possibilities greatly but also the cost is increased. \cite{Ragab2014}
+Additionally some of these datasets are being captured in artificial environments (for example racing simulators) \cite{itsc:bergasa2008} which results in much more consistent variables like e.g. light situation and camera angle. In some of the approaches additional sensors are being used (e.g. RGB-depth cameras) which obviously also extend the possibilities greatly but also increase the cost. \cite{Ragab2014}
 
 We also decided to do some research on the very familiar topic ``Activity Recognition'' to explore further possibilities. Unfortunately most of the approaches in the Activity Recognition field rely on additional sensors (eg. wearable sensors) \cite{6258525} \cite{6365160} or rely on continuous video instead of single pictures. \cite{1315249} \cite{1430826}
 
@@ -97,7 +97,7 @@ We conclude that current methods are not completely applicable to the problems w
 \section{The Dataset}
 The first step we took was analyzing the dataset. We are given over 2.000 pictures per class from 26 different drivers in total. Each of the drivers has roughly the same amount of pictures per class. 
 
-The drivers are split up in four cars. Depending on the car the camera angles varies. During the analysis process we also noticed that there is labeling noise in the data. For example we found several pictures in the ``safe driving'' class, which should in our opinion belong to the ``Talking to passenger'' one. Also lighting-conditions changed rapidly and the drivers have different ethnicities.
+The drivers are split up in four cars. Depending on the car the camera angles varies. During the analysis process we also noticed that there is labeling noise in the data. For example we found several pictures in the ``safe driving'' class, which should in our opinion belong to the ``talking to passenger'' one. Also lighting conditions changed rapidly and the drivers have different ethnicities.
 
 
 Additionally to this so called training set, of which we know the driver (and thus car) and class of each picture, we also have a so called test set containing around 80.000 unclassified pictures. The only option to verify results on this set is to upload them to the competition website, but because of the time necessary to classify all these 80.000 pictures combined with the fact that we only get very limited information back, we decided to run our tests only on parts of the training set to speed up our evaluation process.
@@ -115,7 +115,7 @@ In this section we describe the different approaches followed to solve this task
 	\caption{good and bad example of Face}
 	\label{face_estimation_example}
 \end{figure}
-One idea is to use a head-detector or a face-detector to extract a feature and predict the correct class or narrow down the possible classes. If nothing else, it would be expected that, for some classes, this approach would be able to determine if an image is of a certain classe or not. Different head or face-detectors were tried and all had Problems to detect the head or didn't provide enough features. The main problems could be that the pictures have a relatively small resolution, another Problem could be the different angles, since some detectors only worked with frontal view and others only in the side view. Long hair, sunglasses and other occlusion could be a problem too. However, for this paper use Face~\cite{Ramanan:2012:FDP:2354409.2355119}, which found heads in about 80\% of the pictures and estimates the horizontal angle from face to camera and 39 or 68 points of the face. Unfortunately, even if a face is found, it is not always the correct one. Face is running in matlab and takes approximately 10 seconds to estimate the head pose, so we create a .csv file for every class and a file for the pictures where it was impossible to find a head. Then we let a Support Vector Machine (SVM) and a Random Forest learn on this data. First only  the angle is used. Then we use angle and the points in relation to a fixed point in the face as an attempt to estimate if a person is looking up or down on his mobile phone or the radio. Both methods were used to predict the right class and to verify if the driver is talking to the passenger or not.
+Our first idea was to use a head-detector or a face-detector to extract features and predict the correct class or narrow down the possible classes. If nothing else, it would be expected that, for some classes, this approach should be able to determine if an image is of a certain classe or not. We tried different head and face detectors and all of them had problems to detect the head or didn't provide enough features. The main problems could be that the pictures have a relatively small resolution, another problem could be the different camera angles, since some detectors only worked with frontal views and others only in a side view. Long hair, sunglasses and other occlusion could be a problem too. However, for our project we decided to use face~\cite{Ramanan:2012:FDP:2354409.2355119}, which was able to find heads in about 80\% of the pictures and estimates the horizontal angle from face to camera and 39 or 68 points of the face. Unfortunately, even if a face is found, it is not always a real face. Face is running in matlab and takes approximately 10 seconds to estimate the head pose, so we create a .csv file for every class and a file for the pictures where it was impossible to find a head. Then we let a Support Vector Machine (SVM) and a Random Forest learn on this data. First only the angle is being used. Then we use angle and the points in relation to a fixed point in the face as an attempt to estimate if a person is looking up or down on his mobile phone or the radio. Both methods were used to predict the right class and to verify if the driver is talking to the passenger or not.
 
 
 \subsection{Hand-based classification}
