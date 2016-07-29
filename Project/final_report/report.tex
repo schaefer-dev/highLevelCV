@@ -229,7 +229,7 @@ After having trained the detectors, one can use these to determine whether a cer
 Listing of the results we could achieve using the headpose estimation and the hand-based classification and finally the HoG landmarks.
 \subsection{Headpose Estimation}
 	\subsubsection{Angle as feature}
-	Out first try was to only use the angle of the face to the camera as a feature. The results(Figure\ref{headpose_feature}) were bad. The Problem was that the angle alone was far to less information.
+	Our first approach was to only use the angle of the face to the camera as a feature. The results(Figure\ref{headpose_feature}) were bad. The Problem was that the angle alone was far too few information.
 	\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{angle_only}\hspace{0.01\textwidth}
@@ -344,7 +344,21 @@ Our last try was to test if it is possible to find out if the image is in the cl
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{mult_HOG/4c0123456789matComparable}
-	\includegraphics[width=0.4\textwidth]{mult_HOG/4c0123456789repComparable}
+%	\includegraphics[width=0.4\textwidth]{mult_HOG/4c0123456789repComparable}
+	\begin{tabular}{c||c|c|c|c}
+		& precision&recall&f1-score&support\\	\hline
+		c0&0.43&0.76&0.55&111\\
+		c1&1.00&0.52&0.68&102\\
+		c2&0.79&0.99&0.88&101\\
+		c3&0.99&0.56&0.72&128\\
+		c4&0.46&0.97&0.63&104\\
+		c5&0.00&0.00&0.00&104\\
+		c6&0.97&0.79&0.87&108\\
+		c7&1.00&0.03&0.06&101\\
+		c8&0.34&0.64&0.45&99\\
+		c9&0.84&0.95&0.89&120\\ \hline
+		Avg/total &0.69&0.63& 0.58 &1078
+	\end{tabular}
 	\caption{\textit{Above.} Confusion matrix for an SVM trained on HoG Landmarks of 4 participants and evaluated on 1 test participant. \textit{Below.} Textual report of the mentioned setting}
 	\label{Landmarks_4all}
 \end{figure}
@@ -354,7 +368,19 @@ The initial results already outperform previous approaches as can be seen from F
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{mult_HOG/4c01234689matComparable}
-	\includegraphics[width=0.4\textwidth]{mult_HOG/4c01234689repComparable}
+	%\includegraphics[width=0.4\textwidth]{mult_HOG/4c01234689repComparable}
+	\begin{tabular}{c||c|c|c|c}
+		& precision&recall&f1-score&support\\	\hline
+		c0&0.53&0.76&0.62&111\\
+		c1&1.00&0.52&0.68&102\\
+		c2&0.79&0.99&0.88&101\\
+		c3&0.99&0.56&0.72&128\\
+		c4&0.66&0.97&0.79&104\\
+		c6&0.97&0.79&0.87&108\\
+		c8&0.69&0.64&0.66&99\\
+		c9&0.88&0.95&0.91&120\\ \hline
+		Avg/total &0.82&0.77& 0.77 &873
+	\end{tabular}
 	\caption{\textit{Above.} Confusion matrix for an SVM trained on HoG Landmarks of 4 participants and evaluated on 1 test participant. Classes c5 and c7 have been omitted and classes c6, c8 and c9 have been shifted to the left. \textit{Below.} Textual report of the mentioned setting}
 	\label{Landmarks_4no5no7}
 \end{figure}
@@ -379,7 +405,19 @@ Other classes such as c0(safe driving) and c8(hair and makeup) have arguably low
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{mult_HOG/4c01234689matTest}
-	\includegraphics[width=0.4\textwidth]{mult_HOG/4c01234689repTest}
+	%\includegraphics[width=0.4\textwidth]{mult_HOG/4c01234689repTest}
+		\begin{tabular}{c||c|c|c|c}
+			& precision&recall&f1-score&support\\	\hline
+			c0&0.61&0.44&0.51&45\\
+			c1&1.00&0.41&0.59&29\\
+			c2&0.95&0.61&0.75&31\\
+			c3&0.61&0.68&0.64&25\\
+			c4&0.61&0.69&0.65&29\\
+			c6&0.93&0.57&0.70&23\\
+			c8&0.29&0.81&0.43&26\\
+			c9&0.83&0.74&0.78&34\\ \hline
+			Avg/total &0.73&0.61& 0.63 &242
+		\end{tabular}
 	\caption{\textit{Above.} Confusion matrix for an SVM trained on HoG Landmarks of 4 participants and evaluated on several test participants. Classes c5 and c7 have been omitted and classes c6, c8 and c9 have been shifted to the left. \textit{Below.} Textual report of the mentioned setting}
 	\label{Landmarks_4no5no7test}
 \end{figure}
