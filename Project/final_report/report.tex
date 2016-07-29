@@ -114,6 +114,18 @@ Additionally to this so called training set, of which we know the driver (and th
 
 \section{Proposed Method}
 
+
+\subsection{Head-based classification}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.2\textwidth]{face1}\hspace{0.01\textwidth}
+	\includegraphics[width=0.2\textwidth]{faces/face7}\\ \vspace{0.01\textwidth}
+	\caption{good and bad example of Face}
+	\label{face_estimation_example}
+\end{figure}
+One of our ideas was to use a headdetector or a facedetector to extract a feature and predict the correct class or narrow down the possible classes. At least we hoped it would be possible to say if a picture is in a specific class or not. We tried different head or facedetecors and all had Problems to detect the head or didnt gave us enough features. We think the problem was that the pictures have a relative small resolution. An other Problem could be the different angles, because some detectors only worked with frontal view others only in the sideview. Long hair, sunglasses and other occlusion could be a problem too. In the end we found Face~\cite{Ramanan:2012:FDP:2354409.2355119}, which found heads in about 80\% of the pictures and gave us the horizontal angle from face to camera and 39 or 68 points of the face.Even if it found a face, it was not always the correct one. Face is runnning in matlab, so we used it to create a .csv file for every class + a file for the pictures where it was impossible to find a head. Then we let a Support Vector Machine and a Random learn on this data. First we only used the angle. Then we used angle and the points in relation to a fixed point in the face and hoped that these point could show us if the person is looking straight or lookung down on his mobilephone or the radio. We tried with both to predict the right class and to predict if the person is talking to the passenger or not.
+
+
 \subsection{Hand-based classification}
 \begin{figure}[h]
 	\centering
@@ -210,6 +222,63 @@ After having trained the detectors, one can use these to determine whether a cer
 
 
 \section{Experimental Results}
+\subsection{Headpose Estimation}
+	\subsubsection{Angle as feature}
+	Out first try was to only use the angle of the face to the camera as a feature. The results(Figure\ref{headpose_feature}) were bad. The Problem was that the angle alone was far to less information.
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{angle_only}\hspace{0.01\textwidth}
+	\begin{tabular}{c||c|c|c|c}
+	  & precision&recall&f1-score&support\\	\hline
+	 c0&0.00&0.00&0.00&288\\
+	 c1&0.12&0.17&0.14&227\\
+	 c2&0.00&0.00&0.00&20\\
+	 c3&0.00&0.00&0.00&222\\
+	 c4&0.17&0.88&.029&210\\
+	 c5&0.00&0.00&0.00&184\\
+	 c6&0.00&0.00&0.00&142\\
+	 c7&0.09&0.11&0.10&65\\
+	 c8&0.00&0.00&0.00&59\\
+	 c9&0.80&.062&0.70&208
+	\end{tabular}
+	\caption{results of angle features with svm}
+	\label{headpose_feature}
+	\end{figure}
+\subsubsection{Angle and points as features}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{all_vs_all_headpose}\hspace{0.01\textwidth}
+	\begin{tabular}{c||c|c|c|c}
+	  & precision&recall&f1-score&support\\	\hline
+	 c0&0.45&0.51&0.48&288\\
+	 c1&0.26&0.09&0.14&227\\
+	 c2&0.00&0.00&0.00&20\\
+	 c3&0.36&0.72&0.48&222\\
+	 c4&0.25&0.40&0.31&210\\
+	 c5&0.57&0.26&0.51&84\\
+	 c6&0.62&0.04&0.07&142\\
+	 c7&0.62&0.55&0.59&65\\
+	 c8&0.14&0.17&0.15&59\\
+	 c9&0.81&0.76&0.78&208
+	\end{tabular}
+	\caption{results of angle and points features with svm}
+	\label{headposeandpoints_feature}
+	\end{figure}
+Our next idea was to use the points of the face in relation to a fixed point in the face in the hope that it would help us to recognise the vertical angle of the driver's head. The results(Figure\ref{headposeandpoints_feature}) were a little bit better ut still far from good.
+
+\subsubsection{one vs. all with headpose and points}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{c5ornot.png}\hspace{0.01\textwidth}
+	\begin{tabular}{c||c|c|c|c}
+	  & precision&recall&f1-score&support\\	\hline
+	  not C5&0.97&0.96&0.97&1417\\
+	  C5&0.76&0.79&0.78&208
+	\end{tabular}
+	\caption{results of angle and points features with svm}
+	\label{C5ornot}
+	\end{figure}
+Our last try was to test if it is possible to find out if the image is in the class ``talking to the passenger'' or not. Again we trained with angle and relative points, but this time only C5 and notC5. The results(Figure\ref{C5ornot}) were better bur not satisfiable, because it is still too bad to use it in the project.
 
 \subsection{Hand-based classification}
 
