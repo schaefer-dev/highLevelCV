@@ -6,6 +6,9 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{float}
+\usepackage{caption}
+
 
 % Include other packages here, before hyperref.
 
@@ -18,7 +21,9 @@
 
 \def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
 
+
 \graphicspath{ {images/} }
+
 
 \setcounter{page}{1}
 \begin{document}
@@ -55,8 +60,12 @@ Dominik Weber\\
 %%%%%%%%% BODY TEXT
 
 \section{Introduction}
-According to the U.S. Department of Transoprtation and National Highway Traffic Safety Administration, about 18\% of all injury crashes and 10\% of fatal crashes are reported to involve distracted drivers at the moment of the accident ~\cite{knuthwebsite}. In 2013 this, unfortunately, translated to over 3000 people killed and 400,000 people injured, in the United States alone due to motor vehicle crashes.\\
+
+
+According to the U.S. Department of Transoprtation and National Highway Traffic Safety Administration, about 18\% of all injury crashes and 10\% of fatal crashes are reported to involve distracted drivers at the moment of the accident ~\cite{knuthwebsite}. In 2013 this, unfortunately, translated to over 3000 people killed and 400,000 people injured, in the United States alone due to motor vehicle crashes.
+
 This clearly speaks for measures to be taken. Spotting distracted drivers in time could help to take appropriate actions and thus prevent accidents and save thousands of lives every year. In order to detect distracted drivers, different approaches have been taken. However, many of them are intrusive and expensive. However by using simple cameras combined with computer vision algorithms, one can get a solution that is both cheap and non-intrusive.\\
+
 For this task we have entered the Kaggle Competition: State Farm Distracted Driver Detection ~\cite{Kaggle}. The challenge consists of classifying images of drivers engaging in the behaviors described below.
 
 \begin{enumerate}
@@ -79,7 +88,9 @@ The first step we took was analysing the dataset. We are given over 2.000 pictur
 
 The drivers are split up in four cars. Depending on the car the camera angles varies. During the analysis process we also noticed that there is labeling noise in the data. For example we found several pictures in the ''safe driving'' class, which should in our opinion belong to the ''Talking to passenger'' one. Also lighting-conditions changed rapidly and the drivers have different ethnicities.
 
-Additionally to this so called training set, of which we know the driver (and thus car) and class of each picture, we also have a so called test set containing around 80.000 unclassified pictures. The only option to verify results on this set is to upload them to the competition website, but because of the time necessary to classify all these 80.000 pictures combined with the fact that we only get very limited information back, we decided to run our tests only on parts of the training set too speed up our evaluation process.
+
+Additionally to this so called training set, of which we know the driver (and thus car) and class of each picture, we also have a so called test set containing around 80.000 unclassified pictures. The only option to verify results on this set is to upload them to the competition website, but because of the time necessary to classify all these 80.000 pictures combined with the fact that we only get very limited information back, we decided to run our tests only on parts of the training set to speed up our evaluation process.
+
 
 
 
@@ -120,6 +131,53 @@ Besides using Support Vector Machines for classification, which was the only cla
 It is important to note that the steering wheel is not aligned across the dataset. The training-data was recorded in 4 different cars with varying camera angles. As we will show, it is important to align the steering wheel in the cropped images for a good performance. We have manually labeled the center of all steering wheels to perform this alignment.
 
 \subsection{HOG Landmarks}
+For the last approach used in this paper, we look for specific things in the images that help us make a decision. We call these specific things landmarks. A landmark can be anything in the images(pose, objects, etc.) that can be used to distinguish a class from the others. These landmarks are chosen arbitrarily in this paper and we shall later evaluate how well they perform. Below we outline what of these landmarks are, note that there is at least one distinctive landmark per class.
+
+\begin{enumerate}
+	\item Head facing front, towards the road.
+	\item Head facing sideways towards the copilot
+	\item Head facing backwards towards the back passengers.
+	\item Empty gap in front of the head rest
+	\item Right hand holding phone while texting
+	\item Right hand holding phone while talking\
+	\item Left hand holding phone while texting
+	\item Left hand holding phone while talking
+	\item Hand holding bottle/cup
+	\item Hand near head
+	\item Hand reaching behind
+	\item Hand reaching for radio	
+\end{enumerate}
+
+
+
+In order to detect this landmarks, approximately 50 images per class were taken and manually labeled bounding boxes around the selected landmarks. The detectors were then trained based on HOG features for each landmark with the help of Dlib \cite{dlib09}.
+After having trained the detectors, one can use these to determine whether a certain landmark is present in an image or not. Then, by training a simple SVC that uses as predictors an array of boolean features each one of which representing the presence, or absence, of a landmark, one can potentially predict the activity performed by the driver.
+
+
+
+ 
+
+
+
+%\begin{minipage}[t]{.5\textwidth}
+%	\includegraphics[width=\textwidth]{mult_HOG/HOG_phone}
+%	\captionsetup{justification=raggedright, singlelinecheck=false}
+%	\captionof{figure}{H Feistel Function}
+%\end{minipage}%
+%\begin{minipage}[t]{.5\textwidth}
+%	\includegraphics[width=\textwidth]{mult_HOG/HOG_phone}
+%	\captionsetup{justification=raggedright, singlelinecheck=false}
+%	\captionof{figure}{HOG of the right hand holding phone while texting landmark}
+%\end{minipage}
+
+
+%\begin{figure*}[h]
+%	\includegraphics[width=0.85\columnwidth]{mult_HOG/HOG_phone}
+%	\captionsetup{justification=raggedright,
+%		singlelinecheck=false
+%	}
+%	\caption{HOG of the right hand holding phone while texting landmark}
+%\end{figure*}
 
 
 
