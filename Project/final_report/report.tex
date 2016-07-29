@@ -83,6 +83,17 @@ For this task we have entered the Kaggle Competition: State Farm Distracted Driv
 
 In this paper we propose different approaches to solve this task using some classic computer vision methods to find out how well they stack up against state of the art methods such Deep Neural Networks, which can already achieve up to 99\% accuracy .
 
+
+\section{Related Work}
+There are already quite a few approaches regarding distracted driver distraction, although these approaches are mainly working on picture datasets with frontal-views on the face and rely almost exclusively on gaze-tracking or head-pose estimation. \cite{Dorazio} \cite{6957817}
+Additionally some of these datasets are being captured in artificial environments (for example Racing Simulators) \cite{itsc:bergasa2008} which results in much more consistent variables like e.g. light situation and camera angle. In some of the approaches additional sensors are being used (e.g. RGB-depth cameras) which obviously also extend the possibilities greatly. \cite{Ragab2014}
+
+We also decided to do some research on the very familiar topic ''Activity Recognition'' to explore further possibilities. Unfortunately most of the approaches in the Activity Recognition field rely on additional sensors (eg. wearable sensors) \cite{6258525} \cite{6365160} or rely on continious video instead of single pictures. \cite{1315249} \cite{1430826}
+
+So our conclusion was that the current methods are not really applicable to the problems we wanted to solve, so we have to come up with something on our own!
+
+
+
 \section{The Dataset}
 The first step we took was analysing the dataset. We are given over 2.000 pictures per class from 26 different drivers in total. Each of the drivers has roughly the same amount of pictures per class. 
 
@@ -94,7 +105,6 @@ Additionally to this so called training set, of which we know the driver (and th
 
 
 
-\section{Related Work}
 
 
 
