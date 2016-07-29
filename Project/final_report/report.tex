@@ -141,7 +141,7 @@ It is important to note that the steering wheel is not aligned across the datase
 
 
 \subsection{Bodepose-based classification}
-We expected that reliable localization of head and arms would allow us to differentiate most of the classes because of the different positions the mentioned body-parts are in, during the different distractions. On gitHub we found the open source implementation ''Convolutional Pose Machines'' which is able to predict the key bodyparts for us, like wrists, shoulders, elbows, neck and head.\cite{DBLP:journals/corr/WeiRKS16} The paper was presented at the Conference on Computer Vision and Pattern Recognition in 2016 and outperformed everything else we found greatly using the pretrained models provided on gitHub. Unfortunately we could not use this implementation in our project, because of the computational performance necessary. Nobody of us had access to a CUDA supported video card with over two gigabytes of VRAM which was not nearly enough for this Pose-Machine to work. Doing everything on CPU was not an option for us because this took between one to four minutes per picture. Although this at least made it possible to take a look at the results this pose machine is able to achieve. We can't really precisely evaluate the performance of this approach but in all the pictures we were able to test the heatmaps of the said body-parts are looking usable across all the different classes. You can see an example of how the heatmaps for interesting bodyparts look like in Figure \ref{BodyPoseExample}.\\
+We expected that reliable localization of head and arms would allow us to differentiate most of the classes because of the different positions the mentioned body-parts are in, during the different distractions. On gitHub we found the open source implementation ''Convolutional Pose Machines'' which is able to predict the key bodyparts for us, like wrists, shoulders, elbows, neck and head.\cite{DBLP:journals/corr/WeiRKS16} The paper was presented at the Conference on Computer Vision and Pattern Recognition in 2016 and outperformed everything else we found greatly using the pretrained models provided on gitHub. Unfortunately we could not use this implementation in our project, because of the computational performance necessary. Nobody of us had access to a CUDA supported video card with over two gigabytes of VRAM which was not nearly enough for this Pose-Machine to work. Doing everything on CPU was not an option for us because this took between one to four minutes per picture. Although this at least made it possible to take a look at the results this pose machine is able to achieve. We can not really precisely evaluate the performance of this approach but in all the pictures we were able to test the heatmaps of the said body-parts are looking usable across all the different classes. You can see an example of how the heatmaps for interesting bodyparts look like in Figure \ref{BodyPoseExample}.\\
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{BodyPoseExample}
@@ -258,7 +258,7 @@ Listing of the results we could achieve using the headpose estimation and the ha
 	\caption{results of angle and points features with svm}
 	\label{headposeandpoints_feature}
 	\end{figure}
-Our next idea was to use the points of the face in relation to a fixed point in the face in the hope that it would help us to recognise the vertical angle of the driver's head. The results(Figure\ref{headposeandpoints_feature}) were a little bit better ut still far from good.
+Our next idea was to use the points of the face in relation to a fixed point in the face in the hope that it would help us to recognise the vertical angle of the drivers head. The results(Figure\ref{headposeandpoints_feature}) were a little bit better ut still far from good.
 
 \subsubsection{one vs. all with headpose and points}
 \begin{figure}[h]
@@ -377,7 +377,10 @@ Finally since there is much bias in testing only against one participant, we hav
 
 \section{Conclusion}
 
+
 \section{Future Work}
+Regarding the future work, we think that the approach we have, can still be optimized a lot by experimenting with combining what we have right now and trying different parameters for everything. The biggest problem is to get features that describe everything important well. Additionally implementing a body-pose estimation like mentioned in our proposed methods will most likely benefit our classification, because it could be used to describe the arms position. This combined with the hand- and headpose-estimation would basically cover all the important bodyparts to distinguish between all the classes. To achieve this we would probably have to invest in new hardware to increase our computational power.
+
 
 
 
